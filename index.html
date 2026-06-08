@@ -127,7 +127,7 @@
   <!-- HEADER -->
   <header class="header" id="header">
     <div class="header-inner">
-      <h1 class="header-title">BURGER DASH</h1>
+      <h1 class="header-title" id="headerName">BURGER DASH</h1>
       <button class="neo-2" onclick="openCart()" style="display:flex;align-items:center;gap:.4rem;padding:.35rem .9rem;background:#F97316;color:#fff;border-radius:50px;font-weight:800;font-size:.7rem;cursor:pointer;">
         <i class="ti ti-shopping-cart" style="font-size:.9rem"></i>
         <span id="headerCartTotal">R$ 0,00</span>
@@ -292,7 +292,7 @@
   </nav>
 
   <!-- WHATSAPP FAB -->
-  <a href="https://wa.me/5535999999999" target="_blank" class="wa-fab"><i class="ti ti-brand-whatsapp"></i></a>
+  <a href="https://wa.me/5535999999999" id="waFab" target="_blank" class="wa-fab"><i class="ti ti-brand-whatsapp"></i></a>
 
   <!-- ADMIN LINK -->
   <a href="admin.html" class="admin-link" title="Painel Admin"><i class="ti ti-settings"></i></a>
@@ -328,10 +328,10 @@
 
 <script>
 // ===== DATA =====
-const WHATSAPP = '5535999999999';
-const ADMIN_PASS = 'admin123';
-
-let cardapio = JSON.parse(localStorage.getItem('cardapio')) || {
+let storedData=localStorage.getItem('cardapio');
+let cardapio;
+if(storedData){try{cardapio=JSON.parse(storedData);}catch(e){cardapio=null;}}
+if(!cardapio||!cardapio.categorias){
   nome: "Burger Dash",
   categorias: [
     { nome: "Burgers", icon: "🔥", pratos: [
@@ -360,6 +360,8 @@ let cardapio = JSON.parse(localStorage.getItem('cardapio')) || {
 };
 
 const featuredItem = { nome: "Combo Ultimate Dash", preco: 49.9, oldPreco: 68, descricao: "Double beef • Bacon • Egg • Fries", img: "https://images.unsplash.com/photo-1662047317263-03ff37e76db2?auto=format&w=800&q=80&fit=crop" };
+
+function getWhatsApp(){return(cardapio&&cardapio.whatsapp)||'5535999999999';}
 
 // ===== CART =====
 let cart = {};
@@ -504,13 +506,31 @@ function sendWhatsApp(){
   items.forEach(it=>{msg+=`• ${it.qty}x ${it.nome} — R$ ${it.subtotal.toFixed(2).replace('.',',')}\n`;});
   msg+=`\n─────────────────\n💰 *TOTAL: R$ ${total.toFixed(2).replace('.',',')}*\n`;
   if(notes) msg+=`\n📝 Observações:\n${notes}\n`;
-  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`,'_blank');
+  window.open(`https://wa.me/${getWhatsApp()}?text=${encodeURIComponent(msg)}`,'_blank');
 }
 
 // ===== INIT =====
+if(cardapio.nome){
+  document.getElementById('headerName').textContent=cardapio.nome;
+  document.title=cardapio.nome+' - Cardápio';
+}
+const wa=getWhatsApp();
+if(wa) document.getElementById('waFab').href='https://wa.me/'+wa;
 renderCategories();renderProducts();
 const header=document.getElementById('header');
 window.addEventListener('scroll',()=>{header.classList.toggle('scrolled',(window.scrollY||0)>60);},{passive:true});
+
+// Reload data from localStorage when returning from admin
+window.addEventListener('focus',()=>{
+  const stored=localStorage.getItem('cardapio');
+  if(stored){try{const d=JSON.parse(stored);if(d&&d.categorias){cardapio=d;renderCategories();renderProducts();}}catch(e){}}
+});
+window.addEventListener('visibilitychange',()=>{
+  if(document.visibilityState==='visible'){
+    const stored=localStorage.getItem('cardapio');
+    if(stored){try{const d=JSON.parse(stored);if(d&&d.categorias){cardapio=d;renderCategories();renderProducts();}}catch(e){}}
+  }
+});
 </script>
 </body>
 </html>

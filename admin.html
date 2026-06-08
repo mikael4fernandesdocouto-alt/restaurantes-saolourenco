@@ -11,13 +11,14 @@
     *{margin:0;padding:0;box-sizing:border-box}
     body{font-family:'DM Sans',sans-serif;background:#f9fafb;color:#111827;min-height:100vh}
     .font-inter{font-family:'Inter',sans-serif}
-    .neo{border:2px solid #111827;box-shadow:3px 3px 0 #111827}
+    .neo{border:2px solid #111827;box-shadow:3px 3px 0 #111827;transition:all .15s}
     .neo:active{box-shadow:0 0 0 #111827!important;transform:translate(3px,3px)!important}
-    input,textarea,select{width:100%;padding:.6rem .75rem;background:#fff;border:2px solid #111827;border-radius:10px;font-size:.85rem;font-family:'DM Sans',sans-serif;outline:none;box-shadow:2px 2px 0 #d1d5db}
+    input,textarea{width:100%;padding:.6rem .75rem;background:#fff;border:2px solid #111827;border-radius:10px;font-size:.85rem;font-family:'DM Sans',sans-serif;outline:none;box-shadow:2px 2px 0 #d1d5db}
     input:focus,textarea:focus{border-color:#F97316;box-shadow:2px 2px 0 #F97316}
     textarea{resize:vertical;min-height:60px}
     label{display:block;font-size:.75rem;font-weight:700;color:#6b7280;margin-bottom:.3rem}
     .btn{padding:.6rem 1.2rem;border-radius:10px;font-size:.8rem;font-weight:800;cursor:pointer;border:2px solid #111827;transition:all .15s}
+    .btn:active{box-shadow:0 0 0 #111827!important;transform:translate(3px,3px)!important}
     .btn-primary{background:#F97316;color:#fff}
     .btn-primary:hover{filter:brightness(1.05)}
     .btn-danger{background:#dc2626;color:#fff}
@@ -25,13 +26,11 @@
     .btn-secondary{background:#f3f4f6;color:#111827}
     .btn-sm{padding:.35rem .7rem;font-size:.7rem;border-radius:8px}
 
-    /* LOGIN */
     .login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem}
     .login-box{width:100%;max-width:360px;background:#fff;padding:2rem;border-radius:20px;border:3px solid #111827;box-shadow:8px 8px 0 #111827}
     .login-box h1{font-size:1.5rem;font-weight:900;font-family:'Inter',sans-serif;text-align:center;margin-bottom:.5rem;font-style:italic}
     .login-box p{font-size:.8rem;color:#6b7280;text-align:center;margin-bottom:1.5rem}
 
-    /* ADMIN LAYOUT */
     .admin-header{background:#111827;color:#fff;padding:.8rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
     .admin-header h1{font-size:1.1rem;font-weight:900;font-family:'Inter',sans-serif;font-style:italic}
     .admin-header-left{display:flex;align-items:center;gap:.6rem}
@@ -39,12 +38,12 @@
 
     .admin-tabs{display:flex;gap:.5rem;padding:1rem 1rem .5rem;flex-wrap:wrap;background:#fff;border-bottom:2px solid #111827;position:sticky;top:48px;z-index:40}
     .tab-btn{padding:.4rem 1rem;border-radius:8px;font-size:.7rem;font-weight:800;cursor:pointer;border:2px solid #111827;background:#fff;transition:all .15s}
+    .tab-btn:active{transform:scale(.95)}
     .tab-btn.active{background:#F97316;color:#fff}
     .tab-btn:not(.active):hover{background:#f3f4f6}
 
     .admin-content{padding:1rem;max-width:800px;margin:0 auto}
 
-    /* CARDS */
     .cat-section{background:#fff;border:2px solid #111827;border-radius:16px;margin-bottom:1rem;overflow:hidden}
     .cat-header{padding:.8rem 1rem;background:#f9fafb;border-bottom:2px solid #111827;display:flex;align-items:center;justify-content:space-between}
     .cat-header h3{font-size:.9rem;font-weight:800;font-family:'Inter',sans-serif}
@@ -52,7 +51,7 @@
 
     .product-list{display:flex;flex-direction:column;gap:.5rem}
     .product-row{display:flex;align-items:center;gap:.6rem;padding:.6rem;background:#f9fafb;border-radius:10px;border:1px solid #e5e7eb}
-    .product-row-img{width:44px;height:44px;border-radius:8px;object-fit:cover;background:#e5e7eb;flex-shrink:0}
+    .product-row-img{width:44px;height:44px;border-radius:8px;object-fit:cover;background:#e5e7eb;flex-shrink:0;border:1px solid #d1d5db}
     .product-row-info{flex:1;min-width:0}
     .product-row-name{font-size:.8rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .product-row-price{font-size:.7rem;color:#F97316;font-weight:700}
@@ -64,17 +63,24 @@
     .add-form{background:#f9fafb;padding:1rem;border-radius:12px;border:2px dashed #d1d5db;margin-bottom:1rem}
     .add-form h4{font-size:.85rem;font-weight:800;margin-bottom:.8rem;display:flex;align-items:center;gap:.4rem}
 
-    .toggle-switch{position:relative;width:44px;height:24px}
+    .toggle-wrap{display:flex;align-items:center;gap:.4rem}
+    .toggle-label{font-size:.7rem;font-weight:600;color:#6b7280}
+    .toggle-switch{position:relative;width:44px;height:24px;flex-shrink:0}
     .toggle-switch input{opacity:0;width:0;height:0}
     .toggle-slider{position:absolute;inset:0;background:#d1d5db;border-radius:24px;cursor:pointer;transition:.3s;border:2px solid #111827}
     .toggle-slider:before{content:'';position:absolute;width:16px;height:16px;left:2px;bottom:2px;background:#fff;border-radius:50%;transition:.3s;border:1px solid #d1d5db}
     .toggle-switch input:checked+.toggle-slider{background:#22c55e}
 
-    .toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(20px);background:#111827;color:#fff;padding:.6rem 1.2rem;border-radius:50px;font-size:.8rem;font-weight:700;z-index:999;opacity:0;transition:all .3s;pointer-events:nowrap;white-space:nowrap}
-    .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+    .atoast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(20px);background:#111827;color:#fff;padding:.6rem 1.2rem;border-radius:50px;font-size:.8rem;font-weight:700;z-index:999;opacity:0;transition:all .3s;white-space:nowrap}
+    .atoast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-    .danger-zone{border:2px solid #dc2626;border-radius:12px;padding:1rem;margin-top:2rem}
+    .danger-zone{border:2px solid #dc2626;border-radius:12px;padding:1rem;margin-top:2rem;background:#fef2f2}
     .danger-zone h4{color:#dc2626;font-size:.85rem;font-weight:800;margin-bottom:.5rem}
+
+    @media(max-width:480px){
+      .form-row{grid-template-columns:1fr}
+      .admin-tabs{top:44px}
+    }
   </style>
 </head>
 <body>
@@ -92,11 +98,11 @@
   </div>
 </div>
 
-<!-- ADMIN PANEL (hidden until login) -->
+<!-- ADMIN PANEL -->
 <div id="adminPanel" style="display:none">
   <header class="admin-header">
     <div class="admin-header-left">
-      <a href="index.html" class="btn-back"><i class="ti ti-arrow-left"></i> Voltar</a>
+      <a href="index.html" class="btn-back"><i class="ti ti-arrow-left"></i> Voltar ao Cardápio</a>
     </div>
     <h1>🍽️ ADMIN</h1>
     <button class="btn btn-sm btn-secondary" onclick="doLogout()" style="border-color:#fff;color:#fff;background:transparent;font-size:.7rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:.3rem"><i class="ti ti-logout"></i> Sair</button>
@@ -118,7 +124,7 @@
     <!-- TAB 1: CATEGORIAS -->
     <div class="tab-content" id="tab-1" style="display:none">
       <div class="cat-section">
-        <div class="cat-header"><h3>Adicionar Categoria</h3></div>
+        <div class="cat-header"><h3><i class="ti ti-plus-circle"></i> Adicionar Categoria</h3></div>
         <div class="cat-body">
           <div class="form-row">
             <div><label>Nome</label><input type="text" id="newCatName" placeholder="Ex: Sobremesas"></div>
@@ -127,9 +133,8 @@
           <button class="btn btn-primary neo" onclick="addCategoria()"><i class="ti ti-plus"></i> Adicionar Categoria</button>
         </div>
       </div>
-
       <div style="margin-top:1rem">
-        <h4 style="font-size:.85rem;font-weight:800;margin-bottom:.5rem">Categorias Existentes</h4>
+        <h4 style="font-size:.85rem;font-weight:800;margin-bottom:.5rem;font-family:'Inter',sans-serif">Categorias Existentes</h4>
         <div class="product-list" id="catList"></div>
       </div>
     </div>
@@ -137,19 +142,18 @@
     <!-- TAB 2: DADOS -->
     <div class="tab-content" id="tab-2" style="display:none">
       <div class="cat-section">
-        <div class="cat-header"><h3>Dados do Restaurante</h3></div>
+        <div class="cat-header"><h3><i class="ti ti-building-store"></i> Dados do Restaurante</h3></div>
         <div class="cat-body">
-          <div class="form-row full"><label>Nome do Restaurante</label><input type="text" id="restName"></div>
-          <div class="form-row"><label>WhatsApp (com DDI)</label><input type="text" id="restWa" placeholder="5535999999999"></div>
+          <div class="form-row full"><label>Nome do Restaurante</label><input type="text" id="restName" placeholder="Ex: Burger Dash"></div>
+          <div class="form-row"><label>WhatsApp (com DDI, só números)</label><input type="text" id="restWa" placeholder="5535999999999"></div>
           <div class="form-row"><label>Horário</label><input type="text" id="restHours" placeholder="11h–23h"></div>
           <div class="form-row"><label>Endereço</label><input type="text" id="restAddr" placeholder="São Lourenço, MG"></div>
           <div class="form-row"><label>Instagram</label><input type="text" id="restIg" placeholder="@burgerdash_br"></div>
           <button class="btn btn-success neo" onclick="saveRestData()"><i class="ti ti-device-floppy"></i> Salvar Dados</button>
         </div>
       </div>
-
       <div class="danger-zone">
-        <h4>⚠️ Zona de Perigo</h4>
+        <h4><i class="ti ti-alert-triangle"></i> Zona de Perigo</h4>
         <button class="btn btn-danger neo" onclick="resetAll()"><i class="ti ti-trash"></i> Resetar Tudo (volta ao padrão)</button>
       </div>
     </div>
@@ -157,31 +161,31 @@
     <!-- TAB 3: CONFIG -->
     <div class="tab-content" id="tab-3" style="display:none">
       <div class="cat-section">
-        <div class="car-header"><h3>Configurações</h3></div>
+        <div class="cat-header"><h3><i class="ti ti-lock"></i> Segurança</h3></div>
         <div class="cat-body">
           <div style="margin-bottom:1rem">
-            <label>Senha do Admin</label>
-            <input type="password" id="newPass" placeholder="Nova senha...">
+            <label>Nova Senha do Admin</label>
+            <input type="password" id="newPass" placeholder="Mínimo 4 caracteres...">
           </div>
           <button class="btn btn-primary neo" onclick="changePass()"><i class="ti ti-lock"></i> Alterar Senha</button>
         </div>
       </div>
-
       <div class="cat-section" style="margin-top:1rem">
-        <div class="cat-header"><h3>Exportar / Importar Dados</h3></div>
+        <div class="cat-header"><h3><i class="ti ti-file-export"></i> Exportar / Importar Dados</h3></div>
         <div class="cat-body">
           <div style="display:flex;gap:.5rem;flex-wrap:wrap">
             <button class="btn btn-secondary neo" onclick="exportData()"><i class="ti ti-download"></i> Exportar JSON</button>
             <button class="btn btn-secondary neo" onclick="document.getElementById('importFile').click()"><i class="ti ti-upload"></i> Importar JSON</button>
             <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(event)">
           </div>
+          <p style="font-size:.65rem;color:#9ca3af;margin-top:.5rem">Exporte para fazer backup ou transferir para outro navegador.</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="toast" id="aToast"></div>
+<div class="atoast" id="aToast"></div>
 
 <script>
 const DEFAULT_PASS = 'admin123';
@@ -193,36 +197,50 @@ const DEFAULT_DATA = {
   instagram: "@burgerdash_br",
   categorias: [
     { nome: "Burgers", icon: "🔥", pratos: [
-      { nome: "Dash Classic", preco: 32, descricao: "Carne 160g, Cheddar, Pão Australiano.", img: "https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?auto=format&w=400&q=80&fit=crop" },
-      { nome: "Smash Dash", preco: 29, descricao: "2x carne smash, queijo, cebola roxa.", img: "https://images.unsplash.com/photo-1530554764233-e79e16c91d08?auto=format&w=400&q=80&fit=crop" },
-      { nome: "Bacon King", preco: 38, descricao: "Maionese defumada e bacon crocante.", img: "https://images.unsplash.com/photo-1633424234673-c8cd0f4df77b?auto=format&w=400&q=80&fit=crop" },
-      { nome: "Dash Duplo", preco: 42, descricao: "2x carne 120g, duplo cheddar, molho especial.", img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&w=400&q=80&fit=crop" }
+      { nome: "Dash Classic", preco: 32, descricao: "Carne 160g, Cheddar, Pão Australiano.", img: "https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?auto=format&w=400&q=80&fit=crop", ativo: true },
+      { nome: "Smash Dash", preco: 29, descricao: "2x carne smash, queijo, cebola roxa.", img: "https://images.unsplash.com/photo-1530554764233-e79e16c91d08?auto=format&w=400&q=80&fit=crop", ativo: true },
+      { nome: "Bacon King", preco: 38, descricao: "Maionese defumada e bacon crocante.", img: "https://images.unsplash.com/photo-1633424234673-c8cd0f4df77b?auto=format&w=400&q=80&fit=crop", ativo: true },
+      { nome: "Dash Duplo", preco: 42, descricao: "2x carne 120g, duplo cheddar, molho especial.", img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&w=400&q=80&fit=crop", ativo: true }
     ]},
     { nome: "Snacks", icon: "🍟", pratos: [
-      { nome: "Batata Trufada", preco: 24, descricao: "Azeite de trufas brancas e Grana Padano.", img: "https://images.unsplash.com/photo-1585109649139-366815a0d713?auto=format&w=400&q=80&fit=crop" },
-      { nome: "Onion Rings", preco: 18, descricao: "Anéis de cebola empanados, molho ranch.", img: "https://images.unsplash.com/photo-1639024471283-03518883512d?auto=format&w=400&q=80&fit=crop" },
-      { nome: "Nuggets Dash", preco: 20, descricao: "10x nuggets crocantes, molho barbecue.", img: "https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&w=400&q=80&fit=crop" }
+      { nome: "Batata Trufada", preco: 24, descricao: "Azeite de trufas brancas e Grana Padano.", img: "https://images.unsplash.com/photo-1585109649139-366815a0d713?auto=format&w=400&q=80&fit=crop", ativo: true },
+      { nome: "Onion Rings", preco: 18, descricao: "Anéis de cebola empanados, molho ranch.", img: "https://images.unsplash.com/photo-1639024471283-03518883512d?auto=format&w=400&q=80&fit=crop", ativo: true },
+      { nome: "Nuggets Dash", preco: 20, descricao: "10x nuggets crocantes, molho barbecue.", img: "https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&w=400&q=80&fit=crop", ativo: true }
     ]},
     { nome: "Drinks", icon: "🥤", pratos: [
-      { nome: "Refrigerante Lata", preco: 6, descricao: "Coca-Cola, Guaraná ou Fanta.", img: "https://images.unsplash.com/photo-1553787434-6e1d49c42e5d?auto=format&w=400&q=80&fit=crop" },
-      { nome: "Suco Natural", preco: 8, descricao: "Laranja, limão, maracujá ou morango.", img: "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&w=400&q=80&fit=crop" },
-      { nome: "Milkshake", preco: 16, descricao: "Chocolate, morango ou ovomaltine.", img: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&w=400&q=80&fit=crop" },
-      { nome: "Água Mineral", preco: 4, descricao: "Com ou sem gás.", img: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&w=400&q=80&fit=crop" }
+      { nome: "Refrigerante Lata", preco: 6, descricao: "Coca-Cola, Guaraná ou Fanta.", img: "https://images.unsplash.com/photo-1553787434-6e1d49c42e5d?auto=format&w=400&q=80&fit=crop", ativo: true },
+      { nome: "Suco Natural", preco: 8, descricao: "Laranja, limão, maracujá ou morango.", img: "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&w=400&q=80&fit=crop", ativo: true },
+      { nome: "Milkshake", preco: 16, descricao: "Chocolate, morango ou ovomaltine.", img: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&w=400&q=80&fit=crop", ativo: true },
+      { nome: "Água Mineral", preco: 4, descricao: "Com ou sem gás.", img: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&w=400&q=80&fit=crop", ativo: true }
     ]},
     { nome: "Combos", icon: "🎁", pratos: [
-      { nome: "Combo Solo", preco: 45, descricao: "1 Burger + Batata + Refri.", img: "https://images.unsplash.com/photo-1662047317263-03ff37e76db2?auto=format&w=400&q=80&fit=crop" },
-      { nome: "Combo Casal", preco: 79.9, descricao: "2 Burgers + Batata Grande + 2 Refris.", img: "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&w=400&q=80&fit=crop" },
-      { nome: "Combo Família", preco: 129, descricao: "4 Burgers + 2 Batatas + 2 Refris + Nuggets.", img: "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&w=400&q=80&fit=crop" }
+      { nome: "Combo Solo", preco: 45, descricao: "1 Burger + Batata + Refri.", img: "https://images.unsplash.com/photo-1662047317263-03ff37e76db2?auto=format&w=400&q=80&fit=crop", ativo: true },
+      { nome: "Combo Casal", preco: 79.9, descricao: "2 Burgers + Batata Grande + 2 Refris.", img: "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&w=400&q=80&fit=crop", ativo: true },
+      { nome: "Combo Família", preco: 129, descricao: "4 Burgers + 2 Batatas + 2 Refris + Nuggets.", img: "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&w=400&q=80&fit=crop", ativo: true }
     ]}
   ]
 };
 
 // ===== INIT =====
-let data = JSON.parse(localStorage.getItem('cardapio'));
-let adminPass = localStorage.getItem('adminPass') || DEFAULT_PASS;
-if (!data) { data = JSON.parse(JSON.stringify(DEFAULT_DATA)); saveData(); }
+function loadData() {
+  const stored = localStorage.getItem('cardapio');
+  if (stored) {
+    try {
+      const parsed = JSON.parse(stored);
+      // Ensure all products have 'ativo' field
+      parsed.categorias.forEach(cat => {
+        cat.pratos.forEach(p => { if (p.ativo === undefined) p.ativo = true; });
+      });
+      return parsed;
+    } catch(e) { return JSON.parse(JSON.stringify(DEFAULT_DATA)); }
+  }
+  return JSON.parse(JSON.stringify(DEFAULT_DATA));
+}
 
-// Check if already logged in
+let data = loadData();
+let adminPass = localStorage.getItem('adminPass') || DEFAULT_PASS;
+if (!localStorage.getItem('cardapio')) saveData();
+
 if (sessionStorage.getItem('adminLoggedIn')==='1') {
   document.getElementById('loginScreen').style.display='none';
   document.getElementById('adminPanel').style.display='block';
@@ -238,6 +256,8 @@ function doLogin() {
     renderAdmin();
   } else {
     aToast('❌ Senha incorreta!');
+    document.getElementById('loginPass').value='';
+    document.getElementById('loginPass').focus();
   }
 }
 function doLogout() {
@@ -254,54 +274,59 @@ function switchTab(btn, idx) {
   for(let i=0;i<4;i++) document.getElementById('tab-'+i).style.display=i===idx?'block':'none';
 }
 
-// ===== RENDER ADMIN =====
+// ===== RENDER =====
 function renderAdmin() {
-  // Products tab
+  data = loadData(); // reload fresh
   const container = document.getElementById('adminCats');
   container.innerHTML = '';
+
   data.categorias.forEach((cat, ci) => {
     const section = document.createElement('div');
     section.className = 'cat-section';
-    
+
     let productsHtml = '';
     cat.pratos.forEach((p, pi) => {
+      const opacity = p.ativo === false ? 'opacity:.5' : '';
       productsHtml += `
-        <div class="product-row">
-          <img class="product-row-img" src="${p.img}" alt="${p.nome}">
+        <div class="product-row" style="${opacity}">
+          <img class="product-row-img" src="${p.img}" alt="${p.nome}" onerror="this.src='https://via.placeholder.com/44?text=IMG'">
           <div class="product-row-info">
             <div class="product-row-name">${p.nome}</div>
             <div class="product-row-price">R$ ${p.preco.toFixed(2).replace('.',',')}</div>
             <div class="product-row-desc">${p.descricao}</div>
           </div>
-          <label class="toggle-switch" title="Ativo/Inativo">
-            <input type="checkbox" checked onchange="toggleProd(${ci},${pi})">
-            <span class="toggle-slider"></span>
-          </label>
-          <button class="btn btn-sm btn-secondary neo" onclick="editProd(${ci},${pi})"><i class="ti ti-pencil"></i></button>
-          <button class="btn btn-sm btn-danger neo" onclick="deleteProd(${ci},${pi})"><i class="ti ti-trash"></i></button>
+          <div class="toggle-wrap">
+            <span class="toggle-label">${p.ativo!==false?'ON':'OFF'}</span>
+            <label class="toggle-switch">
+              <input type="checkbox" ${p.ativo!==false?'checked':''} onchange="toggleProd(${ci},${pi},this)">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <button class="btn btn-sm btn-secondary neo" onclick="editProd(${ci},${pi})" title="Editar"><i class="ti ti-pencil"></i></button>
+          <button class="btn btn-sm btn-danger neo" onclick="deleteProd(${ci},${pi})" title="Excluir"><i class="ti ti-trash"></i></button>
         </div>`;
     });
 
     section.innerHTML = `
       <div class="cat-header">
-        <h3>${cat.icon} ${cat.nome} <span style="font-size:.65rem;color:#9ca3af;font-weight:600">(${cat.pratos.length} itens)</span></h3>
-        <button class="btn btn-sm btn-primary neo" onclick="toggleAddForm(${ci})"><i class="ti ti-plus"></i> Add</button>
+        <h3>${cat.icon} ${cat.nome} <span style="font-size:.65rem;color:#9ca3af;font-weight:600">(${cat.pratos.filter(p=>p.ativo!==false).length} ativos / ${cat.pratos.length} total)</span></h3>
+        <button class="btn btn-sm btn-primary neo" onclick="toggleAddForm(${ci})"><i class="ti ti-plus"></i> Add Produto</button>
       </div>
       <div class="cat-body">
         <div class="add-form" id="addForm-${ci}" style="display:none">
-          <h4><i class="ti ti-plus"></i> Novo Produto em ${cat.nome}</h4>
-          <div class="form-row"><label>Nome</label><input type="text" id="ap-name-${ci}" placeholder="Nome do produto"></div>
+          <h4><i class="ti ti-plus"></i> Novo Produto em "${cat.nome}"</h4>
+          <div class="form-row"><label>Nome do Produto</label><input type="text" id="ap-name-${ci}" placeholder="Ex: X-Salada"></div>
           <div class="form-row">
             <div><label>Preço (R$)</label><input type="number" id="ap-price-${ci}" placeholder="0.00" step="0.01" min="0"></div>
-            <div><label>URL da Imagem</label><input type="text" id="ap-img-${ci}" placeholder="https://..."></div>
+            <div><label>URL da Imagem</label><input type="text" id="ap-img-${ci}" placeholder="https://images.unsplash.com/..."></div>
           </div>
-          <div class="form-row full"><label>Descrição</label><input type="text" id="ap-desc-${ci}" placeholder="Descrição do produto"></div>
+          <div class="form-row full"><label>Descrição</label><input type="text" id="ap-desc-${ci}" placeholder="Ex: Hambúrguer, queijo, alface..."></div>
           <div style="display:flex;gap:.5rem;margin-top:.5rem">
             <button class="btn btn-success neo" onclick="addProd(${ci})"><i class="ti ti-check"></i> Salvar</button>
             <button class="btn btn-secondary neo" onclick="toggleAddForm(${ci})"><i class="ti ti-x"></i> Cancelar</button>
           </div>
         </div>
-        <div class="product-list">${productsHtml || '<p style="font-size:.75rem;color:#9ca3af;text-align:center;padding:1rem">Nenhum produto nesta categoria</p>'}</div>
+        <div class="product-list">${productsHtml || '<p style="font-size:.75rem;color:#9ca3af;text-align:center;padding:1rem">Nenhum produto nesta categoria.<br>Adicione usando o botão acima.</p>'}</div>
       </div>`;
     container.appendChild(section);
   });
@@ -313,14 +338,13 @@ function renderAdmin() {
     const row = document.createElement('div');
     row.className = 'product-row';
     row.innerHTML = `
-      <div style="font-size:1.5rem">${cat.icon}</div>
+      <div style="font-size:1.5rem;flex-shrink:0;width:30px;text-align:center">${cat.icon}</div>
       <div class="product-row-info"><div class="product-row-name">${cat.nome}</div><div class="product-row-desc">${cat.pratos.length} produtos</div></div>
       <button class="btn btn-sm btn-secondary neo" onclick="editCat(${ci})"><i class="ti ti-pencil"></i></button>
       ${data.categorias.length>1?`<button class="btn btn-sm btn-danger neo" onclick="deleteCat(${ci})"><i class="ti ti-trash"></i></button>`:''}`;
     catList.appendChild(row);
   });
 
-  // Rest data
   document.getElementById('restName').value = data.nome || '';
   document.getElementById('restWa').value = data.whatsapp || '';
   document.getElementById('restHours').value = data.hours || '';
@@ -331,60 +355,77 @@ function renderAdmin() {
 // ===== PRODUCT OPS =====
 function toggleAddForm(ci) {
   const f = document.getElementById('addForm-'+ci);
-  f.style.display = f.style.display==='none' ? 'block' : 'none';
+  if (f.style.display==='none') {
+    f.style.display='block';
+    setTimeout(()=>document.getElementById('ap-name-'+ci).focus(), 100);
+  } else {
+    f.style.display='none';
+    // clear inputs
+    document.getElementById('ap-name-'+ci).value='';
+    document.getElementById('ap-price-'+ci).value='';
+    document.getElementById('ap-img-'+ci).value='';
+    document.getElementById('ap-desc-'+ci).value='';
+  }
 }
 function addProd(ci) {
   const nome = document.getElementById('ap-name-'+ci).value.trim();
-  const preco = parseFloat(document.getElementById('ap-price-'+ci).value);
+  const precoStr = document.getElementById('ap-price-'+ci).value;
+  const preco = parseFloat(precoStr);
   const img = document.getElementById('ap-img-'+ci).value.trim() || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&w=400&q=80&fit=crop';
   const desc = document.getElementById('ap-desc-'+ci).value.trim();
-  if (!nome || isNaN(preco)) { aToast('❌ Preencha nome e preço!'); return; }
-  data.categorias[ci].pratos.push({ nome, preco, descricao: desc, img });
+  if (!nome) { aToast('❌ Digite o nome do produto!'); return; }
+  if (isNaN(preco) || preco < 0) { aToast('❌ Digite um preço válido!'); return; }
+  data.categorias[ci].pratos.push({ nome, preco, descricao: desc, img, ativo: true });
   saveData();
   renderAdmin();
-  aToast('✅ Produto adicionado!');
+  aToast('✅ "'+nome+'" adicionado com sucesso!');
+  // Re-open the form for convenience? No, close it.
+  document.getElementById('addForm-'+ci).style.display='none';
 }
 function deleteProd(ci, pi) {
-  if (!confirm('Excluir este produto?')) return;
+  const nome = data.categorias[ci].pratos[pi].nome;
+  if (!confirm('Excluir "'+nome+'"?')) return;
   data.categorias[ci].pratos.splice(pi, 1);
   saveData();
   renderAdmin();
-  aToast('✅ Produto excluído!');
+  aToast('✅ "'+nome+'" excluído!');
 }
-function toggleProd(ci, pi) {
-  // Could add active/inactive flag
-  aToast('✅ Status alterado!');
+function toggleProd(ci, pi, el) {
+  data.categorias[ci].pratos[pi].ativo = el.checked;
+  saveData();
+  renderAdmin();
 }
 function editProd(ci, pi) {
   const p = data.categorias[ci].pratos[pi];
-  const nome = prompt('Nome:', p.nome);
+  const nome = prompt('Nome do produto:', p.nome);
   if (nome === null) return;
-  const preco = prompt('Preço:', p.preco);
+  const preco = prompt('Preço (R$):', p.preco);
   if (preco === null) return;
   const desc = prompt('Descrição:', p.descricao);
   if (desc === null) return;
   const img = prompt('URL da imagem:', p.img);
   if (img === null) return;
-  data.categorias[ci].pratos[pi] = { nome, preco: parseFloat(preco)||0, descricao: desc, img };
+  data.categorias[ci].pratos[pi] = { nome, preco: parseFloat(preco)||0, descricao: desc, img, ativo: p.ativo };
   saveData();
   renderAdmin();
-  aToast('✅ Produto editado!');
+  aToast('✅ "'+nome+'" editado!');
 }
 
 // ===== CATEGORY OPS =====
 function addCategoria() {
   const nome = document.getElementById('newCatName').value.trim();
   const icon = document.getElementById('newCatIcon').value.trim() || '📦';
-  if (!nome) { aToast('❌ Digite o nome!'); return; }
+  if (!nome) { aToast('❌ Digite o nome da categoria!'); return; }
   data.categorias.push({ nome, icon, pratos: [] });
   saveData();
   renderAdmin();
   document.getElementById('newCatName').value = '';
   document.getElementById('newCatIcon').value = '';
-  aToast('✅ Categoria adicionada!');
+  aToast('✅ Categoria "'+nome+'" adicionada!');
 }
 function deleteCat(ci) {
-  if (!confirm('Excluir categoria e todos os produtos?')) return;
+  const nome = data.categorias[ci].nome;
+  if (!confirm('Excluir categoria "'+nome+'" e todos os seus '+data.categorias[ci].pratos.length+' produtos?')) return;
   data.categorias.splice(ci, 1);
   saveData();
   renderAdmin();
@@ -392,9 +433,9 @@ function deleteCat(ci) {
 }
 function editCat(ci) {
   const cat = data.categorias[ci];
-  const nome = prompt('Nome:', cat.nome);
+  const nome = prompt('Nome da categoria:', cat.nome);
   if (nome === null) return;
-  const icon = prompt('Ícone:', cat.icon);
+  const icon = prompt('Ícone (emoji):', cat.icon);
   if (icon === null) return;
   cat.nome = nome;
   cat.icon = icon;
@@ -405,48 +446,47 @@ function editCat(ci) {
 
 // ===== REST DATA =====
 function saveRestData() {
-  data.nome = document.getElementById('restName').value.trim();
+  data.nome = document.getElementById('restName').value.trim() || 'Restaurante';
   data.whatsapp = document.getElementById('restWa').value.trim();
   data.hours = document.getElementById('restHours').value.trim();
   data.address = document.getElementById('restAddr').value.trim();
   data.instagram = document.getElementById('restIg').value.trim();
   saveData();
-  aToast('✅ Dados salvos!');
+  aToast('✅ Dados do restaurante salvos!');
 }
 
 // ===== PASS =====
 function changePass() {
   const np = document.getElementById('newPass').value;
-  if (!np || np.length < 4) { aToast('❌ Senha muito curta!'); return; }
+  if (!np || np.length < 4) { aToast('❌ Senha muito curta! Mínimo 4 caracteres.'); return; }
   adminPass = np;
   localStorage.setItem('adminPass', np);
   document.getElementById('newPass').value = '';
-  aToast('✅ Senha alterada!');
+  aToast('✅ Senha alterada com sucesso!');
 }
 
 // ===== RESET =====
 function resetAll() {
-  if (!confirm('RESETAR TODOS OS DADOS? Isso não pode ser desfeito!')) return;
+  if (!confirm('ATENÇÃO!\n\nIsso vai APAGAR todos os produtos, categorias e configurações.\nOs dados voltarão ao padrão inicial.\n\nTem certeza?')) return;
+  if (!confirm('CONFIRMA?\n\nEsta ação não pode ser desfeita!')) return;
   data = JSON.parse(JSON.stringify(DEFAULT_DATA));
   adminPass = DEFAULT_PASS;
   localStorage.setItem('adminPass', DEFAULT_PASS);
   saveData();
   renderAdmin();
-  aToast('✅ Dados resetados!');
+  aToast('✅ Dados resetados ao padrão!');
 }
 
 // ===== EXPORT / IMPORT =====
 function exportData() {
   const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
   const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = 'cardapio.json'; a.click();
+  const a = document.createElement('a'); a.href = url; a.download = 'cardapio-'+Date.now()+'.json'; a.click();
   URL.revokeObjectURL(url);
   aToast('✅ Dados exportados!');
 }
 function importData(e) {
-  const file = e.target.files[0];
-  if (!file) return;
+  const file = e.target.files[0]; if (!file) return;
   const reader = new FileReader();
   reader.onload = (ev) => {
     try {
@@ -455,10 +495,8 @@ function importData(e) {
         data = imported;
         saveData();
         renderAdmin();
-        aToast('✅ Dados importados!');
-      } else {
-        aToast('❌ Arquivo inválido!');
-      }
+        aToast('✅ Dados importados com sucesso!');
+      } else { aToast('❌ Arquivo inválido!'); }
     } catch(err) { aToast('❌ Erro ao ler arquivo!'); }
   };
   reader.readAsText(file);
@@ -472,7 +510,7 @@ function saveData() {
 function aToast(msg) {
   const t = document.getElementById('aToast');
   t.textContent = msg; t.classList.add('show');
-  clearTimeout(t._to); t._to = setTimeout(()=>t.classList.remove('show'), 2500);
+  clearTimeout(t._to); t._to = setTimeout(()=>t.classList.remove('show'), 3000);
 }
 </script>
 </body>
