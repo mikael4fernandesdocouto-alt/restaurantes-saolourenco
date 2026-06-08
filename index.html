@@ -332,7 +332,7 @@ let storedData=localStorage.getItem('cardapio');
 let cardapio;
 if(storedData){try{cardapio=JSON.parse(storedData);}catch(e){cardapio=null;}}
 if(!cardapio||!cardapio.categorias){
-  nome: "Burger Dash",
+  cardapio = {
   categorias: [
     { nome: "Burgers", icon: "🔥", pratos: [
       { nome: "Dash Classic", preco: 32, descricao: "Carne 160g, Cheddar, Pão Australiano.", img: "https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?auto=format&w=400&q=80&fit=crop" },
