@@ -38,66 +38,107 @@
     /* ===== HEADER ===== */
     .header {
       background: var(--bg);
-      padding: 2rem 1.5rem 1.5rem;
-      text-align: center;
+      padding: 1rem 1.5rem;
       border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
       z-index: 20;
+      transition: all .3s ease;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      max-width: 680px;
+      margin: 0 auto;
     }
 
     .header-logo {
-      width: 64px;
-      height: 64px;
+      width: 40px;
+      height: 40px;
       background: var(--accent);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 1rem;
-      font-size: 1.8rem;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      transition: all .3s ease;
+    }
+
+    .header-text {
+      flex: 1;
+      min-width: 0;
     }
 
     .header h1 {
-      font-size: 1.5rem;
-      font-weight: 800;
+      font-size: 1.1rem;
+      font-weight: 700;
       color: var(--text);
-      margin-bottom: .3rem;
-      letter-spacing: -.5px;
+      letter-spacing: -.3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: font-size .3s ease;
     }
 
     .header p {
-      font-size: .85rem;
+      font-size: .75rem;
       color: var(--text-secondary);
+      transition: opacity .3s ease, height .3s ease;
     }
 
     .header-info {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 1rem;
+      gap: .5rem;
+      margin-top: .4rem;
       flex-wrap: wrap;
+      transition: opacity .3s ease, height .3s ease, margin .3s ease;
     }
 
     .header-badge {
       display: inline-flex;
       align-items: center;
-      gap: .3rem;
-      padding: .4rem .8rem;
+      gap: .25rem;
+      padding: .25rem .6rem;
       background: var(--bg-secondary);
       border: 1px solid var(--border);
       border-radius: 50px;
-      font-size: .75rem;
+      font-size: .65rem;
       font-weight: 500;
       color: var(--text-secondary);
     }
 
     .header-badge .dot {
-      width: 7px;
-      height: 7px;
+      width: 6px;
+      height: 6px;
       background: #22c55e;
       border-radius: 50%;
+    }
+
+    /* Header compacto ao rolar */
+    .header.scrolled {
+      padding: .5rem 1.5rem;
+    }
+
+    .header.scrolled .header-logo {
+      width: 32px;
+      height: 32px;
+      font-size: 1rem;
+    }
+
+    .header.scrolled h1 {
+      font-size: .95rem;
+    }
+
+    .header.scrolled .header-subtitle,
+    .header.scrolled .header-info {
+      opacity: 0;
+      height: 0;
+      margin-top: 0;
+      overflow: hidden;
     }
 
     /* ===== CATEGORY TABS (bottom nav) ===== */
@@ -311,14 +352,18 @@
 <body>
 
   <!-- HEADER -->
-  <header class="header">
-    <div class="header-logo">🍽️</div>
-    <h1>Restaurante Demo</h1>
-    <p>Cardápio digital</p>
-    <div class="header-info">
-      <span class="header-badge"><span class="dot"></span> Aberto agora</span>
-      <span class="header-badge">🕐 11h–22h</span>
-      <span class="header-badge">📍 São Lourenço, MG</span>
+  <header class="header" id="header">
+    <div class="header-inner">
+      <div class="header-logo">🍽️</div>
+      <div class="header-text">
+        <h1>Restaurante Demo</h1>
+        <p class="header-subtitle">Cardápio digital</p>
+        <div class="header-info">
+          <span class="header-badge"><span class="dot"></span> Aberto agora</span>
+          <span class="header-badge">🕐 11h–22h</span>
+          <span class="header-badge">📍 São Lourenço, MG</span>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -458,6 +503,19 @@
     // Init
     renderNav();
     renderSections();
+
+    // Header shrink on scroll
+    let lastScroll = 0;
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.scrollY || window.pageYOffset;
+      if (currentScroll > 60) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+      lastScroll = currentScroll;
+    }, { passive: true });
   </script>
 </body>
 </html>
