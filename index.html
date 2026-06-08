@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurante Demo - Cardapio</title>
+  <meta name="theme-color" content="#e94560">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0f0f0f;color:#eee;min-height:100vh;padding-bottom:4rem}
+    .header{background:linear-gradient(135deg,#e94560,#e94560dd);padding:2.5rem 1.5rem;text-align:center;position:sticky;top:0;z-index:10;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+    .header h1{font-size:1.8rem;color:#fff;margin-bottom:.3rem}
+    .header p{color:rgba(255,255,255,.8);font-size:.9rem}
+    .container{max-width:600px;margin:0 auto;padding:1.5rem 1rem}
+    .categoria{margin-bottom:2rem}
+    .categoria-nome{font-size:1.3rem;color:#e94560;border-bottom:2px solid #e9456033;padding-bottom:.5rem;margin-bottom:1rem;text-transform:uppercase;letter-spacing:.5px}
+    .pratos{display:flex;flex-direction:column;gap:1rem}
+    .prato{display:flex;gap:1rem;background:#1a1a1a;border-radius:12px;overflow:hidden;border:1px solid #2a2a2a;transition:border-color .2s}
+    .prato:hover{border-color:#e9456055}
+    .prato-foto{width:100px;height:100px;flex-shrink:0;background:#2a2a2a;display:flex;align-items:center;justify-content:center;font-size:2.5rem}
+    .prato-info{flex:1;padding:.8rem .5rem .8rem 0;display:flex;flex-direction:column;justify-content:center}
+    .prato-topo{display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem}
+    .prato-nome{font-size:1rem;color:#fff}
+    .prato-preco{font-size:1rem;font-weight:700;color:#e94560;white-space:nowrap}
+    .prato-desc{font-size:.8rem;color:#888;margin-top:.3rem;line-height:1.4}
+    .footer{text-align:center;padding:2rem 1rem;color:#555;font-size:.8rem}
+    .footer a{color:#e94560;text-decoration:none}
+    .badge{display:inline-block;padding:.2rem .6rem;background:#e94560;color:#fff;font-size:.7rem;font-weight:700;border-radius:4px;margin-left:.5rem}
+    @media(max-width:400px){
+      .prato-foto{width:80px;height:80px;font-size:2rem}
+      .prato-nome{font-size:.9rem}
+      .prato-preco{font-size:.9rem}
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <h1>🍽️ Restaurante Demo</h1>
+    <p>Exemplo de cardápio digital - Restaurantes Sao Lourenco</p>
+  </header>
+  <main class="container" id="cardapio">
+    <p style="text-align:center;color:#666;padding:3rem 0">Carregando cardapio...</p>
+  </main>
+  <footer class="footer">
+    Cardapio digital por <a href="#">Restaurantes Sao Lourenco</a>
+  </footer>
+
+  <script>
+    const cardapio = {
+      "nome": "Restaurante Demo",
+      "descricao": "Exemplo de cardapio digital - Restaurantes Sao Lourenco",
+      "cor": "#e94560",
+      "categorias": [
+        {
+          "nome": "Pratos Principais",
+          "pratos": [
+            { "nome": "File a Parmegiana", "preco": "49,90", "descricao": "File mignon empanado com molho tomate e queijo gratinado, acompanha arroz e fritas" },
+            { "nome": "Frango Grelhado", "preco": "32,00", "descricao": "Peito de frango grelhado com legumes, arroz e feijao" },
+            { "nome": "Moqueca Baiana", "preco": "65,00", "descricao": "Peixe fresco com leite de coco, pimentoes e arroz branco" },
+            { "nome": "Picanha na Chapa", "preco": "78,90", "descricao": "Picanha grelhada, com vinagrete, arroz e farofa" }
+          ]
+        },
+        {
+          "nome": "Lanches",
+          "pratos": [
+            { "nome": "X-Tudo", "preco": "28,00", "descricao": "Hamburguer, bacon, ovo, presunto, queijo, alface, tomate e maionese" },
+            { "nome": "X-Salada", "preco": "18,00", "descricao": "Hamburguer artesanal, queijo, alface e tomate" }
+          ]
+        },
+        {
+          "nome": "Bebidas",
+          "pratos": [
+            { "nome": "Refrigerante Lata", "preco": "6,00", "descricao": "" },
+            { "nome": "Suco Natural", "preco": "8,00", "descricao": "Consultar sabores do dia" },
+            { "nome": "Agua Mineral", "preco": "4,00", "descricao": "Com ou sem gas" },
+            { "nome": "Cerveja Longneck", "preco": "9,00", "descricao": "Heineken, Stella Artois ou similar" }
+          ]
+        },
+        {
+          "nome": "Sobremesas",
+          "pratos": [
+            { "nome": "Pudim de Leite", "preco": "12,00", "descricao": "Pudim tradicional com calda de caramelo" },
+            { "nome": "Brownie", "preco": "15,00", "descricao": "Brownie de chocolate com nozes" }
+          ]
+        }
+      ]
+    };
+
+    const emojis = {
+      "Pratos Principais": "🥩",
+      "Lanches": "🍔",
+      "Bebidas": "🥤",
+      "Sobremesas": "🍰"
+    };
+
+    function render() {
+      const el = document.getElementById('cardapio');
+      el.innerHTML = '';
+      cardapio.categorias.forEach(cat => {
+        if (!cat.pratos || cat.pratos.length === 0) return;
+        const section = document.createElement('div');
+        section.className = 'categoria';
+        const emoji = emojis[cat.nome] || '📋';
+        let pratosHtml = '';
+        cat.pratos.forEach(p => {
+          pratosHtml += `
+            <div class="prato">
+              <div class="prato-foto">${emoji}</div>
+              <div class="prato-info">
+                <div class="prato-topo">
+                  <h3 class="prato-nome">${p.nome}</h3>
+                  <span class="prato-preco">${p.preco ? 'R$ ' + p.preco : ''}</span>
+                </div>
+                ${p.descricao ? `<p class="prato-desc">${p.descricao}</p>` : ''}
+              </div>
+            </div>`;
+        });
+        section.innerHTML = `<h2 class="categoria-nome">${emoji} ${cat.nome}</h2><div class="pratos">${pratosHtml}</div>`;
+        el.appendChild(section);
+      });
+    }
+
+    render();
+  </script>
+</body>
+</html>
