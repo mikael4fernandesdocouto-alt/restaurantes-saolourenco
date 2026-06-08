@@ -1,541 +1,485 @@
-<!-- v1780939408.0290394 -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Restaurante Demo - Cardapio</title>
+  <title>Burger Dash - Cardápio</title>
   <meta name="theme-color" content="#F97316">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont/tabler-icons.min.css?v=2" rel="stylesheet">
-  <script>window._cb=Date.now()</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont/tabler-icons.min.css" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#fff;color:#111827;min-height:100vh;-webkit-font-smoothing:antialiased}
+    body{font-family:'DM Sans',sans-serif;background:#fff;color:#111827;min-height:100vh;-webkit-font-smoothing:antialiased}
     .no-scrollbar::-webkit-scrollbar{display:none}
     .no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
     .line-clamp-2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .grayscale{filter:grayscale(1)}
-    .animate-pulse{animation:pulse 2s cubic-bezier(.4,0,.6,1) infinite}
     @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
     @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
-
-    /* NEOBRUTAL */
-    .neo-2{border:2px solid #111827;box-shadow:3px 3px 0 #111827}
-    .neo-2:active{box-shadow:0 0 0 #111827!important;transform:translate(3px,3px)!important}
-    .neo-3{border:3px solid #111827;box-shadow:4px 4px 0 #111827}
-    .neo-3:active{box-shadow:0 0 0 #111827!important;transform:translate(4px,4px)!important}
-    .neo-6{border:3px solid #111827;box-shadow:6px 6px 0 #111827}
-    .neo-6:active{box-shadow:0 0 0 #111827!important;transform:translate(6px,6px)!important}
-    .neo-10{border:3px solid #111827;box-shadow:10px 10px 0 #111827}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
     /* HEADER */
     .header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:2px solid #111827;transition:all .3s}
-    .header-inner{display:flex;align-items:center;justify-content:space-between;padding:.8rem 1rem;max-width:375px;margin:0 auto}
-    .header-logo{width:44px;height:44px;background:#F97316;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;border:3px solid #111827;box-shadow:3px 3px 0 #111827;transition:all .3s}
-    .header-title{font-size:1.3rem;font-weight:900;font-family:'Inter',sans-serif;letter-spacing:-1px;font-style:italic;transition:font-size .3s}
-    .header-badges{display:flex;gap:.4rem;max-width:375px;margin:0 auto;padding:0 1rem .6rem;transition:all .3s;overflow:hidden}
-    .h-badge{display:inline-flex;align-items:center;gap:.2rem;padding:.15rem .5rem;background:#f3f4f6;border-radius:50px;font-size:.6rem;font-weight:700;color:#6b7280;border:1px solid #e5e7eb}
-    .h-badge .dot{width:5px;height:5px;background:#22c55e;border-radius:50%}
-    .header.scrolled .header-logo{width:34px;height:34px;font-size:1rem;border-width:2px;box-shadow:2px 2px 0 #111827}
-    .header.scrolled .header-title{font-size:1rem}
-    .header.scrolled .header-badges{opacity:0;height:0;padding:0;margin-top:-.5rem}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;padding:.8rem 1rem}
+    .header h1{font-size:1.3rem;font-weight:900;font-family:'Inter',sans-serif;letter-spacing:-1px;font-style:italic;transition:all .3s}
+    .header-badges{display:flex;gap:.5rem;padding:0 1rem .6rem;transition:all .3s}
+    .h-badge{display:inline-flex;align-items:center;gap:.2rem;padding:.2rem .6rem;background:#f3f4f6;border-radius:50px;font-size:.6rem;font-weight:700;color:#6b7280;border:1px solid #e5e7eb}
+    .h-badge .dot{width:6px;height:6px;background:#22c55e;border-radius:50%}
+    .header.scrolled .header-badges{opacity:0;height:0;padding:0;overflow:hidden}
+    .header.scrolled h1{font-size:1.05rem}
+
+    /* CART HEADER BTN */
+    .btn-cart-hdr{display:flex;align-items:center;gap:.4rem;padding:.4rem 1rem;background:#F97316;color:#fff;border-radius:50px;font-weight:800;font-size:.72rem;cursor:pointer;border:2px solid #111827;box-shadow:3px 3px 0 #111827;transition:all .15s}
+    .btn-cart-hdr:active{box-shadow:0 0 0 #111827;transform:translate(3px,3px)}
+    .btn-cart-hdr .badge{min-width:18px;height:18px;background:#111827;color:#fff;border-radius:50%;font-size:.6rem;font-weight:900;display:none;align-items:center;justify-content:center}
 
     /* CART BAR */
-    .cart-bar{position:fixed;bottom:72px;left:0;right:0;z-index:45;display:none;padding:0 1rem;pointer-events:none}
-    .cart-bar.visible{display:block}
-    .cart-bar-inner{background:#F97316;padding:.7rem 1rem;border-radius:1rem;display:flex;align-items:center;justify-content:space-between;border:3px solid #111827;box-shadow:4px 4px 0 #111827;pointer-events:auto}
-    .cart-bar-left{display:flex;align-items:center;gap:.6rem;color:#fff}
-    .cart-bar-icon{width:34px;height:34px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;position:relative}
-    .cart-bar-count{position:absolute;top:-4px;right:-4px;min-width:18px;height:18px;background:#111827;color:#fff;border-radius:50%;font-size:.6rem;font-weight:900;display:flex;align-items:center;justify-content:center}
-    .cart-bar-info .cart-qty{font-size:.75rem;font-weight:700}
-    .cart-bar-info .cart-total{font-size:.6rem;opacity:.8}
-    .btn-view-order{padding:.45rem 1rem;background:#fff;color:#F97316;border-radius:50px;font-size:.75rem;font-weight:800;border:2px solid #111827;box-shadow:3px 3px 0 #111827;cursor:pointer;transition:all .15s;white-space:nowrap}
-    .btn-view-order:active{box-shadow:0 0 0 #111827;transform:translate(3px,3px)}
+    .cart-bar{position:fixed;bottom:72px;left:0;right:0;z-index:45;display:none;padding:0 1rem}
+    .cart-bar.on{display:block}
+    .cart-bar-in{background:#F97316;padding:.7rem 1rem;border-radius:1rem;display:flex;align-items:center;justify-content:space-between;border:3px solid #111827;box-shadow:4px 4px 0 #111827}
+    .cart-bar-l{display:flex;align-items:center;gap:.6rem;color:#fff}
+    .cart-bar-icon{width:36px;height:36px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;position:relative}
+    .cart-bar-num{position:absolute;top:-4px;right:-4px;min-width:18px;height:18px;background:#111827;color:#fff;border-radius:50%;font-size:.6rem;font-weight:900;display:flex;align-items:center;justify-content:center}
+    .cart-bar-info .q{font-size:.75rem;font-weight:700}
+    .cart-bar-info .t{font-size:.6rem;opacity:.8}
+    .btn-vo{padding:.45rem 1.2rem;background:#fff;color:#F97316;border-radius:50px;font-size:14px;font-weight:800;border:2px solid #111827;box-shadow:3px 3px 0 #111827;cursor:pointer;white-space:nowrap;transition:all .15s}
+    .btn-vo:active{box-shadow:0 0 0 #111827;transform:translate(3px,3px)}
 
     /* BOTTOM NAV */
-    .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-top:2px solid #111827;display:flex;align-items:center;justify-content:space-around;padding:.5rem 1rem;z-index:100;box-shadow:0 -4px 20px rgba(0,0,0,.08)}
-    .nav-btn{display:flex;flex-direction:column;align-items:center;gap:.15rem;border:none;background:none;cursor:pointer;padding:.25rem .4rem;transition:transform .15s}
-    .nav-btn:active{transform:scale(.9)}
-    .nav-btn .nav-icon{font-size:1.3rem;color:#d1d5db;transition:color .2s}
-    .nav-btn .nav-label{font-size:.55rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#d1d5db;transition:color .2s}
-    .nav-btn.active .nav-icon,.nav-btn.active .nav-label{color:#F97316}
-    .nav-cart-wrap{position:relative;top:-18px}
-    .nav-cart-glow{position:absolute;inset:0;background:#fed7aa;border-radius:50%;filter:blur(12px);opacity:.4;animation:pulse 2s infinite}
-    .nav-cart-btn{width:52px;height:52px;background:#F97316;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;border:3px solid #fff;box-shadow:0 4px 15px rgba(249,115,22,.4);cursor:pointer;position:relative}
-    .nav-cart-badge{position:absolute;top:-3px;right:-3px;min-width:18px;height:18px;background:#111827;color:#fff;border-radius:50%;font-size:.6rem;font-weight:900;display:none;align-items:center;justify-content:center;border:2px solid #fff}
+    .bnav{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-top:2px solid #111827;display:flex;align-items:center;justify-content:space-around;padding:.5rem 1rem;z-index:100;box-shadow:0 -4px 20px rgba(0,0,0,.08)}
+    .bnav-btn{display:flex;flex-direction:column;align-items:center;gap:.15rem;border:none;background:none;cursor:pointer;padding:.25rem .5rem;transition:transform .15s}
+    .bnav-btn:active{transform:scale(.9)}
+    .bnav-btn i{font-size:1.3rem;color:#d1d5db;transition:color .2s}
+    .bnav-btn span{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#d1d5db;transition:color .2s}
+    .bnav-btn.sel i,.bnav-btn.sel span{color:#F97316}
+    .bnav-cart-wrap{position:relative;top:-18px}
+    .bnav-cart-glow{position:absolute;inset:-4px;background:#fed7aa;border-radius:50%;filter:blur(12px);opacity:.4;animation:pulse 2s infinite}
+    .bnav-cart-btn{width:54px;height:54px;background:#F97316;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;border:3px solid #fff;box-shadow:0 4px 15px rgba(249,115,22,.4);cursor:pointer;position:relative}
+    .bnav-cart-num{position:absolute;top:-3px;right:-3px;min-width:20px;height:20px;background:#111827;color:#fff;border-radius:50%;font-size:10px;font-weight:900;display:none;align-items:center;justify-content:center;border:2px solid #fff}
 
-    /* WHATSAPP FAB */
-    .wa-fab{position:fixed;bottom:80px;right:1rem;width:50px;height:50px;background:#25D366;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;border:2px solid #fff;box-shadow:0 4px 15px rgba(37,211,102,.3);cursor:pointer;z-index:99;transition:transform .15s;text-decoration:none}
-    .wa-fab:active{transform:scale(.9)}
+    /* FABs */
+    .fab{position:fixed;z-index:99;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid #fff;cursor:pointer;transition:transform .15s}
+    .fab:active{transform:scale(.9)}
+    .fab-wa{bottom:80px;right:1rem;width:52px;height:52px;background:#25D366;color:#fff;font-size:1.5rem;box-shadow:0 4px 15px rgba(37,211,102,.3)}
+    .fab-adm{bottom:80px;left:1rem;width:38px;height:38px;background:#111827;color:#fff;font-size:.85rem;box-shadow:0 4px 10px rgba(0,0,0,.2)}
 
     /* MODAL */
-    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;align-items:flex-end;justify-content:center}
-    .modal-overlay.open{display:flex}
-    .modal-sheet{background:#fff;width:100%;max-width:520px;max-height:85vh;border-radius:24px 24px 0 0;overflow:hidden;display:flex;flex-direction:column;animation:slideUp .3s ease}
-    .modal-header{padding:1.25rem 1.5rem .75rem;border-bottom:2px solid #111827;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-    .modal-header h2{font-size:1.25rem;font-weight:900;font-family:'Inter',sans-serif;letter-spacing:-.5px}
-    .btn-close-modal{width:36px;height:36px;border:2px solid #111827;background:#f3f4f6;border-radius:50%;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#6b7280;box-shadow:2px 2px 0 #111827}
-    .btn-close-modal:active{box-shadow:none;transform:translate(2px,2px)}
-    .modal-body{overflow-y:auto;flex:1;padding:1rem 1.5rem}
-    .modal-footer{padding:1rem 1.5rem 1.5rem;border-top:2px solid #111827;flex-shrink:0}
-
+    .modal-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;align-items:flex-end;justify-content:center}
+    .modal-ov.on{display:flex}
+    .modal-sh{background:#fff;width:100%;max-width:520px;max-height:85vh;border-radius:24px 24px 0 0;overflow:hidden;display:flex;flex-direction:column;animation:slideUp .3s ease}
+    .modal-hd{padding:1.2rem 1.5rem .7rem;border-bottom:2px solid #111827;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+    .modal-hd h2{font-size:1.2rem;font-weight:900;font-family:'Inter',sans-serif;letter-spacing:-.5px}
+    .btn-close-m{width:36px;height:36px;border:2px solid #111827;background:#f3f4f6;border-radius:50%;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#6b7280;box-shadow:2px 2px 0 #111827;transition:all .15s}
+    .btn-close-m:active{box-shadow:none;transform:translate(2px,2px)}
+    .modal-by{overflow-y:auto;flex:1;padding:1rem 1.5rem}
+    .modal-ft{padding:1rem 1.5rem 1.5rem;border-top:2px solid #111827;flex-shrink:0}
     .cart-empty{text-align:center;padding:3rem 1rem;color:#9ca3af}
-    .cart-empty-icon{font-size:3.5rem;margin-bottom:.75rem}
-    .cart-empty p{font-size:.9rem;font-weight:500}
-    .cart-item{display:flex;align-items:center;gap:.6rem;padding:.6rem 0;border-bottom:1px solid #f3f4f6}
-    .cart-item:last-child{border-bottom:none}
-    .cart-item-icon{width:38px;height:38px;background:#f3f4f6;border:2px solid #111827;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
-    .cart-item-info{flex:1;min-width:0}
-    .cart-item-name{font-size:.85rem;font-weight:700;color:#111827;margin-bottom:.1rem}
-    .cart-item-price{font-size:.7rem;color:#9ca3af;font-weight:600}
-    .cart-item-qty{display:flex;align-items:center;gap:.2rem}
-    .cart-item-qty button{width:26px;height:26px;border:2px solid #111827;background:#f3f4f6;border-radius:50%;font-size:.8rem;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:2px 2px 0 #111827}
-    .cart-item-qty button:active{box-shadow:none;transform:translate(2px,2px)}
-    .cart-item-qty-q{width:22px;text-align:center;font-size:.85rem;font-weight:800}
-    .cart-item-subtotal{font-size:.85rem;font-weight:800;color:#F97316;min-width:60px;text-align:right}
-
+    .cart-empty i{font-size:3rem;display:block;margin-bottom:.5rem}
+    .cart-empty p{font-size:.9rem}
+    .ci{display:flex;align-items:center;gap:.6rem;padding:.6rem 0;border-bottom:1px solid #f3f4f6}
+    .ci:last-child{border-bottom:none}
+    .ci-icon{width:38px;height:38px;background:#f3f4f6;border:2px solid #111827;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+    .ci-info{flex:1;min-width:0}
+    .ci-name{font-size:.85rem;font-weight:700;color:#111827}
+    .ci-price{font-size:.7rem;color:#9ca3af;font-weight:600}
+    .ci-qty{display:flex;align-items:center;gap:.2rem}
+    .ci-qty button{width:26px;height:26px;border:2px solid #111827;background:#f3f4f6;border-radius:50%;font-size:.8rem;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:2px 2px 0 #111827;transition:all .15s}
+    .ci-qty button:active{box-shadow:none;transform:translate(2px,2px)}
+    .ci-qty-n{width:22px;text-align:center;font-size:.85rem;font-weight:800}
+    .ci-sub{font-size:.85rem;font-weight:800;color:#F97316;min-width:60px;text-align:right}
     .cart-notes{margin-top:.8rem;padding-top:.8rem;border-top:2px solid #f3f4f6}
     .cart-notes label{font-size:.75rem;font-weight:700;color:#6b7280;display:block;margin-bottom:.3rem}
     .cart-notes textarea{width:100%;padding:.6rem .7rem;background:#f9fafb;border:2px solid #111827;border-radius:12px;font-size:.8rem;font-family:'DM Sans',sans-serif;resize:none;outline:none;box-shadow:2px 2px 0 #111827}
     .cart-notes textarea:focus{box-shadow:3px 3px 0 #F97316;border-color:#F97316}
     .cart-line{display:flex;justify-content:space-between;align-items:center;padding:.35rem 0;font-size:.8rem;color:#6b7280;font-weight:600}
-    .cart-line-total{border-top:2px solid #111827;margin-top:.4rem;padding-top:.65rem;font-size:1.1rem;font-weight:900;color:#111827}
-
-    .form-group{margin-bottom:.6rem}
-    .form-group label{font-size:.75rem;font-weight:700;color:#6b7280;display:block;margin-bottom:.25rem}
-    .form-group input{width:100%;padding:.6rem .7rem;background:#f9fafb;border:2px solid #111827;border-radius:12px;font-size:.85rem;font-family:'DM Sans',sans-serif;outline:none;box-shadow:2px 2px 0 #111827}
-    .form-group input:focus{box-shadow:3px 3px 0 #F97316;border-color:#F97316}
-
-    .btn-wa{width:100%;padding:.9rem;background:#25D366;color:#fff;border:none;border-radius:50px;font-size:.95rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem;transition:all .15s;border:3px solid #111827;box-shadow:5px 5px 0 #111827}
+    .cart-line.tt{border-top:2px solid #111827;margin-top:.4rem;padding-top:.65rem;font-size:1.1rem;font-weight:900;color:#111827}
+    .cart-line .v{color:#F97316}
+    .fg{margin-bottom:.6rem}
+    .fg label{font-size:.75rem;font-weight:700;color:#6b7280;display:block;margin-bottom:.25rem}
+    .fg input{width:100%;padding:.6rem .7rem;background:#f9fafb;border:2px solid #111827;border-radius:12px;font-size:.85rem;font-family:'DM Sans',sans-serif;outline:none;box-shadow:2px 2px 0 #111827}
+    .fg input:focus{box-shadow:3px 3px 0 #F97316;border-color:#F97316}
+    .btn-wa{width:100%;padding:.9rem;background:#25D366;color:#fff;border:none;border-radius:50px;font-size:.95rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem;border:3px solid #111827;box-shadow:5px 5px 0 #111827;transition:all .15s}
     .btn-wa:hover{filter:brightness(1.05)}
     .btn-wa:active{box-shadow:0 0 0 #111827;transform:translate(5px,5px)}
 
     /* TOAST */
-    .toast{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-20px);background:#111827;color:#fff;padding:.55rem 1.2rem;border-radius:50px;font-size:.75rem;font-weight:700;z-index:300;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap;border:2px solid #fff;box-shadow:0 4px 15px rgba(0,0,0,.2)}
+    .toast{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-20px);background:#111827;color:#fff;padding:.55rem 1.2rem;border-radius:50px;font-size:.75rem;font-weight:700;z-index:300;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap;border:2px solid #fff}
     .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
-    /* ADMIN LINK */
-    .admin-link{position:fixed;bottom:80px;left:1rem;width:40px;height:40px;background:#111827;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;border:2px solid #fff;box-shadow:0 4px 10px rgba(0,0,0,.2);cursor:pointer;z-index:99;text-decoration:none;transition:transform .15s}
-    .admin-link:active{transform:scale(.9)}
   </style>
 </head>
 <body>
 
-<div style="max-width:375px;margin:0 auto;position:relative;padding-bottom:80px">
-
-  <!-- HEADER -->
-  <header class="header" id="header">
-    <div class="header-inner">
-      <h1 class="header-title" id="headerName">BURGER DASH</h1>
-      <button class="neo-2" onclick="openCart()" style="display:flex;align-items:center;gap:.4rem;padding:.35rem .9rem;background:#F97316;color:#fff;border-radius:50px;font-weight:800;font-size:.7rem;cursor:pointer;">
-        <i class="ti ti-shopping-cart" style="font-size:.9rem"></i>
-        <span id="headerCartTotal">R$ 0,00</span>
-        <span id="headerCartBadge" style="display:none;min-width:16px;height:16px;background:#111827;color:#fff;border-radius:50%;font-size:.55rem;font-weight:900;align-items:center;justify-content:center">0</span>
-      </button>
-    </div>
-    <div class="header-badges" id="headerBadges">
-      <span class="h-badge"><span class="dot"></span> Aberto agora</span>
-      <span class="h-badge">🕐 11h–23h</span>
-      <span class="h-badge">📍 São Lourenço, MG</span>
-    </div>
-  </header>
-
-  <!-- HERO -->
-  <section style="position:relative;width:100%;height:400px;margin-bottom:70px">
-    <img src="https://images.unsplash.com/photo-1632203171982-cc0df6e9ceb4?auto=format&w=800&q=80&fit=crop" alt="Hero" style="width:100%;height:100%;object-fit:cover" loading="lazy">
-    <div style="position:absolute;bottom:-50px;left:0;width:100%;padding:0 1rem">
-      <div style="background:#fff;padding:1.2rem;border-radius:20px;border:2px solid #111827;box-shadow:6px 6px 0 #111827">
-        <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem">
-          <div style="display:flex;color:#facc15;font-size:.7rem;gap:1px">
-            <i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i>
-          </div>
-          <span style="font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:1px">(4.9 • 500+ avaliações)</span>
-        </div>
-        <h2 style="font-size:1.6rem;font-weight:900;font-family:'Inter',sans-serif;line-height:1.05;margin-bottom:.4rem;letter-spacing:-1px;font-style:italic">O MELHOR BURGER DA CIDADE</h2>
-        <p style="font-size:.8rem;color:#6b7280;margin-bottom:1rem;line-height:1.5">Artesanal, suculento e pronto para delivery. Peça agora e receba em até 30 minutos.</p>
-        <button onclick="scrollToSection('catSection')" style="width:100%;padding:.8rem;background:#F97316;color:#fff;border:none;border-radius:14px;font-weight:900;font-size:.8rem;text-transform:uppercase;letter-spacing:2px;cursor:pointer;border:3px solid #111827;box-shadow:4px 4px 0 #111827;transition:all .15s">
-          Ver Cardápio
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- CATEGORIES -->
-  <section style="padding:0 1rem;margin-bottom:1.5rem" id="catSection">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem">
-      <h3 style="font-size:1.1rem;font-weight:900;font-family:'Inter',sans-serif;letter-spacing:-.3px">Categorias</h3>
-      <span style="font-size:.65rem;font-weight:900;color:#F97316;text-transform:uppercase;letter-spacing:1px;cursor:pointer" onclick="scrollToSection('catSection')">Ver todas <i class="ti ti-chevron-right" style="font-size:.7rem"></i></span>
-    </div>
-    <div style="display:flex;overflow-x:auto;gap:.5rem;padding:.5rem 0;no-scrollbar" id="catScroll"></div>
-  </section>
-
-  <!-- FEATURED COMBO -->
-  <section style="padding:0 1rem;margin-bottom:1.5rem">
-    <div class="neo-10" style="border-radius:20px;overflow:hidden;transition:transform .2s" onmouseover="this.style.transform='translate(-2px,-2px)'" onmouseout="this.style.transform='none'">
-      <div style="position:relative;height:200px;background:#fff7ed">
-        <img src="https://images.unsplash.com/photo-1662047317263-03ff37e76db2?auto=format&w=800&q=80&fit=crop" alt="Combo" style="width:100%;height:100%;object-fit:cover" loading="lazy">
-        <div style="position:absolute;top:12px;left:12px;background:#F97316;color:#fff;padding:.3rem .8rem;border-radius:10px;font-size:.6rem;font-weight:900;text-transform:uppercase;letter-spacing:1px;border:3px solid #111827;box-shadow:4px 4px 0 #111827">OFERTA DO DIA</div>
-      </div>
-      <div style="padding:1.2rem">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem">
-          <div>
-            <h3 style="font-size:1.2rem;font-weight:900;font-family:'Inter',sans-serif;letter-spacing:-.5px;line-height:1.1">Combo Ultimate Dash</h3>
-            <p style="font-size:.7rem;color:#6b7280;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-top:.2rem">Double beef • Bacon • Egg • Fries</p>
-          </div>
-          <div style="text-align:right">
-            <span style="font-size:.7rem;color:#9ca3af;text-decoration:line-through;font-weight:900;display:block">R$ 68,00</span>
-            <span style="font-size:1.5rem;font-weight:900;color:#F97316;font-family:'Inter',sans-serif">R$ 49,90</span>
-          </div>
-        </div>
-        <button class="neo-6" onclick="addToCart('featured',0)" style="width:100%;padding:.9rem;background:#F97316;color:#fff;border:none;border-radius:14px;font-weight:900;font-size:.9rem;text-transform:uppercase;letter-spacing:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem">
-          QUERO ESTE <i class="ti ti-shopping-cart-plus" style="font-size:1.2rem"></i>
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRODUCTS GRID -->
-  <section style="padding:0 1rem;margin-bottom:1.5rem" id="productsSection">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem">
-      <h3 style="font-size:1.1rem;font-weight:900;font-family:'Inter',sans-serif;letter-spacing:-.3px" id="productsTitle">Mais Vendidos</h3>
-      <i class="ti ti-adjustments-horizontal" style="font-size:1.1rem;color:#d1d5db"></i>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem" id="productsGrid"></div>
-  </section>
-
-  <!-- REVIEWS -->
-  <section style="padding:0 1rem;margin-bottom:1.5rem">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem">
-      <h3 style="font-size:1.1rem;font-weight:900;font-family:'Inter',sans-serif;letter-spacing:-.3px">Voz dos Dashers</h3>
-      <div style="display:flex;align-items:center;gap:.2rem;color:#F97316">
-        <i class="ti ti-star-filled" style="font-size:.8rem"></i>
-        <span style="font-size:.8rem;font-weight:900">4.9</span>
-      </div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:.6rem">
-      <div style="display:flex;justify-content:flex-start;max-width:90%">
-        <div style="background:#f3f4f6;padding:.8rem;border-radius:16px 16px 4px 16px;font-size:.8rem;border:1px solid #e5e7eb">
-          <div style="display:flex;color:#facc15;font-size:10px;gap:1px;margin-bottom:.3rem"><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i></div>
-          <p style="font-weight:500;line-height:1.5;font-style:italic">"O ponto da carne estava perfeito! Chegou muito rápido. Virei fã número 1."</p>
-          <div style="margin-top:.5rem;display:flex;align-items:center;gap:.4rem">
-            <img src="https://i.pravatar.cc/100?u=lucas" style="width:20px;height:20px;border-radius:50%;filter:grayscale(1)" alt="User">
-            <span style="font-size:10px;font-weight:700;color:#9ca3af">Lucas M. • Há 45 min</span>
-          </div>
-        </div>
-      </div>
-      <div style="display:flex;justify-content:flex-start;max-width:90%">
-        <div style="background:#f3f4f6;padding:.8rem;border-radius:16px 16px 4px 16px;font-size:.8rem;border:1px solid #e5e7eb">
-          <div style="display:flex;color:#facc15;font-size:10px;gap:1px;margin-bottom:.3rem"><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i></div>
-          <p style="font-weight:500;line-height:1.5;font-style:italic">"A embalagem é sensacional, nada de batata murcha. O molho dash é viciante!"</p>
-          <div style="margin-top:.5rem;display:flex;align-items:center;gap:.4rem">
-            <img src="https://i.pravatar.cc/100?u=bia" style="width:20px;height:20px;border-radius:50%;filter:grayscale(1)" alt="User">
-            <span style="font-size:10px;font-weight:700;color:#9ca3af">Beatriz R. • Há 2 horas</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- INFO -->
-  <section style="padding:0 1rem;margin-bottom:2rem">
-    <div style="background:#fff;border-radius:16px;border:1px solid #f3f4f6;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05)">
-      <div style="padding:.8rem 1rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;border-bottom:1px solid #f3f4f6">
-        <div style="display:flex;align-items:center;gap:.6rem">
-          <div style="width:40px;height:40px;background:#fff7ed;color:#F97316;border-radius:12px;display:flex;align-items:center;justify-content:center"><i class="ti ti-clock-filled" style="font-size:1.1rem"></i></div>
-          <div><h4 style="font-size:.75rem;font-weight:800;font-family:'Inter',sans-serif">Horário de Funcionamento</h4><p style="font-size:.65rem;color:#9ca3af;font-weight:700;text-transform:uppercase;letter-spacing:.5px">Aberto até as 23:30</p></div>
-        </div>
-        <i class="ti ti-chevron-right" style="color:#d1d5db;font-size:.9rem"></i>
-      </div>
-      <div style="padding:.8rem 1rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;border-bottom:1px solid #f3f4f6">
-        <div style="display:flex;align-items:center;gap:.6rem">
-          <div style="width:40px;height:40px;background:#fff7ed;color:#F97316;border-radius:12px;display:flex;align-items:center;justify-content:center"><i class="ti ti-map-pin-filled" style="font-size:1.1rem"></i></div>
-          <div><h4 style="font-size:.75rem;font-weight:800;font-family:'Inter',sans-serif">Nossa Cozinha</h4><p style="font-size:.65rem;color:#9ca3af;font-weight:700">São Lourenço, MG</p></div>
-        </div>
-        <i class="ti ti-chevron-right" style="color:#d1d5db;font-size:.9rem"></i>
-      </div>
-      <div style="padding:.8rem 1rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer">
-        <div style="display:flex;align-items:center;gap:.6rem">
-          <div style="width:40px;height:40px;background:#fff7ed;color:#F97316;border-radius:12px;display:flex;align-items:center;justify-content:center"><i class="ti ti-brand-instagram" style="font-size:1.1rem"></i></div>
-          <div><h4 style="font-size:.75rem;font-weight:800;font-family:'Inter',sans-serif">Instagram</h4><p style="font-size:.65rem;color:#9ca3af;font-weight:700">@burgerdash_br</p></div>
-        </div>
-        <i class="ti ti-chevron-right" style="color:#d1d5db;font-size:.9rem"></i>
-      </div>
-    </div>
-  </section>
-
-  <!-- BOTTOM NAV -->
-  <nav class="bottom-nav">
-    <button class="nav-btn active" id="nav-home" onclick="switchNav(0)">
-      <i class="ti ti-home-filled nav-icon"></i>
-      <span class="nav-label">Dash</span>
+<!-- HEADER -->
+<header class="header" id="hdr">
+  <div class="header-inner">
+    <h1 id="hName">BURGER DASH</h1>
+    <button class="btn-cart-hdr" id="btnCartHdr" onclick="openCart()">
+      <i class="ti ti-shopping-cart"></i>
+      <span id="hdrTotal">R$ 0,00</span>
+      <span class="badge" id="hdrBadge">0</span>
     </button>
-    <button class="nav-btn" id="nav-menu" onclick="switchNav(1)">
-      <i class="ti ti-layout-grid-filled nav-icon"></i>
-      <span class="nav-label">Menu</span>
-    </button>
-    <div class="nav-cart-wrap">
-      <div class="nav-cart-glow"></div>
-      <button class="nav-cart-btn" onclick="openCart()">
-        <i class="ti ti-shopping-cart-filled"></i>
-        <span class="nav-cart-badge" id="navCartBadge">0</span>
-      </button>
+  </div>
+  <div class="header-badges">
+    <span class="h-badge"><span class="dot"></span> Aberto agora</span>
+    <span class="h-badge">🕐 11h–23h</span>
+    <span class="h-badge">📍 São Lourenço, MG</span>
+  </div>
+</header>
+
+<!-- HERO -->
+<section style="position:relative;width:100%;height:380px;margin-bottom:70px">
+  <img src="https://images.unsplash.com/photo-1632203171982-cc0df6e9ceb4?auto=format&w=800&q=80&fit=crop" alt="" style="width:100%;height:100%;object-fit:cover" loading="lazy">
+  <div style="position:absolute;bottom:-50px;left:0;right:0;padding:0 1rem">
+    <div style="background:#fff;padding:1.2rem;border-radius:20px;border:2px solid #111827;box-shadow:6px 6px 0 #111827">
+      <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem">
+        <div style="display:flex;color:#facc15;font-size:.7rem;gap:2px"><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i></div>
+        <span style="font-size:10px;font-weight:700;color:#9ca3af;letter-spacing:1px">(4.9 • 500+ avaliações)</span>
+      </div>
+      <h2 style="font-size:1.5rem;font-weight:900;font-family:'Inter',sans-serif;line-height:1.05;margin-bottom:.4rem;letter-spacing:-1px;font-style:italic">O MELHOR BURGER DA CIDADE</h2>
+      <p style="font-size:.78rem;color:#6b7280;margin-bottom:1rem;line-height:1.5">Artesanal, suculento e pronto para delivery. Peça agora!</p>
+      <button onclick="document.getElementById('catSection').scrollIntoView({behavior:'smooth'})" style="width:100%;padding:.8rem;background:#F97316;color:#fff;border:none;border-radius:14px;font-weight:900;font-size:.78rem;text-transform:uppercase;letter-spacing:2px;cursor:pointer;border:3px solid #111827;box-shadow:4px 4px 0 #111827;transition:all .15s">Ver Cardápio</button>
     </div>
-    <button class="nav-btn" id="nav-loved" onclick="switchNav(3)">
-      <i class="ti ti-heart-filled nav-icon"></i>
-      <span class="nav-label">Loved</span>
-    </button>
-    <button class="nav-btn" id="nav-me" onclick="switchNav(4)">
-      <i class="ti ti-user-filled nav-icon"></i>
-      <span class="nav-label">Me</span>
-    </button>
-  </nav>
+  </div>
+</section>
 
-  <!-- WHATSAPP FAB -->
-  <a href="https://wa.me/5535999999999" id="waFab" target="_blank" class="wa-fab"><i class="ti ti-brand-whatsapp"></i></a>
+<!-- CATEGORIES -->
+<section style="padding:0 1rem;margin-bottom:1.5rem" id="catSection">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem">
+    <h3 style="font-size:1.1rem;font-weight:900;font-family:'Inter',sans-serif;letter-spacing:-.3px">Categorias</h3>
+  </div>
+  <div class="no-scrollbar" style="display:flex;overflow-x:auto;gap:.5rem;padding:.5rem 0" id="catScroll"></div>
+</section>
 
-  <!-- ADMIN LINK -->
-  <a href="admin.html" class="admin-link" title="Painel Admin"><i class="ti ti-settings"></i></a>
+<!-- FEATURED -->
+<section style="padding:0 1rem;margin-bottom:1.5rem">
+  <div style="background:#fff;border:3px solid #111827;border-radius:20px;overflow:hidden;box-shadow:10px 10px 0 #111827;transition:transform .2s" onmouseover="this.style.transform='translate(-2px,-2px)'" onmouseout="this.style.transform='none'">
+    <div style="position:relative;height:180px;background:#fff7ed">
+      <img src="https://images.unsplash.com/photo-1662047317263-03ff37e76db2?auto=format&w=800&q=80&fit=crop" alt="" style="width:100%;height:100%;object-fit:cover" loading="lazy">
+      <div style="position:absolute;top:12px;left:12px;background:#F97316;color:#fff;padding:.3rem .8rem;border-radius:10px;font-size:.6rem;font-weight:900;text-transform:uppercase;letter-spacing:1px;border:3px solid #111827;box-shadow:4px 4px 0 #111827">OFERTA DO DIA</div>
+    </div>
+    <div style="padding:1.2rem">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem">
+        <div>
+          <h3 style="font-size:1.15rem;font-weight:900;font-family:'Inter',sans-serif;letter-spacing:-.5px;line-height:1.1">Combo Ultimate Dash</h3>
+          <p style="font-size:.68rem;color:#6b7280;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-top:.2rem">Double beef • Bacon • Egg • Fries</p>
+        </div>
+        <div style="text-align:right"><span style="font-size:.68rem;color:#9ca3af;text-decoration:line-through;font-weight:900;display:block">R$ 68,00</span><span style="font-size:1.4rem;font-weight:900;color:#F97316;font-family:'Inter',sans-serif">R$ 49,90</span></div>
+      </div>
+      <button onclick="addItem('feat','featured','Combo Ultimate Dash',49.9,'🎁')" style="width:100%;padding:.9rem;background:#F97316;color:#fff;border:none;border-radius:14px;font-weight:900;font-size:.85rem;text-transform:uppercase;letter-spacing:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem;border:3px solid #111827;box-shadow:6px 6px 0 #111827;transition:all .15s">QUERO ESTE <i class="ti ti-shopping-cart-plus" style="font-size:1.2rem"></i></button>
+    </div>
+  </div>
+</section>
 
-</div>
+<!-- PRODUCTS GRID -->
+<section style="padding:0 1rem;margin-bottom:1.5rem" id="prodSection">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem">
+    <h3 style="font-size:1.1rem;font-weight:900;font-family:'Inter',sans-serif;letter-spacing:-.3px" id="prodTitle">Mais Vendidos</h3>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem" id="prodGrid"></div>
+</section>
+
+<!-- REVIEWS -->
+<section style="padding:0 1rem;margin-bottom:1.5rem">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem">
+    <h3 style="font-size:1.1rem;font-weight:900;font-family:'Inter',sans-serif;letter-spacing:-.3px">Voz dos Clientes</h3>
+    <div style="display:flex;align-items:center;gap:.2rem;color:#F97316"><i class="ti ti-star-filled" style="font-size:.8rem"></i><span style="font-size:.8rem;font-weight:900">4.9</span></div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:.6rem">
+    <div style="background:#f3f4f6;padding:.8rem;border-radius:16px 16px 4px 16px;border:1px solid #e5e7eb">
+      <div style="display:flex;color:#facc15;font-size:10px;gap:1px;margin-bottom:.3rem"><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i></div>
+      <p style="font-size:.78rem;font-weight:500;line-height:1.5;font-style:italic">"O ponto da carne estava perfeito! Chegou muito rápido."</p>
+      <div style="margin-top:.5rem;display:flex;align-items:center;gap:.4rem"><img src="https://i.pravatar.cc/100?u=lucas" style="width:20px;height:20px;border-radius:50%;filter:grayscale(1)" alt=""><span style="font-size:10px;font-weight:700;color:#9ca3af">Lucas M.</span></div>
+    </div>
+    <div style="background:#f3f4f6;padding:.8rem;border-radius:16px 16px 4px 16px;border:1px solid #e5e7eb">
+      <div style="display:flex;color:#facc15;font-size:10px;gap:1px;margin-bottom:.3rem"><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i></div>
+      <p style="font-size:.78rem;font-weight:500;line-height:1.5;font-style:italic">"A embalagem é sensacional, nada de batata murcha!"</p>
+      <div style="margin-top:.5rem;display:flex;align-items:center;gap:.4rem"><img src="https://i.pravatar.cc/100?u=bia" style="width:20px;height:20px;border-radius:50%;filter:grayscale(1)" alt=""><span style="font-size:10px;font-weight:700;color:#9ca3af">Beatriz R.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- INFO -->
+<section style="padding:0 1rem;margin-bottom:2rem">
+  <div style="background:#fff;border-radius:16px;border:1px solid #f3f4f6;overflow:hidden">
+    <div style="padding:.8rem 1rem;display:flex;align-items:center;gap:.6rem;border-bottom:1px solid #f3f4f6"><div style="width:36px;height:36px;background:#fff7ed;color:#F97316;border-radius:10px;display:flex;align-items:center;justify-content:center"><i class="ti ti-clock-filled"></i></div><div><h4 style="font-size:.72rem;font-weight:800;font-family:'Inter',sans-serif">Horário</h4><p style="font-size:.62rem;color:#9ca3af;font-weight:700">Até 23:30</p></div></div>
+    <div style="padding:.8rem 1rem;display:flex;align-items:center;gap:.6rem;border-bottom:1px solid #f3f4f6"><div style="width:36px;height:36px;background:#fff7ed;color:#F97316;border-radius:10px;display:flex;align-items:center;justify-content:center"><i class="ti ti-map-pin-filled"></i></div><div><h4 style="font-size:.72rem;font-weight:800;font-family:'Inter',sans-serif">Local</h4><p style="font-size:.62rem;color:#9ca3af;font-weight:700">São Lourenço, MG</p></div></div>
+    <div style="padding:.8rem 1rem;display:flex;align-items:center;gap:.6rem"><div style="width:36px;height:36px;background:#fff7ed;color:#F97316;border-radius:10px;display:flex;align-items:center;justify-content:center"><i class="ti ti-brand-instagram"></i></div><div><h4 style="font-size:.72rem;font-weight:800;font-family:'Inter',sans-serif">Instagram</h4><p style="font-size:.62rem;color:#9ca3af;font-weight:700">@burgerdash_br</p></div></div>
+  </div>
+</section>
+
+<!-- BOTTOM NAV -->
+<nav class="bnav">
+  <button class="bnav-btn sel" id="bnHome" onclick="setNav(0)"><i class="ti ti-home-filled"></i><span>Dash</span></button>
+  <button class="bnav-btn" id="bnMenu" onclick="setNav(1)"><i class="ti ti-layout-grid-filled"></i><span>Menu</span></button>
+  <div class="bnav-cart-wrap"><div class="bnav-cart-glow"></div><button class="bnav-cart-btn" onclick="openCart()"><i class="ti ti-shopping-cart-filled"></i><span class="bnav-cart-num" id="bnCartNum">0</span></button></div>
+  <button class="bnav-btn" id="bnLoved" onclick="setNav(3)"><i class="ti ti-heart-filled"></i><span>Loved</span></button>
+  <button class="bnav-btn" id="bnMe" onclick="setNav(4)"><i class="ti ti-user-filled"></i><span>Me</span></button>
+</nav>
+
+<!-- FABs -->
+<a href="https://wa.me/5535999999999" id="waFab" target="_blank" class="fab fab-wa"><i class="ti ti-brand-whatsapp"></i></a>
+<a href="admin.html" class="fab fab-adm" title="Admin"><i class="ti ti-settings"></i></a>
 
 <!-- CART BAR -->
 <div class="cart-bar" id="cartBar">
-  <div class="cart-bar-inner">
-    <div class="cart-bar-left">
-      <div class="cart-bar-icon">🛒<span class="cart-bar-count" id="cartBarCount">0</span></div>
-      <div class="cart-bar-info"><div class="cart-qty" id="cartBarQty">0 itens</div><div class="cart-total" id="cartBarTotal">R$ 0,00</div></div>
+  <div class="cart-bar-in">
+    <div class="cart-bar-l">
+      <div class="cart-bar-icon">🛒<span class="cart-bar-num" id="cbNum">0</span></div>
+      <div class="cart-bar-info"><div class="q" id="cbQty">0 itens</div><div class="t" id="cbTotal">R$ 0,00</div></div>
     </div>
-    <button class="btn-view-order" onclick="openCart()">Ver Pedido</button>
+    <button class="btn-vo" onclick="openCart()">Ver Pedido</button>
   </div>
 </div>
 
 <!-- CART MODAL -->
-<div class="modal-overlay" id="cartModal" onclick="if(event.target===this)closeCart()">
-  <div class="modal-sheet">
-    <div class="modal-header"><h2>🛒 Seu Pedido</h2><button class="btn-close-modal" onclick="closeCart()"><i class="ti ti-x"></i></button></div>
-    <div class="modal-body" id="cartBody"><div class="cart-empty"><div class="cart-empty-icon">🛒</div><p>Seu pedido está vazio.<br>Adicione itens do cardápio!</p></div></div>
-    <div class="modal-footer" id="cartFooter" style="display:none">
-      <div class="form-group"><label>Seu nome</label><input type="text" id="clientName" placeholder="Ex: João Silva"></div>
-      <div class="cart-notes"><label>Observações (opcional)</label><textarea id="orderNotes" rows="2" placeholder="Ex: sem cebola, mal passada..."></textarea></div>
-      <button class="btn-wa" onclick="sendWhatsApp()"><i class="ti ti-brand-whatsapp"></i> Enviar Pedido pelo WhatsApp</button>
+<div class="modal-ov" id="cartModal" onclick="if(event.target===this)closeCart()">
+  <div class="modal-sh">
+    <div class="modal-hd"><h2>🛒 Seu Pedido</h2><button class="btn-close-m" onclick="closeCart()"><i class="ti ti-x"></i></button></div>
+    <div class="modal-by" id="cartBody"><div class="cart-empty"><i class="ti ti-shopping-cart-off"></i><p>Seu pedido está vazio.<br>Adicione itens!</p></div></div>
+    <div class="modal-ft" id="cartFoot" style="display:none">
+      <div class="fg"><label>Seu nome</label><input type="text" id="cName" placeholder="Ex: João Silva"></div>
+      <div class="cart-notes"><label>Observações</label><textarea id="cNotes" rows="2" placeholder="Ex: sem cebola..."></textarea></div>
+      <button class="btn-wa" onclick="sendWA()"><i class="ti ti-brand-whatsapp"></i> Enviar pelo WhatsApp</button>
     </div>
   </div>
 </div>
 
 <!-- TOAST -->
-<div class="toast" id="toast">✅ Item adicionado!</div>
+<div class="toast" id="toast"></div>
 
 <script>
-// ===== DATA =====
-let storedData=localStorage.getItem('cardapio');
-let cardapio;
-if(storedData){try{cardapio=JSON.parse(storedData);}catch(e){cardapio=null;}}
-if(!cardapio||!cardapio.categorias){
-  cardapio = {
-  categorias: [
-    { nome: "Burgers", icon: "🔥", pratos: [
-      { nome: "Dash Classic", preco: 32, descricao: "Carne 160g, Cheddar, Pão Australiano.", img: "https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?auto=format&w=400&q=80&fit=crop" },
-      { nome: "Smash Dash", preco: 29, descricao: "2x carne smash, queijo, cebola roxa.", img: "https://images.unsplash.com/photo-1530554764233-e79e16c91d08?auto=format&w=400&q=80&fit=crop" },
-      { nome: "Bacon King", preco: 38, descricao: "Maionese defumada e bacon crocante.", img: "https://images.unsplash.com/photo-1633424234673-c8cd0f4df77b?auto=format&w=400&q=80&fit=crop" },
-      { nome: "Dash Duplo", preco: 42, descricao: "2x carne 120g, duplo cheddar, molho especial.", img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&w=400&q=80&fit=crop" }
-    ]},
-    { nome: "Snacks", icon: "🍟", pratos: [
-      { nome: "Batata Trufada", preco: 24, descricao: "Azeite de trufas brancas e Grana Padano.", img: "https://images.unsplash.com/photo-1585109649139-366815a0d713?auto=format&w=400&q=80&fit=crop" },
-      { nome: "Onion Rings", preco: 18, descricao: "Anéis de cebola empanados, molho ranch.", img: "https://images.unsplash.com/photo-1639024471283-03518883512d?auto=format&w=400&q=80&fit=crop" },
-      { nome: "Nuggets Dash", preco: 20, descricao: "10x nuggets crocantes, molho barbecue.", img: "https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&w=400&q=80&fit=crop" }
-    ]},
-    { nome: "Drinks", icon: "🥤", pratos: [
-      { nome: "Refrigerante Lata", preco: 6, descricao: "Coca-Cola, Guaraná ou Fanta.", img: "https://images.unsplash.com/photo-1553787434-6e1d49c42e5d?auto=format&w=400&q=80&fit=crop" },
-      { nome: "Suco Natural", preco: 8, descricao: "Laranja, limão, maracujá ou morango.", img: "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&w=400&q=80&fit=crop" },
-      { nome: "Milkshake", preco: 16, descricao: "Chocolate, morango ou ovomaltine.", img: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&w=400&q=80&fit=crop" },
-      { nome: "Água Mineral", preco: 4, descricao: "Com ou sem gás.", img: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&w=400&q=80&fit=crop" }
-    ]},
-    { nome: "Combos", icon: "🎁", pratos: [
-      { nome: "Combo Solo", preco: 45, descricao: "1 Burger + Batata + Refri.", img: "https://images.unsplash.com/photo-1662047317263-03ff37e76db2?auto=format&w=400&q=80&fit=crop" },
-      { nome: "Combo Casal", preco: 79.9, descricao: "2 Burgers + Batata Grande + 2 Refris.", img: "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&w=400&q=80&fit=crop" },
-      { nome: "Combo Família", preco: 129, descricao: "4 Burgers + 2 Batatas + 2 Refris + Nuggets.", img: "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&w=400&q=80&fit=crop" }
-    ]}
-  ]
-};
-
-const featuredItem = { nome: "Combo Ultimate Dash", preco: 49.9, oldPreco: 68, descricao: "Double beef • Bacon • Egg • Fries", img: "https://images.unsplash.com/photo-1662047317263-03ff37e76db2?auto=format&w=800&q=80&fit=crop" };
-
-function getWhatsApp(){return(cardapio&&cardapio.whatsapp)||'5535999999999';}
-
-// ===== CART =====
-let cart = {};
-
-function getCartCount(){return Object.values(cart).reduce((s,c)=>s+c.qty,0)}
-function getCartTotal(){
-  let t=0;
-  for(const k in cart){
-    if(k==='featured')t+=featuredItem.preco*cart[k].qty;
-    else{const [ci,pi]=k.split('-').map(Number);const p=cardapio.categorias[ci]?.pratos?.[pi];if(p)t+=p.preco*cart[k].qty;}
+// ========== DATA ==========
+(function(){
+  var s = localStorage.getItem('cardapio');
+  if(s){
+    try{ DATA = JSON.parse(s); }catch(e){ DATA = null; }
   }
-  return t;
-}
-function getCartItems(){
-  const items=[];
-  for(const k in cart){
-    if(k==='featured') items.push({key:k,nome:featuredItem.nome,preco:featuredItem.preco,qty:cart[k].qty,icon:'🎁',subtotal:featuredItem.preco*cart[k].qty});
-    else{const [ci,pi]=k.split('-').map(Number);const cat=cardapio.categorias[ci];const p=cat?.pratos?.[pi];if(p)items.push({key:k,nome:p.nome,preco:p.preco,qty:cart[k].qty,icon:cat.icon,subtotal:p.preco*cart[k].qty});}
+  if(!DATA||!DATA.categorias){
+    DATA = {
+      nome:'Burger Dash', whatsapp:'5535999999999',
+      categorias:[
+        {nome:'Burgers',icon:'🔥',pratos:[
+          {nome:'Dash Classic',preco:32,descricao:'Carne 160g, Cheddar, Pão Australiano.',img:'https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?auto=format&w=400&q=80&fit=crop'},
+          {nome:'Smash Dash',preco:29,descricao:'2x carne smash, queijo, cebola roxa.',img:'https://images.unsplash.com/photo-1530554764233-e79e16c91d08?auto=format&w=400&q=80&fit=crop'},
+          {nome:'Bacon King',preco:38,descricao:'Maionese defumada e bacon crocante.',img:'https://images.unsplash.com/photo-1633424234673-c8cd0f4df77b?auto=format&w=400&q=80&fit=crop'},
+          {nome:'Dash Duplo',preco:42,descricao:'2x carne 120g, duplo cheddar.',img:'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&w=400&q=80&fit=crop'}
+        ]},
+        {nome:'Snacks',icon:'🍟',pratos:[
+          {nome:'Batata Trufada',preco:24,descricao:'Azeite de trufas e Grana Padano.',img:'https://images.unsplash.com/photo-1585109649139-366815a0d713?auto=format&w=400&q=80&fit=crop'},
+          {nome:'Onion Rings',preco:18,descricao:'Anéis de cebola empanados.',img:'https://images.unsplash.com/photo-1639024471283-03518883512d?auto=format&w=400&q=80&fit=crop'},
+          {nome:'Nuggets Dash',preco:20,descricao:'10x nuggets crocantes.',img:'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&w=400&q=80&fit=crop'}
+        ]},
+        {nome:'Drinks',icon:'🥤',pratos:[
+          {nome:'Refri Lata',preco:6,descricao:'Coca, Guaraná ou Fanta.',img:'https://images.unsplash.com/photo-1553787434-6e1d49c42e5d?auto=format&w=400&q=80&fit=crop'},
+          {nome:'Suco Natural',preco:8,descricao:'Laranja, limão, maracujá.',img:'https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&w=400&q=80&fit=crop'},
+          {nome:'Milkshake',preco:16,descricao:'Chocolate, morango ou ovomaltine.',img:'https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&w=400&q=80&fit=crop'},
+          {nome:'Água Mineral',preco:4,descricao:'Com ou sem gás.',img:'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&w=400&q=80&fit=crop'}
+        ]},
+        {nome:'Combos',icon:'🎁',pratos:[
+          {nome:'Combo Solo',preco:45,descricao:'1 Burger + Batata + Refri.',img:'https://images.unsplash.com/photo-1662047317263-03ff37e76db2?auto=format&w=400&q=80&fit=crop'},
+          {nome:'Combo Casal',preco:79.9,descricao:'2 Burgers + Batata G + 2 Refris.',img:'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&w=400&q=80&fit=crop'},
+          {nome:'Combo Família',preco:129,descricao:'4 Burgers + 2 Batatas + 2 Refris + Nuggets.',img:'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&w=400&q=80&fit=crop'}
+        ]}
+      ]
+    };
+    try{ localStorage.setItem('cardapio',JSON.stringify(DATA)); }catch(e){}
   }
-  return items;
-}
+})();
 
-function addToCart(catKey,idx){
-  const key=catKey==='featured'?'featured':catKey;
-  if(cart[key])cart[key].qty++;else cart[key]={qty:1};
-  const nome=catKey==='featured'?featuredItem.nome:cardapio.categorias[catKey].pratos[idx].nome;
-  updateCartUI();showToast('✅ '+nome+' adicionado!');renderProducts();
-}
-function removeFromCart(key){
-  if(!cart[key])return;cart[key].qty--;if(cart[key].qty<=0)delete cart[key];
-  updateCartUI();renderProducts();
-}
-function updateCartUI(){
-  const count=getCartCount(),total=getCartTotal();
-  const bar=document.getElementById('cartBar');
-  const nb=document.getElementById('navCartBadge'),hb=document.getElementById('headerCartBadge'),ht=document.getElementById('headerCartTotal');
-  if(count>0){
-    bar.classList.add('visible');
-    document.getElementById('cartBarCount').textContent=count;
-    document.getElementById('cartBarQty').textContent=count+' item'+(count>1?'ns':'');
-    document.getElementById('cartBarTotal').textContent='R$ '+total.toFixed(2).replace('.',',');
-    nb.style.display='flex';nb.textContent=count;
-    hb.style.display='flex';hb.textContent=count;
-  }else{
-    bar.classList.remove('visible');nb.style.display='none';hb.style.display='none';
+var CART = {};
+var ACTIVE_CAT = 0;
+
+// ========== NAV ==========
+function setNav(idx){
+  for(var i=0;i<5;i++){
+    var b=document.getElementById('bnHome'.replace('Home',i===0?'Home':i===1?'Menu':i===2?'Menu':i===3?'Loved':'Me'));
   }
-  ht.textContent='R$ '+total.toFixed(2).replace('.',',');
-}
-function showToast(msg){
-  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
-  clearTimeout(t._timeout);t._timeout=setTimeout(()=>t.classList.remove('show'),2000);
+  // simpler:
+  document.getElementById('bnHome').classList.toggle('sel',idx===0);
+  document.getElementById('bnMenu').classList.toggle('sel',idx===1);
+  document.getElementById('bnLoved').classList.toggle('sel',idx===3);
+  document.getElementById('bnMe').classList.toggle('sel',idx===4);
+  if(idx===1) document.getElementById('catSection').scrollIntoView({behavior:'smooth'});
+  if(idx===0) window.scrollTo({top:0,behavior:'smooth'});
 }
 
-// ===== RENDER =====
-let activeCat=0;
-
-function renderCategories(){
-  const s=document.getElementById('catScroll');s.innerHTML='';
-  cardapio.categorias.forEach((cat,i)=>{
-    const b=document.createElement('button');
-    b.style.cssText='shrink:0;padding:.5rem 1.2rem;border-radius:50px;font-weight:800;font-size:.65rem;text-transform:uppercase;letter-spacing:1px;cursor:pointer;border:3px solid #111827;transition:all .15s;'+(i===activeCat?'background:#F97316;color:#fff;box-shadow:4px 4px 0 #111827':'background:#f3f4f6;color:#9ca3af');
-    b.textContent=cat.icon+' '+cat.nome;
-    b.onclick=()=>{activeCat=i;renderCategories();renderProducts();};
-    s.appendChild(b);
+// ========== CATEGORIES ==========
+function renderCats(){
+  var el = document.getElementById('catScroll');
+  el.innerHTML = '';
+  DATA.categorias.forEach(function(cat,i){
+    var b = document.createElement('button');
+    var active = i===ACTIVE_CAT;
+    b.style.cssText = 'flex-shrink:0;padding:.5rem 1.2rem;border-radius:50px;font-weight:800;font-size:.65rem;text-transform:uppercase;letter-spacing:1px;cursor:pointer;border:3px solid #111827;transition:all .15s;font-family:inherit;' + (active?'background:#F97316;color:#fff;box-shadow:4px 4px 0 #111827':'background:#f3f4f6;color:#9ca3af');
+    b.textContent = cat.icon + ' ' + cat.nome;
+    b.onclick = function(){ ACTIVE_CAT=i; renderCats(); renderProds(); };
+    el.appendChild(b);
   });
 }
 
-function renderProducts(){
-  const grid=document.getElementById('productsGrid');grid.innerHTML='';
-  const cat=cardapio.categorias[activeCat];
-  cat.pratos.forEach((p,pi)=>{
-    const key=activeCat+'-'+pi;const qty=cart[key]?.qty||0;
-    const c=document.createElement('div');
-    c.style.cssText='background:#f3f4f6;border-radius:20px;overflow:hidden;position:relative';
-    c.innerHTML=`
-      <div style="height:130px;overflow:hidden;position:relative">
-        <img src="${p.img}" alt="${p.nome}" style="width:100%;height:100%;object-fit:cover;transition:transform .5s" loading="lazy" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-        <button onclick="event.stopPropagation();this.style.color=this.style.color==='#F97316'?'#111827':'#F97316'" style="position:absolute;top:8px;right:8px;width:30px;height:30px;background:rgba(255,255,255,.85);backdrop-filter:blur(4px);border-radius:50%;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer"><i class="ti ti-heart" style="font-size:.85rem"></i></button>
-        ${qty>0?`<span style="position:absolute;top:8px;left:8px;background:#111827;color:#fff;width:22px;height:22px;border-radius:50%;font-size:.6rem;font-weight:900;display:flex;align-items:center;justify-content:center;border:2px solid #fff">${qty}</span>`:''}
-      </div>
-      <div style="padding:.8rem">
-        <h4 style="font-size:.8rem;font-weight:700;font-family:'Inter',sans-serif;margin-bottom:.15rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.nome}</h4>
-        <p style="font-size:10px;color:#9ca3af;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:.4rem">${p.descricao}</p>
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <span style="font-size:.85rem;font-weight:800;font-family:'Inter',sans-serif">R$ ${p.preco.toFixed(2).replace('.',',')}</span>
-          <button onclick="addToCart(${activeCat},${pi})" style="width:32px;height:32px;background:#fff;color:#F97316;border-radius:10px;display:flex;align-items:center;justify-content:center;border:1px solid #e5e7eb;cursor:pointer;font-size:1rem;font-weight:700;transition:all .15s" onmouseover="this.style.background='#F97316';this.style.color='#fff'" onmouseout="this.style.background='#fff';this.style.color='#F97316'"><i class="ti ti-plus"></i></button>
-        </div>
-      </div>`;
+// ========== PRODUCTS ==========
+function renderProds(){
+  var grid = document.getElementById('prodGrid');
+  var title = document.getElementById('prodTitle');
+  if(title) title.textContent = DATA.categorias[ACTIVE_CAT].nome;
+  grid.innerHTML = '';
+  var cat = DATA.categorias[ACTIVE_CAT];
+  if(!cat || !cat.pratos || !cat.pratos.length){
+    grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#9ca3af;font-size:.75rem;padding:2rem">Nenhum produto nesta categoria</p>';
+    return;
+  }
+  cat.pratos.forEach(function(p,pi){
+    var key = ACTIVE_CAT+'-'+pi;
+    var qty = CART[key] ? CART[key].qty : 0;
+    var c = document.createElement('div');
+    c.style.cssText = 'background:#f3f4f6;border-radius:20px;overflow:hidden;position:relative;animation:fadeIn .3s ease';
+    c.innerHTML = '<div style="height:120px;overflow:hidden;position:relative">' +
+      '<img src="'+p.img+'" alt="" style="width:100%;height:100%;object-fit:cover" loading="lazy" onerror="this.style.background=\'#e5e7eb\'">' +
+      (qty>0?'<span style="position:absolute;top:6px;left:6px;background:#111827;color:#fff;width:22px;height:22px;border-radius:50%;font-size:.6rem;font-weight:900;display:flex;align-items:center;justify-content:center;border:2px solid #fff">'+qty+'</span>':'') +
+      '<button onclick="this.style.color=this.style.color==\'#F97316\'?\'#111827\':\'#F97316\';this.style.transform=this.style.transform==\'scale(1.2)\'?\'scale(1)\':\'scale(1.2)\';" style="position:absolute;top:6px;right:6px;width:28px;height:28px;background:rgba(255,255,255,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;font-size:.85rem;transition:all .2s"><i class="ti ti-heart"></i></button>' +
+      '</div>' +
+      '<div style="padding:.7rem">' +
+      '<h4 style="font-size:.78rem;font-weight:700;font-family:\'Inter\',sans-serif;margin-bottom:.15rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+p.nome+'</h4>' +
+      '<p style="font-size:10px;color:#9ca3af;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:.4rem">'+p.descricao+'</p>' +
+      '<div style="display:flex;align-items:center;justify-content:space-between">' +
+      '<span style="font-size:.82rem;font-weight:800;font-family:\'Inter\',sans-serif">R$ '+p.preco.toFixed(2).replace('.',',')+'</span>' +
+      '<button onclick="addItem(\''+ACTIVE_CAT+'\',\''+pi+'\',\''+p.nome.replace(/'/g,"\\'")+'\','+p.preco+',\''+cat.icon+'\')" style="width:30px;height:30px;background:#fff;color:#F97316;border-radius:10px;display:flex;align-items:center;justify-content:center;border:1px solid #e5e7eb;cursor:pointer;font-size:1rem;transition:all .15s" onmouseover="this.style.background=\'#F97316\';this.style.color=\'#fff\';this.style.borderColor=\'#F97316\'" onmouseout="this.style.background=\'#fff\';this.style.color=\'#F97316\';this.style.borderColor=\'#e5e7eb\'"><i class="ti ti-plus"></i></button>' +
+      '</div></div>';
     grid.appendChild(c);
   });
 }
 
-// ===== NAV =====
-function switchNav(idx){
-  document.querySelectorAll('.nav-btn').forEach((b,i)=>{
-    b.classList.toggle('active',i===idx);
-  });
-  if(idx===1) scrollToSection('catSection');
-  if(idx===0) window.scrollTo({top:0,behavior:'smooth'});
+// ========== CART ==========
+function addItem(catIdx,idx,name,price,icon){
+  var key = catIdx+'-'+idx;
+  if(CART[key]){ CART[key].qty++; } else { CART[key]={qty:1,name:name,price:price,icon:icon}; }
+  updateCart();
+  renderProds();
+  toast('✅ ' + name + ' adicionado!');
 }
 
-function scrollToSection(id){
-  const el=document.getElementById(id);
-  if(el) el.scrollIntoView({behavior:'smooth'});
+function removeItem(key){
+  if(!CART[key]) return;
+  CART[key].qty--;
+  if(CART[key].qty<=0) delete CART[key];
+  updateCart();
+  renderProds();
 }
 
-// ===== CART MODAL =====
-function openCart(){renderCartModal();document.getElementById('cartModal').classList.add('open');document.body.style.overflow='hidden';}
-function closeCart(){document.getElementById('cartModal').classList.remove('open');document.body.style.overflow='';}
+function cartCount(){
+  var n=0; for(var k in CART){ n+=CART[k].qty; } return n;
+}
+function cartTotal(){
+  var t=0; for(var k in CART){ t+=CART[k].price*CART[k].qty; } return t;
+}
 
-function renderCartModal(){
-  const body=document.getElementById('cartBody'),footer=document.getElementById('cartFooter');
-  const items=getCartItems();
+function updateCart(){
+  var count = cartCount();
+  var total = cartTotal();
+  var bar = document.getElementById('cartBar');
+  var bnNum = document.getElementById('bnCartNum');
+  var hdrB = document.getElementById('hdrBadge');
+  var hdrT = document.getElementById('hdrTotal');
+
+  if(count>0){
+    bar.classList.add('on');
+    document.getElementById('cbNum').textContent = count;
+    document.getElementById('cbQty').textContent = count + ' item' + (count>1?'ns':'');
+    document.getElementById('cbTotal').textContent = 'R$ ' + total.toFixed(2).replace('.',',');
+    bnNum.style.display = 'flex';
+    bnNum.textContent = count;
+    hdrB.style.display = 'flex';
+    hdrB.textContent = count;
+  } else {
+    bar.classList.remove('on');
+    bnNum.style.display = 'none';
+    hdrB.style.display = 'none';
+  }
+  hdrT.textContent = 'R$ ' + total.toFixed(2).replace('.',',');
+}
+
+function getCartItems(){
+  var items = [];
+  for(var k in CART){
+    items.push({key:k,name:CART[k].name,price:CART[k].price,qty:CART[k].qty,icon:CART[k].icon,subtotal:CART[k].price*CART[k].qty});
+  }
+  return items;
+}
+
+// ========== MODAL ==========
+function openCart(){
+  var items = getCartItems();
+  var body = document.getElementById('cartBody');
+  var foot = document.getElementById('cartFoot');
   if(!items.length){
-    body.innerHTML='<div class="cart-empty"><div class="cart-empty-icon">🛒</div><p>Seu pedido está vazio.<br>Adicione itens do cardápio!</p></div>';
-    footer.style.display='none';return;
+    body.innerHTML = '<div class="cart-empty"><i class="ti ti-shopping-cart-off"></i><p>Seu pedido está vazio.<br>Adicione itens do cardápio!</p></div>';
+    foot.style.display = 'none';
+  } else {
+    foot.style.display = 'block';
+    var h = '';
+    items.forEach(function(it){
+      h += '<div class="ci"><div class="ci-icon">'+it.icon+'</div><div class="ci-info"><div class="ci-name">'+it.name+'</div><div class="ci-price">R$ '+it.price.toFixed(2).replace('.',',')+'</div></div><div class="ci-qty"><button onclick="modalRemove(\''+it.key+'\')">−</button><span class="ci-qty-n">'+it.qty+'</span><button onclick="modalAdd(\''+it.key+'\')">+</button></div><div class="ci-sub">R$ '+it.subtotal.toFixed(2).replace('.',',')+'</div></div>';
+    });
+    var total = cartTotal();
+    h += '<div class="cart-line tt"><span>Total</span><span class="v">R$ '+total.toFixed(2).replace('.',',')+'</span></div>';
+    body.innerHTML = h;
   }
-  footer.style.display='block';
-  let h='';
-  items.forEach(it=>{
-    h+=`<div class="cart-item"><div class="cart-item-icon">${it.icon}</div><div class="cart-item-info"><div class="cart-item-name">${it.nome}</div><div class="cart-item-price">R$ ${it.preco.toFixed(2).replace('.',',')}</div></div><div class="cart-item-qty"><button onclick="mRemove('${it.key}')">−</button><span class="cart-item-qty-q">${it.qty}</span><button onclick="mAdd('${it.key}')">+</button></div><div class="cart-item-subtotal">R$ ${it.subtotal.toFixed(2).replace('.',',')}</div></div>`;
+  document.getElementById('cartModal').classList.add('on');
+  document.body.style.overflow = 'hidden';
+}
+function closeCart(){
+  document.getElementById('cartModal').classList.remove('on');
+  document.body.style.overflow = '';
+}
+function modalAdd(key){
+  if(CART[key]) CART[key].qty++;
+  else return;
+  updateCart();
+  openCart();
+  renderProds();
+}
+function modalRemove(key){ removeItem(key); openCart(); }
+
+// ========== WHATSAPP ==========
+function sendWA(){
+  var items = getCartItems();
+  if(!items.length) return;
+  var name = document.getElementById('cName').value.trim() || 'Cliente';
+  var notes = document.getElementById('cNotes').value.trim();
+  var total = cartTotal();
+  var msg = '📋 *PEDIDO - ' + (DATA.nome||'Restaurante').toUpperCase() + '*\n👤 Cliente: ' + name + '\n─────────────────\n\n';
+  items.forEach(function(it){ msg += '• ' + it.qty + 'x ' + it.name + ' — R$ ' + it.subtotal.toFixed(2).replace('.',',') + '\n'; });
+  msg += '\n─────────────────\n💰 *TOTAL: R$ ' + total.toFixed(2).replace('.',',') + '*\n';
+  if(notes) msg += '\n📝 Observações:\n' + notes + '\n';
+  var wa = DATA.whatsapp || '5535999999999';
+  window.open('https://wa.me/'+wa+'?text='+encodeURIComponent(msg),'_blank');
+}
+
+// ========== UTILS ==========
+function toast(msg){
+  var t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(t._t); t._t = setTimeout(function(){ t.classList.remove('show'); },2000);
+}
+
+// ========== INIT ==========
+(function(){
+  if(DATA.nome){ document.getElementById('hName').textContent = DATA.nome; document.title = DATA.nome + ' - Cardápio'; }
+  var wa = DATA.whatsapp||'';
+  if(wa) document.getElementById('waFab').href = 'https://wa.me/'+wa;
+  renderCats();
+  renderProds();
+  // header scroll
+  window.addEventListener('scroll',function(){
+    document.getElementById('hdr').classList.toggle('scrolled',(window.scrollY||0)>60);
+  },{passive:true});
+  // reload from storage
+  window.addEventListener('visibilitychange',function(){
+    if(document.visibilityState==='visible'){
+      var s=localStorage.getItem('cardapio');
+      if(s){try{var d=JSON.parse(s);if(d&&d.categorias){DATA=d;renderCats();renderProds();}}catch(e){}}
+    }
   });
-  const total=getCartTotal();
-  h+=`<div class="cart-notes"><label>Observações do pedido</label><textarea id="orderNotes" rows="2" placeholder="Ex: sem cebola, mal passada..."></textarea></div><div class="cart-line cart-line-total"><span>Total</span><span style="color:#F97316">R$ ${total.toFixed(2).replace('.',',')}</span></div>`;
-  body.innerHTML=h;
-}
-
-function mAdd(key){
-  if(cart[key])cart[key].qty++;
-  else{if(key==='featured')cart[key]={qty:1};else{const [ci,pi]=key.split('-').map(Number);if(cardapio.categorias[ci]?.pratos?.[pi])cart[key]={qty:1};else return;}}
-  updateCartUI();renderCartModal();renderProducts();
-}
-function mRemove(key){removeFromCart(key);renderCartModal();}
-
-// ===== WHATSAPP =====
-function sendWhatsApp(){
-  const items=getCartItems();if(!items.length)return;
-  const name=document.getElementById('clientName').value.trim()||'Cliente';
-  const notes=document.getElementById('orderNotes').value.trim();
-  const total=getCartTotal();
-  let msg=`📋 *PEDIDO - ${cardapio.nome.toUpperCase()}*\n👤 Cliente: ${name}\n─────────────────\n\n`;
-  items.forEach(it=>{msg+=`• ${it.qty}x ${it.nome} — R$ ${it.subtotal.toFixed(2).replace('.',',')}\n`;});
-  msg+=`\n─────────────────\n💰 *TOTAL: R$ ${total.toFixed(2).replace('.',',')}*\n`;
-  if(notes) msg+=`\n📝 Observações:\n${notes}\n`;
-  window.open(`https://wa.me/${getWhatsApp()}?text=${encodeURIComponent(msg)}`,'_blank');
-}
-
-// ===== INIT =====
-if(cardapio.nome){
-  document.getElementById('headerName').textContent=cardapio.nome;
-  document.title=cardapio.nome+' - Cardápio';
-}
-const wa=getWhatsApp();
-if(wa) document.getElementById('waFab').href='https://wa.me/'+wa;
-renderCategories();renderProducts();
-const header=document.getElementById('header');
-window.addEventListener('scroll',()=>{header.classList.toggle('scrolled',(window.scrollY||0)>60);},{passive:true});
-
-// Reload data from localStorage when returning from admin
-window.addEventListener('focus',()=>{
-  const stored=localStorage.getItem('cardapio');
-  if(stored){try{const d=JSON.parse(stored);if(d&&d.categorias){cardapio=d;renderCategories();renderProducts();}}catch(e){}}
-});
-window.addEventListener('visibilitychange',()=>{
-  if(document.visibilityState==='visible'){
-    const stored=localStorage.getItem('cardapio');
-    if(stored){try{const d=JSON.parse(stored);if(d&&d.categorias){cardapio=d;renderCategories();renderProducts();}}catch(e){}}
-  }
-});
+})();
 </script>
 </body>
 </html>
