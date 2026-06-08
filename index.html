@@ -247,14 +247,14 @@
 <div class="toast" id="toast"></div>
 
 <script>
-// ========== DATA ==========
+// ========== window.DATA ==========
 (function(){
   var s = localStorage.getItem('cardapio');
   if(s){
-    try{ DATA = JSON.parse(s); }catch(e){ DATA = null; }
+    try{ window.DATA = JSON.parse(s); }catch(e){ window.DATA = null; }
   }
-  if(!DATA||!DATA.categorias){
-    DATA = {
+  if(!window.DATA||!window.DATA.categorias){
+    window.DATA = {
       nome:'Burger Dash', whatsapp:'5535999999999',
       categorias:[
         {nome:'Burgers',icon:'🔥',pratos:[
@@ -281,7 +281,7 @@
         ]}
       ]
     };
-    try{ localStorage.setItem('cardapio',JSON.stringify(DATA)); }catch(e){}
+    try{ localStorage.setItem('cardapio',JSON.stringify(window.DATA)); }catch(e){}
   }
 })();
 
@@ -306,7 +306,7 @@ function setNav(idx){
 function renderCats(){
   var el = document.getElementById('catScroll');
   el.innerHTML = '';
-  DATA.categorias.forEach(function(cat,i){
+  window.DATA.categorias.forEach(function(cat,i){
     var b = document.createElement('button');
     var active = i===ACTIVE_CAT;
     b.style.cssText = 'flex-shrink:0;padding:.5rem 1.2rem;border-radius:50px;font-weight:800;font-size:.65rem;text-transform:uppercase;letter-spacing:1px;cursor:pointer;border:3px solid #111827;transition:all .15s;font-family:inherit;' + (active?'background:#F97316;color:#fff;box-shadow:4px 4px 0 #111827':'background:#f3f4f6;color:#9ca3af');
@@ -320,9 +320,9 @@ function renderCats(){
 function renderProds(){
   var grid = document.getElementById('prodGrid');
   var title = document.getElementById('prodTitle');
-  if(title) title.textContent = DATA.categorias[ACTIVE_CAT].nome;
+  if(title) title.textContent = window.DATA.categorias[ACTIVE_CAT].nome;
   grid.innerHTML = '';
-  var cat = DATA.categorias[ACTIVE_CAT];
+  var cat = window.DATA.categorias[ACTIVE_CAT];
   if(!cat || !cat.pratos || !cat.pratos.length){
     grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#9ca3af;font-size:.75rem;padding:2rem">Nenhum produto nesta categoria</p>';
     return;
@@ -446,11 +446,11 @@ function sendWA(){
   var name = document.getElementById('cName').value.trim() || 'Cliente';
   var notes = document.getElementById('cNotes').value.trim();
   var total = cartTotal();
-  var msg = '📋 *PEDIDO - ' + (DATA.nome||'Restaurante').toUpperCase() + '*\n👤 Cliente: ' + name + '\n─────────────────\n\n';
+  var msg = '📋 *PEDIDO - ' + (window.DATA.nome||'Restaurante').toUpperCase() + '*\n👤 Cliente: ' + name + '\n─────────────────\n\n';
   items.forEach(function(it){ msg += '• ' + it.qty + 'x ' + it.name + ' — R$ ' + it.subtotal.toFixed(2).replace('.',',') + '\n'; });
   msg += '\n─────────────────\n💰 *TOTAL: R$ ' + total.toFixed(2).replace('.',',') + '*\n';
   if(notes) msg += '\n📝 Observações:\n' + notes + '\n';
-  var wa = DATA.whatsapp || '5535999999999';
+  var wa = window.DATA.whatsapp || '5535999999999';
   window.open('https://wa.me/'+wa+'?text='+encodeURIComponent(msg),'_blank');
 }
 
@@ -463,8 +463,8 @@ function toast(msg){
 
 // ========== INIT ==========
 (function(){
-  if(DATA.nome){ document.getElementById('hName').textContent = DATA.nome; document.title = DATA.nome + ' - Cardápio'; }
-  var wa = DATA.whatsapp||'';
+  if(window.DATA.nome){ document.getElementById('hName').textContent = window.DATA.nome; document.title = window.DATA.nome + ' - Cardápio'; }
+  var wa = window.DATA.whatsapp||'';
   if(wa) document.getElementById('waFab').href = 'https://wa.me/'+wa;
   renderCats();
   renderProds();
@@ -476,7 +476,7 @@ function toast(msg){
   window.addEventListener('visibilitychange',function(){
     if(document.visibilityState==='visible'){
       var s=localStorage.getItem('cardapio');
-      if(s){try{var d=JSON.parse(s);if(d&&d.categorias){DATA=d;renderCats();renderProds();}}catch(e){}}
+      if(s){try{var d=JSON.parse(s);if(d&&d.categorias){window.DATA=d;renderCats();renderProds();}}catch(e){}}
     }
   });
 })();
