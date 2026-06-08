@@ -4,123 +4,460 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Restaurante Demo - Cardapio</title>
-  <meta name="theme-color" content="#e94560">
+  <meta name="theme-color" content="#1a1a2e">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0f0f0f;color:#eee;min-height:100vh;padding-bottom:4rem}
-    .header{background:linear-gradient(135deg,#e94560,#e94560dd);padding:2.5rem 1.5rem;text-align:center;position:sticky;top:0;z-index:10;box-shadow:0 4px 20px rgba(0,0,0,.3)}
-    .header h1{font-size:1.8rem;color:#fff;margin-bottom:.3rem}
-    .header p{color:rgba(255,255,255,.8);font-size:.9rem}
-    .container{max-width:600px;margin:0 auto;padding:1.5rem 1rem}
-    .categoria{margin-bottom:2rem}
-    .categoria-nome{font-size:1.3rem;color:#e94560;border-bottom:2px solid #e9456033;padding-bottom:.5rem;margin-bottom:1rem;text-transform:uppercase;letter-spacing:.5px}
-    .pratos{display:flex;flex-direction:column;gap:1rem}
-    .prato{display:flex;gap:1rem;background:#1a1a1a;border-radius:12px;overflow:hidden;border:1px solid #2a2a2a;transition:border-color .2s}
-    .prato:hover{border-color:#e9456055}
-    .prato-foto{width:100px;height:100px;flex-shrink:0;background:#2a2a2a;display:flex;align-items:center;justify-content:center;font-size:2.5rem}
-    .prato-info{flex:1;padding:.8rem .5rem .8rem 0;display:flex;flex-direction:column;justify-content:center}
-    .prato-topo{display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem}
-    .prato-nome{font-size:1rem;color:#fff}
-    .prato-preco{font-size:1rem;font-weight:700;color:#e94560;white-space:nowrap}
-    .prato-desc{font-size:.8rem;color:#888;margin-top:.3rem;line-height:1.4}
-    .footer{text-align:center;padding:2rem 1rem;color:#555;font-size:.8rem}
-    .footer a{color:#e94560;text-decoration:none}
-    .badge{display:inline-block;padding:.2rem .6rem;background:#e94560;color:#fff;font-size:.7rem;font-weight:700;border-radius:4px;margin-left:.5rem}
-    @media(max-width:400px){
-      .prato-foto{width:80px;height:80px;font-size:2rem}
-      .prato-nome{font-size:.9rem}
-      .prato-preco{font-size:.9rem}
+
+    :root {
+      --bg: #ffffff;
+      --bg-secondary: #f8f9fa;
+      --text: #1a1a1a;
+      --text-secondary: #6b7280;
+      --text-muted: #9ca3af;
+      --accent: #e94560;
+      --accent-light: #fff1f3;
+      --border: #e5e7eb;
+      --shadow: 0 1px 3px rgba(0,0,0,.08);
+      --shadow-lg: 0 4px 12px rgba(0,0,0,.1);
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding-bottom: 90px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      background: var(--bg);
+      padding: 2rem 1.5rem 1.5rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .header-logo {
+      width: 64px;
+      height: 64px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 1.8rem;
+    }
+
+    .header h1 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: .3rem;
+      letter-spacing: -.5px;
+    }
+
+    .header p {
+      font-size: .85rem;
+      color: var(--text-secondary);
+    }
+
+    .header-info {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      padding: .4rem .8rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      font-size: .75rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .header-badge .dot {
+      width: 7px;
+      height: 7px;
+      background: #22c55e;
+      border-radius: 50%;
+    }
+
+    /* ===== CATEGORY TABS (bottom nav) ===== */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: .5rem 0;
+      z-index: 100;
+      box-shadow: 0 -4px 20px rgba(0,0,0,.06);
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .2rem;
+      padding: .4rem .8rem;
+      border: none;
+      background: none;
+      cursor: pointer;
+      transition: all .2s;
+      border-radius: var(--radius-sm);
+      min-width: 60px;
+    }
+
+    .nav-item:hover {
+      background: var(--bg-secondary);
+    }
+
+    .nav-item.active {
+      background: var(--accent-light);
+    }
+
+    .nav-item .nav-icon {
+      font-size: 1.3rem;
+      line-height: 1;
+    }
+
+    .nav-item .nav-label {
+      font-size: .65rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .3px;
+    }
+
+    .nav-item.active .nav-label {
+      color: var(--accent);
+    }
+
+    /* ===== CONTENT ===== */
+    .content {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem;
+    }
+
+    .section {
+      display: none;
+      animation: fadeIn .3s ease;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+      letter-spacing: -.3px;
+    }
+
+    /* ===== PRATO CARD ===== */
+    .prato-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      margin-bottom: .8rem;
+      display: flex;
+      gap: 1rem;
+      transition: box-shadow .2s, border-color .2s;
+    }
+
+    .prato-card:hover {
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent);
+    }
+
+    .prato-img {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-secondary);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      border: 1px solid var(--border);
+    }
+
+    .prato-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .prato-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: .5rem;
+      margin-bottom: .3rem;
+    }
+
+    .prato-nome {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .prato-preco {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .prato-desc {
+      font-size: .8rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .prato-tags {
+      display: flex;
+      gap: .4rem;
+      margin-top: .5rem;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: .2rem .6rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      font-size: .65rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    /* ===== EMPTY STATE ===== */
+    .empty-state {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--text-muted);
+    }
+
+    .empty-state .empty-icon {
+      font-size: 3rem;
+      margin-bottom: .5rem;
+    }
+
+    .empty-state p {
+      font-size: .9rem;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--text-muted);
+      font-size: .75rem;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+
+    .footer a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media(max-width:400px) {
+      .prato-card { padding: 1rem; }
+      .prato-img { width: 64px; height: 64px; font-size: 1.5rem; }
+      .prato-nome { font-size: .9rem; }
+      .prato-preco { font-size: .9rem; }
+      .nav-item { min-width: 50px; padding: .3rem .5rem; }
+      .nav-item .nav-label { font-size: .6rem; }
     }
   </style>
 </head>
 <body>
+
+  <!-- HEADER -->
   <header class="header">
-    <h1>🍽️ Restaurante Demo</h1>
-    <p>Exemplo de cardápio digital - Restaurantes Sao Lourenco</p>
+    <div class="header-logo">🍽️</div>
+    <h1>Restaurante Demo</h1>
+    <p>Cardápio digital</p>
+    <div class="header-info">
+      <span class="header-badge"><span class="dot"></span> Aberto agora</span>
+      <span class="header-badge">🕐 11h–22h</span>
+      <span class="header-badge">📍 São Lourenço, MG</span>
+    </div>
   </header>
-  <main class="container" id="cardapio">
-    <p style="text-align:center;color:#666;padding:3rem 0">Carregando cardapio...</p>
+
+  <!-- CONTENT -->
+  <main class="content" id="content">
+    <!-- Sections rendered by JS -->
   </main>
+
   <footer class="footer">
-    Cardapio digital por <a href="#">Restaurantes Sao Lourenco</a>
+    Cardápio digital por <a href="#">Restaurantes São Lourenço</a> © 2026
   </footer>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav" id="bottomNav">
+    <!-- Rendered by JS -->
+  </nav>
 
   <script>
     const cardapio = {
-      "nome": "Restaurante Demo",
-      "descricao": "Exemplo de cardapio digital - Restaurantes Sao Lourenco",
-      "cor": "#e94560",
-      "categorias": [
+      nome: "Restaurante Demo",
+      categorias: [
         {
-          "nome": "Pratos Principais",
-          "pratos": [
-            { "nome": "File a Parmegiana", "preco": "49,90", "descricao": "File mignon empanado com molho tomate e queijo gratinado, acompanha arroz e fritas" },
-            { "nome": "Frango Grelhado", "preco": "32,00", "descricao": "Peito de frango grelhado com legumes, arroz e feijao" },
-            { "nome": "Moqueca Baiana", "preco": "65,00", "descricao": "Peixe fresco com leite de coco, pimentoes e arroz branco" },
-            { "nome": "Picanha na Chapa", "preco": "78,90", "descricao": "Picanha grelhada, com vinagrete, arroz e farofa" }
+          nome: "Pratos Principais",
+          icon: "🥩",
+          itemIcon: "🍛",
+          pratos: [
+            { nome: "Filé à Parmegiana", preco: 49.90, descricao: "Filé mignon empanado com molho tomate e queijo gratinado, acompanha arroz e fritas", tags: ["Popular"] },
+            { nome: "Frango Grelhado", preco: 32.00, descricao: "Peito de frango grelhado com legumes, arroz e feijão", tags: ["Saudável"] },
+            { nome: "Moqueca Baiana", preco: 65.00, descricao: "Peixe fresco com leite de coco, pimentões e arroz branco", tags: ["Especial"] },
+            { nome: "Picanha na Chapa", preco: 78.90, descricao: "Picanha grelhada, com vinagrete, arroz e farofa", tags: ["Premium"] },
+            { nome: "Espaguete à Bolonhesa", preco: 35.00, descricao: "Espaguete artesanal com molho de carne moída e parmesão", tags: [] },
+            { nome: "Strogonoff de Frango", preco: 38.00, descricao: "Strogonoff cremoso com arroz branco e batata palha", tags: ["Clássico"] }
           ]
         },
         {
-          "nome": "Lanches",
-          "pratos": [
-            { "nome": "X-Tudo", "preco": "28,00", "descricao": "Hamburguer, bacon, ovo, presunto, queijo, alface, tomate e maionese" },
-            { "nome": "X-Salada", "preco": "18,00", "descricao": "Hamburguer artesanal, queijo, alface e tomate" }
+          nome: "Lanches",
+          icon: "🍔",
+          itemIcon: "🍔",
+          pratos: [
+            { nome: "X-Tudo", preco: 28.00, descricao: "Hambúrguer, bacon, ovo, presunto, queijo, alface, tomate e maionese", tags: ["Completo"] },
+            { nome: "X-Salada", preco: 18.00, descricao: "Hambúrguer artesanal, queijo, alface e tomate", tags: [] },
+            { nome: "X-Bacon", preco: 22.00, descricao: "Hambúrguer artesanal com bacon crocante e queijo cheddar", tags: [] },
+            { nome: "Sanduíche Natural", preupo: 15.00, descricao: "Peito de peru, cream cheese, alface e cenoura ralada no pão integral", tags: ["Saudável", "Fit"] }
           ]
         },
         {
-          "nome": "Bebidas",
-          "pratos": [
-            { "nome": "Refrigerante Lata", "preco": "6,00", "descricao": "" },
-            { "nome": "Suco Natural", "preco": "8,00", "descricao": "Consultar sabores do dia" },
-            { "nome": "Agua Mineral", "preco": "4,00", "descricao": "Com ou sem gas" },
-            { "nome": "Cerveja Longneck", "preco": "9,00", "descricao": "Heineken, Stella Artois ou similar" }
+          nome: "Bebidas",
+          icon: "🥤",
+          itemIcon: "🥤",
+          pratos: [
+            { nome: "Refrigerante Lata", preco: 6.00, descricao: "Coca-Cola, Guaraná ou Fanta", tags: [] },
+            { nome: "Suco Natural", preco: 8.00, descricao: "Consultar sabores do dia — laranja, limão, maracujá, morango", tags: ["Natural"] },
+            { nome: "Água Mineral", preco: 4.00, descricao: "Com ou sem gás", tags: [] },
+            { nome: "Cerveja Longneck", preco: 9.00, descricao: "Heineken, Stella Artois ou Budweiser", tags: [] },
+            { nome: "Água de Coco", preco: 7.00, descricao: "Natural, direto do coco", tags: ["Natural"] },
+            { nome: "Vitamina", preco: 12.00, descricao: "Leite batido com frutas — consultar sabores", tags: [] }
           ]
         },
         {
-          "nome": "Sobremesas",
-          "pratos": [
-            { "nome": "Pudim de Leite", "preco": "12,00", "descricao": "Pudim tradicional com calda de caramelo" },
-            { "nome": "Brownie", "preco": "15,00", "descricao": "Brownie de chocolate com nozes" }
+          nome: "Sobremesas",
+          icon: "🍰",
+          itemIcon: "🍰",
+          pratos: [
+            { nome: "Pudim de Leite", preco: 12.00, descricao: "Pudim tradicional com calda de caramelo", tags: ["Clássico"] },
+            { nome: "Brownie", preco: 15.00, descricao: "Brownie de chocolate com nozes, acompanha sorvete", tags: ["Quentinho"] },
+            { nome: "Mousse de Maracujá", preco: 10.00, descricao: "Mousse cremosa com calda de maracujá natural", tags: [] },
+            { nome: "Sorvete 2 Bolas", preco: 14.00, descricao: "Duas bolas — consultar sabores disponíveis", tags: [] }
           ]
         }
       ]
     };
 
-    const emojis = {
-      "Pratos Principais": "🥩",
-      "Lanches": "🍔",
-      "Bebidas": "🥤",
-      "Sobremesas": "🍰"
-    };
+    let activeIndex = 0;
 
-    function render() {
-      const el = document.getElementById('cardapio');
-      el.innerHTML = '';
-      cardapio.categorias.forEach(cat => {
-        if (!cat.pratos || cat.pratos.length === 0) return;
-        const section = document.createElement('div');
-        section.className = 'categoria';
-        const emoji = emojis[cat.nome] || '📋';
-        let pratosHtml = '';
-        cat.pratos.forEach(p => {
-          pratosHtml += `
-            <div class="prato">
-              <div class="prato-foto">${emoji}</div>
-              <div class="prato-info">
-                <div class="prato-topo">
-                  <h3 class="prato-nome">${p.nome}</h3>
-                  <span class="prato-preco">${p.preco ? 'R$ ' + p.preco : ''}</span>
-                </div>
-                ${p.descricao ? `<p class="prato-desc">${p.descricao}</p>` : ''}
-              </div>
-            </div>`;
-        });
-        section.innerHTML = `<h2 class="categoria-nome">${emoji} ${cat.nome}</h2><div class="pratos">${pratosHtml}</div>`;
-        el.appendChild(section);
+    function renderNav() {
+      const nav = document.getElementById('bottomNav');
+      nav.innerHTML = '';
+      cardapio.categorias.forEach((cat, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'nav-item' + (i === activeIndex ? ' active' : '');
+        btn.innerHTML = `<span class="nav-icon">${cat.icon}</span><span class="nav-label">${cat.nome.split(' ')[0]}</span>`;
+        btn.onclick = () => switchTab(i);
+        nav.appendChild(btn);
       });
     }
 
-    render();
+    function renderSections() {
+      const content = document.getElementById('content');
+      content.innerHTML = '';
+      cardapio.categorias.forEach((cat, i) => {
+        const section = document.createElement('div');
+        section.className = 'section' + (i === activeIndex ? ' active' : '');
+        section.id = 'section-' + i;
+
+        if (!cat.pratos || cat.pratos.length === 0) {
+          section.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-icon">${cat.icon}</div>
+              <p>Nenhum item nesta categoria ainda.</p>
+            </div>`;
+        } else {
+          let pratosHtml = '';
+          cat.pratos.forEach(p => {
+            const preco = p.preco ? 'R$ ' + p.preco.toFixed(2).replace('.', ',') : '';
+            const tagsHtml = (p.tags || []).map(t => `<span class="tag">${t}</span>`).join('');
+            pratosHtml += `
+              <div class="prato-card">
+                <div class="prato-img">${cat.itemIcon}</div>
+                <div class="prato-body">
+                  <div class="prato-top">
+                    <h3 class="prato-nome">${p.nome}</h3>
+                    <span class="prato-preco">${preco}</span>
+                  </div>
+                  ${p.descricao ? `<p class="prato-desc">${p.descricao}</p>` : ''}
+                  ${tagsHtml ? `<div class="prato-tags">${tagsHtml}</div>` : ''}
+                </div>
+              </div>`;
+          });
+          section.innerHTML = `<h2 class="section-title">${cat.icon} ${cat.nome}</h2>${pratosHtml}`;
+        }
+
+        content.appendChild(section);
+      });
+    }
+
+    function switchTab(index) {
+      activeIndex = index;
+      document.querySelectorAll('.section').forEach((s, i) => {
+        s.classList.toggle('active', i === index);
+      });
+      document.querySelectorAll('.nav-item').forEach((btn, i) => {
+        btn.classList.toggle('active', i === index);
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Init
+    renderNav();
+    renderSections();
   </script>
 </body>
 </html>
