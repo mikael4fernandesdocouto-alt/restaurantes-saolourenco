@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Papai Bifes — Carnes Nobres & Churrasco | São Lourenço, MG</title>
+<meta name="description" content="Restaurante especializado em carnes nobres e churrasco premium em São Lourenço, MG. Cortes selecionados, ambiente sofisticado.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0A0A0A;
+  --dark: #111111;
+  --dark-2: #1A1A1A;
+  --dark-3: #222222;
+  --wood: #2C1810;
+  --wood-light: #3D2317;
+  --gold: #C4A265;
+  --gold-light: #D4B87A;
+  --gold-dark: #A68B52;
+  --wine: #722F37;
+  --wine-light: #8B3A44;
+  --cream: #F5F0E8;
+  --text: #E0D8CC;
+  --text-muted: #8A8078;
+  --text-dark: #5A5048;
+  --border: rgba(196,162,101,0.12);
+  --border-visible: rgba(196,162,101,0.22);
+  --radius: 6px;
+  --radius-lg: 12px;
+  --shadow: 0 24px 80px rgba(0,0,0,0.6);
+  --shadow-sm: 0 8px 32px rgba(0,0,0,0.4);
+  --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Outfit', -apple-system, sans-serif;
+  background: var(--black);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+h1,h2,h3,h4,h5 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
+a { color: inherit; text-decoration: none; }
+img { display: block; }
+
+/* ==================== NAV ==================== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 18px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all var(--transition);
+}
+.nav.scrolled {
+  background: rgba(10,10,10,0.92);
+  backdrop-filter: blur(24px);
+  padding: 12px 48px;
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.nav-logo-mark {
+  width: 38px;
+  height: 38px;
+  border: 1.5px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+.nav-logo-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--cream);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--text-muted);
+  transition: color var(--transition);
+  position: relative;
+  padding: 4px 0;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width var(--transition);
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { width: 100%; }
+.nav-whatsapp {
+  padding: 10px 24px;
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: var(--radius);
+  transition: all var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-whatsapp:hover { background: var(--gold); color: var(--black); }
+
+/* ==================== HERO ==================== */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 720px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(180deg, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.3) 40%, rgba(10,10,10,0.6) 70%, rgba(10,10,10,0.95) 100%),
+    url('https://images.unsplash.com/photo-1544025162-d76694265947?w=1600&q=85') center/cover no-repeat;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 800px;
+  padding: 0 24px;
+}
+.hero-logo {
+  width: 80px;
+  height: 80px;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--gold);
+  margin: 0 auto 32px;
+  line-height: 1;
+}
+.hero-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.hero-divider::before, .hero-divider::after {
+  content: '';
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.5;
+}
+.hero-divider span {
+  color: var(--gold);
+  font-size: 14px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+.hero h1 {
+  font-size: clamp(52px, 7vw, 96px);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--cream);
+  margin-bottom: 8px;
+  letter-spacing: -1px;
+}
+.hero h1 em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold);
+}
+.hero-slogan {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--text-muted);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 48px;
+}
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  border: none;
+  transition: all var(--transition);
+  font-family: 'Outfit', sans-serif;
+}
+.btn-primary {
+  background: var(--gold);
+  color: var(--black);
+}
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+.btn-outline {
+  background: transparent;
+  color: var(--cream);
+  border: 1px solid rgba(245,240,232,0.25);
+}
+.btn-outline:hover { border-color: var(--cream); background: rgba(245,240,232,0.05); }
+.btn-wine {
+  background: var(--wine);
+  color: var(--cream);
+}
+.btn-wine:hover { background: var(--wine-light); transform: translateY(-2px); }
+.hero-scroll {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-muted);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  opacity: 0.6;
+  animation: float 2.5s ease-in-out infinite;
+}
+.hero-scroll-line {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+}
+@keyframes float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(10px); }
+}
+
+/* ==================== STATS ==================== */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--dark);
+}
+.stat {
+  padding: 48px 24px;
+  text-align: center;
+  border-right: 1px solid var(--border);
+  transition: background var(--transition);
+}
+.stat:last-child { border-right: none; }
+.stat:hover { background: var(--dark-2); }
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* ==================== SECTION ==================== */
+.section {
+  padding: 120px 80px;
+}
+.section-dark { background: var(--dark); }
+.section-black { background: var(--black); }
+.section-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 72px;
+}
+.section-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: var(--gold);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.section-eyebrow::before, .section-eyebrow::after {
+  content: '';
+  width: 30px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.4;
+}
+.section-title {
+  font-size: clamp(36px, 4.5vw, 56px);
+  color: var(--cream);
+  margin-bottom: 16px;
+  line-height: 1.15;
+}
+.section-title em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold);
+}
+.section-desc {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+/* ==================== ABOUT ==================== */
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+.about-card {
+  background: var(--dark);
+  padding: 52px 28px;
+  text-align: center;
+  transition: all var(--transition);
+}
+.about-card:hover { background: var(--dark-2); }
+.about-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 20px;
+  border: 1px solid var(--border-visible);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--gold);
+  transition: all var(--transition);
+}
+.about-card:hover .about-icon {
+  border-color: var(--gold);
+  background: rgba(196,162,101,0.05);
+}
+.about-card h3 {
+  font-size: 18px;
+  color: var(--cream);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.about-card p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* ==================== FEATURED ==================== */
+.featured-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 520px;
+}
+.featured-img-wrap {
+  position: relative;
+  overflow: hidden;
+}
+.featured-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s;
+}
+.featured-img:hover { transform: scale(1.03); }
+.featured-content {
+  background: var(--dark-2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 64px;
+  border-left: 1px solid var(--border);
+}
+.featured-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+.featured-title {
+  font-size: 40px;
+  color: var(--cream);
+  margin-bottom: 16px;
+  line-height: 1.15;
+}
+.featured-desc {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: 32px;
+}
+.featured-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
+  color: var(--gold);
+  font-weight: 700;
+}
+.featured-price small {
+  font-size: 16px;
+  color: var(--text-muted);
+  text-decoration: line-through;
+  margin-left: 12px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+}
+
+/* ==================== MENU ==================== */
+.menu-categories {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 56px;
+  flex-wrap: wrap;
+}
+.menu-cat {
+  padding: 12px 28px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  border-radius: var(--radius);
+  transition: all var(--transition);
+  font-family: 'Outfit', sans-serif;
+}
+.menu-cat.active, .menu-cat:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(196,162,101,0.04);
+}
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+.menu-card {
+  background: var(--dark-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all var(--transition);
+}
+.menu-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--border-visible);
+  box-shadow: var(--shadow-sm);
+}
+.menu-card-img-wrap {
+  position: relative;
+  overflow: hidden;
+  height: 220px;
+}
+.menu-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s;
+}
+.menu-card:hover .menu-card-img { transform: scale(1.06); }
+.menu-card-body { padding: 28px; }
+.menu-card-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  color: var(--cream);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+.menu-card-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  font-weight: 300;
+  margin-bottom: 20px;
+  min-height: 42px;
+}
+.menu-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.menu-card-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  color: var(--gold);
+  font-weight: 700;
+}
+.menu-card-btn {
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--gold);
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+}
+.menu-card-btn:hover { background: var(--gold); color: var(--black); }
+
+/* ==================== REVIEWS ==================== */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+.review-card {
+  background: var(--dark-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  transition: all var(--transition);
+}
+.review-card:hover {
+  border-color: var(--border-visible);
+  transform: translateY(-4px);
+}
+.review-stars {
+  color: var(--gold);
+  font-size: 13px;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+}
+.review-text {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: 24px;
+  font-style: italic;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+}
+.review-author {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--gold);
+}
+
+/* ==================== INFO ==================== */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  max-width: 1140px;
+  margin: 0 auto;
+}
+.info-card {
+  background: var(--dark);
+  padding: 48px 24px;
+  text-align: center;
+  transition: background var(--transition);
+}
+.info-card:hover { background: var(--dark-2); }
+.info-icon {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 18px;
+  border: 1px solid var(--border-visible);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--gold);
+}
+.info-card h4 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--cream);
+  margin-bottom: 10px;
+}
+.info-card p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* ==================== CTA ==================== */
+.cta {
+  text-align: center;
+  padding: 120px 80px;
+  background: linear-gradient(180deg, var(--dark) 0%, var(--black) 100%);
+  border-top: 1px solid var(--border);
+}
+.cta h2 {
+  font-size: clamp(36px, 4.5vw, 56px);
+  color: var(--cream);
+  margin-bottom: 16px;
+}
+.cta h2 em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold);
+}
+.cta p {
+  font-size: 16px;
+  color: var(--text-muted);
+  font-weight: 300;
+  margin-bottom: 48px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+.cta-actions { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+/* ==================== FOOTER ==================== */
+.footer {
+  background: var(--dark-2);
+  border-top: 1px solid var(--border);
+  padding: 64px 80px 40px;
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--cream);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.footer-brand span { color: var(--gold); }
+.footer-tagline {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 4px;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+.footer-loc {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+.footer-copy {
+  text-align: center;
+  padding-top: 32px;
+  font-size: 10px;
+  color: var(--text-dark);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+/* ==================== CART SIDEBAR ==================== */
+.cart-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 199;
+  backdrop-filter: blur(6px);
+}
+.cart-overlay.open { display: block; }
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 440px;
+  max-width: 100%;
+  background: var(--dark-2);
+  border-left: 1px solid var(--border);
+  z-index: 200;
+  transform: translateX(100%);
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+}
+.cart-sidebar.open { transform: translateX(0); }
+.cart-header {
+  padding: 28px 36px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cart-header h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  color: var(--cream);
+}
+.cart-close {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+}
+.cart-close:hover { border-color: var(--gold); color: var(--gold); }
+.cart-body { flex: 1; overflow-y: auto; padding: 28px 36px; }
+.cart-empty {
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 300;
+}
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+}
+.cart-item:last-child { border-bottom: none; }
+.cart-item-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cream);
+  margin-bottom: 4px;
+}
+.cart-item-sub {
+  font-size: 14px;
+  color: var(--gold);
+  font-weight: 600;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+}
+.cart-item-qty {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+.qty-btn {
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+}
+.qty-btn:hover { border-color: var(--gold); color: var(--gold); }
+.cart-item-qty span { font-size: 13px; font-weight: 600; min-width: 20px; text-align: center; color: var(--text); }
+.cart-footer {
+  padding: 28px 36px;
+  border-top: 1px solid var(--border);
+}
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.cart-total-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--text-muted);
+}
+.cart-total-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  color: var(--gold);
+  font-weight: 700;
+}
+.cart-wa-btn {
+  width: 100%;
+  padding: 16px;
+  background: var(--wine);
+  color: var(--cream);
+  border: none;
+  border-radius: var(--radius);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all var(--transition);
+  font-family: 'Outfit', sans-serif;
+}
+.cart-wa-btn:hover { background: var(--wine-light); transform: translateY(-2px); }
+
+/* ==================== CART FAB ==================== */
+.cart-fab {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 58px;
+  height: 58px;
+  background: var(--gold);
+  color: var(--black);
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 99;
+  box-shadow: 0 8px 32px rgba(196,162,101,0.25);
+  transition: all var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cart-fab:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 12px 40px rgba(196,162,101,0.35); }
+.cart-fab .badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 20px;
+  height: 20px;
+  background: var(--wine);
+  color: var(--cream);
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--gold);
+}
+
+/* ==================== TOAST ==================== */
+.toast {
+  position: fixed;
+  bottom: 100px;
+  right: 32px;
+  background: var(--dark-2);
+  color: var(--cream);
+  padding: 14px 28px;
+  border: 1px solid var(--gold);
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 500;
+  z-index: 300;
+  transform: translateX(120%);
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-sm);
+}
+.toast.show { transform: translateX(0); }
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1024px) {
+  .section { padding: 80px 40px; }
+  .nav { padding: 14px 24px; }
+  .nav.scrolled { padding: 10px 24px; }
+  .about-grid { grid-template-columns: repeat(2, 1fr); }
+  .info-grid { grid-template-columns: repeat(2, 1fr); }
+  .menu-grid { grid-template-columns: repeat(2, 1fr); }
+  .featured-grid { grid-template-columns: 1fr; }
+  .featured-img-wrap { height: 320px; }
+  .featured-content { padding: 48px 40px; }
+  .cta { padding: 80px 40px; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .section { padding: 64px 20px; }
+  .hero h1 { font-size: 44px; }
+  .hero-slogan { font-size: 11px; letter-spacing: 3px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stat { padding: 32px 16px; }
+  .stat:nth-child(2) { border-right: none; }
+  .about-grid { grid-template-columns: 1fr; }
+  .menu-grid { grid-template-columns: 1fr; }
+  .reviews-grid { grid-template-columns: 1fr; }
+  .info-grid { grid-template-columns: 1fr; }
+  .featured-content { padding: 40px 24px; }
+  .featured-title { font-size: 32px; }
+  .cta { padding: 64px 20px; }
+  .footer { padding: 48px 20px 32px; }
+  .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+  .hero-actions { flex-direction: column; align-items: center; }
+  .cta-actions { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-logo">
+    <div class="nav-logo-mark">P</div>
+    <div class="nav-logo-text">Papai Bifes</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#cardapio">Cardápio</a></li>
+    <li><a href="#avaliacoes">Avaliações</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <a href="https://wa.me/55353312899?text=Olá! Gostaria de reservar uma mesa" target="_blank" class="nav-whatsapp">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+    Reservar
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-logo">P</div>
+    <div class="hero-divider"><span>Est. São Lourenço</span></div>
+    <h1>Papai <em>Bifes</em></h1>
+    <p class="hero-slogan">Carnes Nobres & Churrasco Premium</p>
+    <div class="hero-actions">
+      <a href="#cardapio" class="btn btn-primary">Explorar Cardápio</a>
+      <a href="https://wa.me/55353312899?text=Olá! Gostaria de fazer um pedido" target="_blank" class="btn btn-outline">Fazer Pedido</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">4.7</div>
+    <div class="stat-label">Google Reviews</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">257</div>
+    <div class="stat-label">Avaliações</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">4.9</div>
+    <div class="stat-label">Tripadvisor</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">R$60-160</div>
+    <div class="stat-label">Por pessoa</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section section-dark" id="sobre">
+  <div class="section-header">
+    <div class="section-eyebrow">O Restaurante</div>
+    <h2 class="section-title">Tradição em <em>Carnes Nobres</em></h2>
+    <p class="section-desc">Inspirado nas melhores steakhouses da Argentina e do Brasil. Cortes selecionados, ambiente que evoca antigos armazéns e uma experiência gastronômica inesquecível no coração de São Lourenço.</p>
+  </div>
+  <div class="about-grid">
+    <div class="about-card">
+      <div class="about-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      </div>
+      <h3>Cortes Selecionados</h3>
+      <p>Picanha fininha, chorizo, ancho e filé mignon preparados no ponto escolhido por você.</p>
+    </div>
+    <div class="about-card">
+      <div class="about-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8H7v8"/></svg>
+      </div>
+      <h3>Ambiente Sofisticado</h3>
+      <p>Decoração que evoca antigos armazéns, com música ambiente e clima aconchegante.</p>
+    </div>
+    <div class="about-card">
+      <div class="about-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <h3>Top Avaliado</h3>
+      <p>Entre os restaurantes mais bem avaliados de São Lourenço no Tripadvisor (4.9).</p>
+    </div>
+    <div class="about-card">
+      <div class="about-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <h3>Experiência Única</h3>
+      <p>Foco na qualidade dos cortes, não em quantidade. Uma verdadeira experiência steakhouse.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED -->
+<section class="section-black">
+  <div class="featured-grid">
+    <div class="featured-img-wrap">
+      <img class="featured-img" src="https://images.unsplash.com/photo-1558030006-450675393462?w=900&q=85" alt="Picanha Fininha" loading="lazy">
+    </div>
+    <div class="featured-content">
+      <div class="featured-eyebrow">Carro-Chefe</div>
+      <h2 class="featured-title">Picanha Fininha</h2>
+      <p class="featured-desc">Nossa picanha fininha é o pedido mais famoso da casa. Macia, suculenta e preparada no ponto que você escolher. Acompanha vinagrete, farofa e arroz.</p>
+      <div class="featured-price">R$ 89,90 <small>R$ 109,90</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="section section-dark" id="cardapio">
+  <div class="section-header">
+    <div class="section-eyebrow">Cardápio</div>
+    <h2 class="section-title">Nossas <em>Especialidades</em></h2>
+    <p class="section-desc">Seleção cuidadosa de cortes nobres, hambúrgueres artesanais e acompanhamentos. Tudo preparado com maestria.</p>
+  </div>
+  <div class="menu-categories" id="menuCats"></div>
+  <div class="menu-grid" id="menuGrid"></div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section section-black" id="avaliacoes">
+  <div class="section-header">
+    <div class="section-eyebrow">Depoimentos</div>
+    <h2 class="section-title">O que dizem <em>sobre nós</em></h2>
+    <p class="section-desc">Mais de 257 avaliações. Veja o que nossos clientes acham da experiência Papai Bifes.</p>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★ ★ ★ ★ ★</div>
+      <p class="review-text">"Melhor picanha que já comi. Ambiente incrível, música boa e atendimento nota 10. Voltarei sempre."</p>
+      <div class="review-author">Maria S. — Google</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★ ★ ★ ★ ★</div>
+      <p class="review-text">"Chorizo sensacional. Carne no ponto perfeito. O ambiente nostálgico faz toda a diferença na experiência."</p>
+      <div class="review-author">Carlos R. — Tripadvisor</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★ ★ ★ ★ ★</div>
+      <p class="review-text">"Qualidade imbatível. Não é rodízio, é corte premium de verdade. Melhor custo-benefício de São Lourenço."</p>
+      <div class="review-author">Ana P. — Google</div>
+    </div>
+  </div>
+</section>
+
+<!-- INFO -->
+<section class="section section-dark" id="contato">
+  <div class="section-header">
+    <div class="section-eyebrow">Informações</div>
+    <h2 class="section-title">Visite o <em>Papai Bifes</em></h2>
+  </div>
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <h4>Endereço</h4>
+      <p>R. Wenceslau Braz, 71<br>Centro, São Lourenço - MG</p>
+    </div>
+    <div class="info-card">
+      <div class="info-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </div>
+      <h4>Telefone</h4>
+      <p>(35) 3331-2899</p>
+    </div>
+    <div class="info-card">
+      <div class="info-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <h4>Horário</h4>
+      <p>Segunda a Domingo<br>11h às 23h</p>
+    </div>
+    <div class="info-card">
+      <div class="info-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      </div>
+      <h4>Pagamento</h4>
+      <p>Dinheiro, PIX<br>Cartão de crédito</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>Faça seu <em>pedido</em></h2>
+  <p>Entre em contato pelo WhatsApp e garanta sua mesa ou peça delivery.</p>
+  <div class="cta-actions">
+    <a href="https://wa.me/55353312899?text=Olá! Gostaria de reservar uma mesa no Papai Bifes" target="_blank" class="btn btn-primary">Reservar Mesa</a>
+    <a href="https://wa.me/55353312899?text=Olá! Gostaria de fazer um pedido para delivery" target="_blank" class="btn btn-wine">Pedir Delivery</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Papai <span>Bifes</span></div>
+      <div class="footer-tagline">Carnes nobres & churrasco premium</div>
+    </div>
+    <div class="footer-loc">São Lourenço, MG</div>
+  </div>
+  <div class="footer-copy">© 2026 Papai Bifes. Todos os direitos reservados.</div>
+</footer>
+
+<!-- CART FAB -->
+<button class="cart-fab" id="cartFab" onclick="toggleCart()">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+  <span class="badge" id="cartBadge">0</span>
+</button>
+
+<!-- CART SIDEBAR -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>Seu Pedido</h3>
+    <button class="cart-close" onclick="toggleCart()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="cart-body" id="cartBody">
+    <div class="cart-empty">Seu pedido está vazio</div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total">
+      <span class="cart-total-label">Total</span>
+      <span class="cart-total-val" id="cartTotalVal">R$ 0,00</span>
+    </div>
+    <button class="cart-wa-btn" onclick="sendWhatsApp()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      Enviar pelo WhatsApp
+    </button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ===== DATA =====
+var DATA = {
+  cats: [
+    {
+      nome: "Entradas",
+      prods: [
+        { nome: "Queijo Coalho", desc: "Espetinhos de queijo coalho assado com ervas.", preco: 24.90, img: "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=500&q=80" },
+        { nome: "Bolinho de Bacalhau", desc: "Bolinhos crocantes por fora, cremosos por dentro.", preco: 32.90, img: "https://images.unsplash.com/photo-1574484284002-952d92456975?w=500&q=80" },
+        { nome: "Camarão alho e óleo", desc: "Camarões salteados no alho com azeite extra virgem.", preco: 42.90, img: "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=500&q=80" },
+        { nome: "Tábua de Frios", desc: "Seleção de queijos, embutidos e azeitonas.", preco: 48.90, img: "https://images.unsplash.com/photo-1544025162-d76694265947?w=500&q=80" }
+      ]
+    },
+    {
+      nome: "Cortes Nobres",
+      prods: [
+        { nome: "Picanha Fininha", desc: "Carro-chefe. Acompanha vinagrete, farofa e arroz.", preco: 89.90, img: "https://images.unsplash.com/photo-1558030006-450675393462?w=500&q=80" },
+        { nome: "Chorizo Argentino", desc: "Corte premium argentino, macio e suculento.", preco: 79.90, img: "https://images.unsplash.com/photo-1544025162-d76694265947?w=500&q=80" },
+        { nome: "Ancho", desc: "Corte nobre argentino, ideal para compartilhar.", preco: 94.90, img: "https://images.unsplash.com/photo-1588168333986-5078d3ae3976?w=500&q=80" },
+        { nome: "Tira de Asado", desc: "Costela argentina assada lentamente.", preco: 84.90, img: "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=500&q=80" },
+        { nome: "Filé Mignon", desc: "Corte mais macio da casa, derrete na boca.", preco: 99.90, img: "https://images.unsplash.com/photo-1600891964092-4316c288032e?w=500&q=80" },
+        { nome: "Costela Premium", desc: "Costela bovina assada por 4 horas.", preco: 109.90, img: "https://images.unsplash.com/photo-1544025162-d76694265947?w=500&q=80" }
+      ]
+    },
+    {
+      nome: "Acompanhamentos",
+      prods: [
+        { nome: "Farofa Especial", desc: "Farofa com bacon, ovos e ervas.", preco: 19.90, img: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=500&q=80" },
+        { nome: "Arroz Premium", desc: "Arroz soltinho com alho torrado.", preco: 14.90, img: "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=500&q=80" },
+        { nome: "Vinagrete", desc: "Tomate, cebola, pimentão e vinagre.", preco: 12.90, img: "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=500&q=80" },
+        { nome: "Batata Rústica", desc: "Batatas assadas com alecrim.", preco: 24.90, img: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=500&q=80" },
+        { nome: "Legumes Grelhados", desc: "Abobrinha, berinjela e pimentão na brasa.", preco: 18.90, img: "https://images.unsplash.com/photo-1506354666786-959d6d497f1a?w=500&q=80" }
+      ]
+    },
+    {
+      nome: "Hambúrgueres Artesanais",
+      prods: [
+        { nome: "Smash Clássico", desc: "Blend 200g, cheddar, cebola caramelizada, molho especial.", preco: 38.90, img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&q=80" },
+        { nome: "Duplo Cheddar", desc: "Blend 300g, triplo cheddar, bacon crocante, barbecue.", preco: 48.90, img: "https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=500&q=80" },
+        { nome: "Wagyu Burger", desc: "Blend wagyu 180g, queijo brie, rúcula, geleia de pimenta.", preco: 62.90, img: "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=500&q=80" },
+        { nome: "Chicken Crispy", desc: "Frango empanado crocante, maionese da casa, alface.", preco: 34.90, img: "https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=500&q=80" }
+      ]
+    },
+    {
+      nome: "Sobremesas",
+      prods: [
+        { nome: "Petit Gâteau", desc: "Bolo de chocolate com centro cremoso e sorvete.", preco: 28.90, img: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=500&q=80" },
+        { nome: "Pudim de Leite", desc: "Pudim cremoso com calda de caramelo.", preco: 18.90, img: "https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=500&q=80" },
+        { nome: "Cheesecake de Frutas", desc: "Cheesecake nova-iorquina com calda de frutas vermelhas.", preco: 26.90, img: "https://images.unsplash.com/photo-1524351199678-941a58a3df50?w=500&q=80" },
+        { nome: "Tiramisù", desc: "Clássico italiano com mascarpone e cacau.", preco: 24.90, img: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=500&q=80" }
+      ]
+    },
+    {
+      nome: "Bebidas",
+      prods: [
+        { nome: "Cerveja Artesanal", desc: "IPA ou Lager artesanal gelada.", preco: 16.90, img: "https://images.unsplash.com/photo-1608270586620-248524c67de9?w=500&q=80" },
+        { nome: "Vinho Tinto", desc: "Seleção especial para carnes.", preco: 49.90, img: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=500&q=80" },
+        { nome: "Suco Natural", desc: "Laranja, limão, maracujá ou abacaxi.", preco: 12.90, img: "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=500&q=80" },
+        { nome: "Refrigerante", desc: "Coca, Guaraná ou Fanta lata.", preco: 8.90, img: "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?w=500&q=80" },
+        { nome: "Água", desc: "Com ou sem gás 500ml.", preco: 5.90, img: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=500&q=80" }
+      ]
+    }
+  ]
+};
+
+// ===== CART =====
+var CART = {};
+
+function addItem(catIdx, idx) {
+  var p = DATA.cats[catIdx].prods[idx];
+  var key = catIdx + '-' + idx;
+  if (CART[key]) { CART[key].qty++; }
+  else { CART[key] = { nome: p.nome, preco: p.preco, qty: 1 }; }
+  updateCartBadge();
+  renderCart();
+  showToast(p.nome + ' adicionado');
+}
+
+function removeItem(key) {
+  if (CART[key]) {
+    CART[key].qty--;
+    if (CART[key].qty <= 0) delete CART[key];
+    updateCartBadge();
+    renderCart();
+  }
+}
+
+function updateCartBadge() {
+  var total = 0;
+  for (var k in CART) total += CART[k].qty;
+  var badge = document.getElementById('cartBadge');
+  if (total > 0) { badge.style.display = 'flex'; badge.textContent = total; }
+  else { badge.style.display = 'none'; }
+}
+
+function renderCart() {
+  var body = document.getElementById('cartBody');
+  var footer = document.getElementById('cartFooter');
+  var total = 0;
+  var html = '';
+  var hasItems = false;
+  for (var key in CART) {
+    hasItems = true;
+    var item = CART[key];
+    var sub = item.preco * item.qty;
+    total += sub;
+    var parts = key.split('-');
+    html += '<div class="cart-item"><div><div class="cart-item-name">' + item.nome + '</div>' +
+      '<div class="cart-item-sub">R$ ' + sub.toFixed(2).replace('.', ',') + '</div>' +
+      '<div class="cart-item-qty">' +
+      '<button class="qty-btn" onclick="removeItem(\'' + key + '\')">−</button>' +
+      '<span>' + item.qty + 'x</span>' +
+      '<button class="qty-btn" onclick="addItem(' + parts[0] + ',' + parts[1] + ')">+</button>' +
+      '</div></div></div>';
+  }
+  if (hasItems) {
+    body.innerHTML = html;
+    document.getElementById('cartTotalVal').textContent = 'R$ ' + total.toFixed(2).replace('.', ',');
+    footer.style.display = 'block';
+  } else {
+    body.innerHTML = '<div class="cart-empty">Seu pedido está vazio</div>';
+    footer.style.display = 'none';
+  }
+}
+
+function toggleCart() {
+  document.getElementById('cartOverlay').classList.toggle('open');
+  document.getElementById('cartSidebar').classList.toggle('open');
+}
+
+function sendWhatsApp() {
+  var msg = '*Pedido Papai Bifes*\n\n';
+  var total = 0;
+  for (var key in CART) {
+    var item = CART[key];
+    var sub = item.preco * item.qty;
+    total += sub;
+    msg += item.qty + 'x ' + item.nome + ' — R$ ' + sub.toFixed(2).replace('.', ',') + '\n';
+  }
+  msg += '\n*Total: R$ ' + total.toFixed(2).replace('.', ',') + '*';
+  var nome = prompt('Seu nome:');
+  if (!nome) return;
+  msg += '\n\nNome: ' + nome;
+  var obs = prompt('Observações (opcional):');
+  if (obs) msg += '\nObs: ' + obs;
+  window.open('https://wa.me/55353312899?text=' + encodeURIComponent(msg), '_blank');
+}
+
+// ===== RENDER MENU =====
+var currentCat = 0;
+
+function renderMenu() {
+  var grid = document.getElementById('menuGrid');
+  if (!grid) return;
+  var prods = DATA.cats[currentCat].prods;
+  var html = '';
+  for (var i = 0; i < prods.length; i++) {
+    var p = prods[i];
+    html += '<div class="menu-card">' +
+      '<div class="menu-card-img-wrap"><img class="menu-card-img" src="' + p.img + '" alt="' + p.nome + '" loading="lazy"></div>' +
+      '<div class="menu-card-body">' +
+      '<div class="menu-card-name">' + p.nome + '</div>' +
+      '<div class="menu-card-desc">' + p.desc + '</div>' +
+      '<div class="menu-card-footer">' +
+      '<div class="menu-card-price">R$ ' + p.preco.toFixed(2).replace('.', ',') + '</div>' +
+      '<button class="menu-card-btn" onclick="addItem(' + currentCat + ',' + i + ')">+</button>' +
+      '</div></div></div>';
+  }
+  grid.innerHTML = html;
+}
+
+function renderCats() {
+  var container = document.getElementById('menuCats');
+  if (!container) return;
+  var html = '';
+  for (var i = 0; i < DATA.cats.length; i++) {
+    html += '<button class="menu-cat' + (i === 0 ? ' active' : '') + '" onclick="filterCat(' + i + ')">' + DATA.cats[i].nome + '</button>';
+  }
+  container.innerHTML = html;
+}
+
+function filterCat(idx) {
+  currentCat = idx;
+  document.querySelectorAll('.menu-cat').forEach(function(el, i) {
+    el.classList.toggle('active', i === idx);
+  });
+  renderMenu();
+}
+
+// ===== TOAST =====
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 2500);
+}
+
+// ===== NAV SCROLL =====
+window.addEventListener('scroll', function() {
+  var nav = document.getElementById('nav');
+  if (window.scrollY > 60) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+
+// ===== INIT =====
+document.addEventListener('DOMContentLoaded', function() {
+  renderCats();
+  renderMenu();
+});
+</script>
+</body>
+</html>
