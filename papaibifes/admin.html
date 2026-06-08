@@ -107,7 +107,60 @@ h1,h2,h3,h4 { font-family: 'Cormorant Garamond', serif; }
 .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
   border-color: var(--gold);
 }
-.form-group textarea { resize: vertical; min-height: 80px; }
+/* ===== IMAGE UPLOAD ===== */
+.img-upload-area {
+  border: 1px dashed var(--border-visible);
+  border-radius: var(--radius);
+  padding: 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition);
+  background: var(--dark);
+  position: relative;
+}
+.img-upload-area:hover {
+  border-color: var(--gold);
+  background: rgba(196,162,101,0.03);
+}
+.img-upload-area.has-img {
+  padding: 0;
+  border-style: solid;
+  overflow: hidden;
+}
+.img-upload-area img {
+  width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+  display: block;
+}
+.img-upload-placeholder {
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 300;
+}
+.img-upload-placeholder .upload-icon {
+  font-size: 28px;
+  margin-bottom: 8px;
+  color: var(--gold);
+  opacity: 0.6;
+}
+.img-upload-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: var(--cream);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  gap: 8px;
+}
+.img-upload-area:hover .img-upload-overlay { display: flex; }
+.img-upload-input { display: none; }
+*
 .form-group select option { background: var(--dark); color: var(--cream); }
 
 .login-btn {
@@ -592,8 +645,22 @@ h1,h2,h3,h4 { font-family: 'Cormorant Garamond', serif; }
         <input type="number" id="prodPreco" placeholder="0.00" step="0.01" min="0">
       </div>
       <div class="form-group">
-        <label>URL da Imagem</label>
-        <input type="text" id="prodImg" placeholder="https://...">
+        <label>Imagem do Produto</label>
+        <div class="img-upload-area" id="imgUploadArea" onclick="document.getElementById('imgUploadInput').click()">
+          <div class="img-upload-placeholder" id="imgPlaceholder">
+            <div class="upload-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            </div>
+            Clique para enviar uma foto
+          </div>
+          <img id="imgPreview" style="display:none">
+          <div class="img-upload-overlay" id="imgOverlay">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            Trocar foto
+          </div>
+        </div>
+        <input type="file" id="imgUploadInput" class="img-upload-input" accept="image/*" onchange="handleImgUpload(event)">
+        <input type="hidden" id="prodImg" value="">
       </div>
     </div>
     <div class="modal-actions">
@@ -777,6 +844,11 @@ function openProdModal() {
   document.getElementById('prodDesc').value = '';
   document.getElementById('prodPreco').value = '';
   document.getElementById('prodImg').value = '';
+  document.getElementById('imgPreview').style.display = 'none';
+  document.getElementById('imgPreview').src = '';
+  document.getElementById('imgPlaceholder').style.display = 'block';
+  document.getElementById('imgUploadArea').classList.remove('has-img');
+  document.getElementById('imgOverlay').style.display = 'none';
   var sel = document.getElementById('prodCat');
   sel.innerHTML = '';
   var data = loadData();
@@ -795,6 +867,19 @@ function editProd(c, p) {
   document.getElementById('prodDesc').value = pr.desc;
   document.getElementById('prodPreco').value = pr.preco;
   document.getElementById('prodImg').value = pr.img || '';
+  if (pr.img && pr.img.startsWith('data:') || pr.img && pr.img.startsWith('http')) {
+    document.getElementById('imgPreview').src = pr.img;
+    document.getElementById('imgPreview').style.display = 'block';
+    document.getElementById('imgPlaceholder').style.display = 'none';
+    document.getElementById('imgUploadArea').classList.add('has-img');
+    document.getElementById('imgOverlay').style.display = 'flex';
+  } else {
+    document.getElementById('imgPreview').style.display = 'none';
+    document.getElementById('imgPreview').src = '';
+    document.getElementById('imgPlaceholder').style.display = 'block';
+    document.getElementById('imgUploadArea').classList.remove('has-img');
+    document.getElementById('imgOverlay').style.display = 'none';
+  }
   var sel = document.getElementById('prodCat');
   sel.innerHTML = '';
   for (var i=0; i<data.cats.length; i++) {
@@ -927,6 +1012,38 @@ function resetData() {
   localStorage.removeItem('papaibifes_admin');
   renderAll();
   showToast('Dados resetados');
+}
+
+// ===== IMAGE UPLOAD =====
+function handleImgUpload(event) {
+  var file = event.target.files[0];
+  if (!file) return;
+  if (file.size > 2 * 1024 * 1024) { showToast('Imagem muito grande (máx 2MB)'); return; }
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var img = new Image();
+    img.onload = function() {
+      var canvas = document.createElement('canvas');
+      var maxW = 800, maxH = 600;
+      var w = img.width, h = img.height;
+      if (w > maxW) { h = h * maxW / w; w = maxW; }
+      if (h > maxH) { w = w * maxH / h; h = maxH; }
+      canvas.width = w; canvas.height = h;
+      var ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, w, h);
+      var dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+      document.getElementById('prodImg').value = dataUrl;
+      document.getElementById('imgPreview').src = dataUrl;
+      document.getElementById('imgPreview').style.display = 'block';
+      document.getElementById('imgPlaceholder').style.display = 'none';
+      document.getElementById('imgUploadArea').classList.add('has-img');
+      document.getElementById('imgOverlay').style.display = 'flex';
+      showToast('Imagem enviada!');
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+  event.target.value = '';
 }
 
 // ===== TOAST =====
