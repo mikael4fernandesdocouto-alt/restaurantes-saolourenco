@@ -19,19 +19,21 @@
       --text-muted: #9ca3af;
       --accent: #e94560;
       --accent-light: #fff1f3;
+      --accent-hover: #d63851;
+      --green: #16a34a;
+      --green-light: #f0fdf4;
       --border: #e5e7eb;
       --shadow: 0 1px 3px rgba(0,0,0,.08);
       --shadow-lg: 0 4px 12px rgba(0,0,0,.1);
       --radius: 16px;
       --radius-sm: 10px;
-    }
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
-      padding-bottom: 90px;
+      padding-bottom: 160px;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -45,7 +47,6 @@
       z-index: 20;
       transition: all .3s ease;
     }
-
     .header-inner {
       display: flex;
       align-items: center;
@@ -53,7 +54,6 @@
       max-width: 680px;
       margin: 0 auto;
     }
-
     .header-logo {
       width: 40px;
       height: 40px;
@@ -66,29 +66,21 @@
       flex-shrink: 0;
       transition: all .3s ease;
     }
-
-    .header-text {
-      flex: 1;
-      min-width: 0;
-    }
-
+    .header-text { flex:1; min-width:0; }
     .header h1 {
       font-size: 1.1rem;
       font-weight: 700;
-      color: var(--text);
       letter-spacing: -.3px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       transition: font-size .3s ease;
     }
-
     .header p {
       font-size: .75rem;
       color: var(--text-secondary);
       transition: opacity .3s ease, height .3s ease;
     }
-
     .header-info {
       display: flex;
       align-items: center;
@@ -97,7 +89,6 @@
       flex-wrap: wrap;
       transition: opacity .3s ease, height .3s ease, margin .3s ease;
     }
-
     .header-badge {
       display: inline-flex;
       align-items: center;
@@ -110,41 +101,24 @@
       font-weight: 500;
       color: var(--text-secondary);
     }
-
     .header-badge .dot {
       width: 6px;
       height: 6px;
       background: #22c55e;
       border-radius: 50%;
     }
-
-    /* Header compacto ao rolar */
-    .header.scrolled {
-      padding: .5rem 1.5rem;
-    }
-
-    .header.scrolled .header-logo {
-      width: 32px;
-      height: 32px;
-      font-size: 1rem;
-    }
-
-    .header.scrolled h1 {
-      font-size: .95rem;
-    }
-
+    .header.scrolled { padding: .5rem 1.5rem; }
+    .header.scrolled .header-logo { width: 32px; height: 32px; font-size: 1rem; }
+    .header.scrolled h1 { font-size: .95rem; }
     .header.scrolled .header-subtitle,
     .header.scrolled .header-info {
-      opacity: 0;
-      height: 0;
-      margin-top: 0;
-      overflow: hidden;
+      opacity: 0; height: 0; margin-top: 0; overflow: hidden;
     }
 
-    /* ===== CATEGORY TABS (bottom nav) ===== */
+    /* ===== BOTTOM NAV (categorias) ===== */
     .bottom-nav {
       position: fixed;
-      bottom: 0;
+      bottom: 70px;
       left: 0;
       right: 0;
       background: var(--bg);
@@ -152,76 +126,122 @@
       display: flex;
       justify-content: space-around;
       align-items: center;
-      padding: .5rem 0;
+      padding: .4rem 0;
       z-index: 100;
       box-shadow: 0 -4px 20px rgba(0,0,0,.06);
     }
-
     .nav-item {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: .2rem;
-      padding: .4rem .8rem;
+      gap: .15rem;
+      padding: .3rem .6rem;
       border: none;
       background: none;
       cursor: pointer;
       transition: all .2s;
       border-radius: var(--radius-sm);
-      min-width: 60px;
+      min-width: 56px;
     }
-
-    .nav-item:hover {
-      background: var(--bg-secondary);
-    }
-
-    .nav-item.active {
-      background: var(--accent-light);
-    }
-
-    .nav-item .nav-icon {
-      font-size: 1.3rem;
-      line-height: 1;
-    }
-
+    .nav-item:hover { background: var(--bg-secondary); }
+    .nav-item.active { background: var(--accent-light); }
+    .nav-item .nav-icon { font-size: 1.2rem; line-height: 1; }
     .nav-item .nav-label {
-      font-size: .65rem;
+      font-size: .6rem;
       font-weight: 600;
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: .3px;
     }
+    .nav-item.active .nav-label { color: var(--accent); }
 
-    .nav-item.active .nav-label {
-      color: var(--accent);
+    /* ===== CART BAR (bottom fixed) ===== */
+    .cart-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--accent);
+      padding: .8rem 1.2rem;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 101;
+      box-shadow: 0 -4px 20px rgba(233,69,96,.3);
     }
+    .cart-bar.visible { display: flex; }
+    .cart-bar-left {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+    }
+    .cart-icon-wrap {
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .cart-icon-wrap .cart-count {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      color: var(--accent);
+      border-radius: 50%;
+      font-size: .65rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cart-info { color: #fff; }
+    .cart-info .cart-qty { font-size: .8rem; font-weight: 600; }
+    .cart-info .cart-total { font-size: .7rem; opacity: .85; }
+    .cart-bar-right {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+    .btn-view-cart {
+      padding: .65rem 1.2rem;
+      background: #fff;
+      color: var(--accent);
+      border: none;
+      border-radius: 50px;
+      font-size: .85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .15s;
+      white-space: nowrap;
+    }
+    .btn-view-cart:hover { transform: scale(1.03); }
+    .btn-view-cart:active { transform: scale(.97); }
 
     /* ===== CONTENT ===== */
     .content {
       max-width: 680px;
       margin: 0 auto;
-      padding: 1.5rem 1rem;
+      padding: 1rem 1rem;
     }
-
     .section {
       display: none;
       animation: fadeIn .3s ease;
     }
-
-    .section.active {
-      display: block;
-    }
-
+    .section.active { display: block; }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
     .section-title {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 700;
-      color: var(--text);
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
       letter-spacing: -.3px;
     }
 
@@ -230,122 +250,402 @@
       background: var(--bg);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 1.2rem;
-      margin-bottom: .8rem;
+      padding: 1rem;
+      margin-bottom: .7rem;
       display: flex;
-      gap: 1rem;
+      gap: .8rem;
       transition: box-shadow .2s, border-color .2s;
     }
-
     .prato-card:hover {
       box-shadow: var(--shadow-lg);
       border-color: var(--accent);
     }
-
     .prato-img {
-      width: 80px;
-      height: 80px;
+      width: 72px;
+      height: 72px;
       border-radius: var(--radius-sm);
       background: var(--bg-secondary);
       flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
+      font-size: 1.8rem;
       border: 1px solid var(--border);
     }
-
-    .prato-body {
-      flex: 1;
-      min-width: 0;
-    }
-
+    .prato-body { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; }
     .prato-top {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       gap: .5rem;
-      margin-bottom: .3rem;
+      margin-bottom: .2rem;
     }
-
     .prato-nome {
-      font-size: 1rem;
+      font-size: .95rem;
       font-weight: 600;
-      color: var(--text);
       line-height: 1.3;
     }
-
     .prato-preco {
-      font-size: 1rem;
+      font-size: .95rem;
       font-weight: 700;
       color: var(--accent);
       white-space: nowrap;
     }
-
     .prato-desc {
-      font-size: .8rem;
+      font-size: .78rem;
       color: var(--text-secondary);
-      line-height: 1.5;
+      line-height: 1.4;
     }
-
     .prato-tags {
       display: flex;
-      gap: .4rem;
-      margin-top: .5rem;
+      gap: .3rem;
+      margin-top: .3rem;
       flex-wrap: wrap;
     }
-
     .tag {
       display: inline-block;
-      padding: .2rem .6rem;
+      padding: .15rem .5rem;
       background: var(--bg-secondary);
       border: 1px solid var(--border);
       border-radius: 50px;
-      font-size: .65rem;
+      font-size: .6rem;
       font-weight: 500;
       color: var(--text-secondary);
     }
 
-    /* ===== EMPTY STATE ===== */
-    .empty-state {
+    /* ===== ADD BUTTON + QTY CONTROL ===== */
+    .prato-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: .5rem;
+    }
+    .qty-control {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      overflow: hidden;
+    }
+    .qty-btn {
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: none;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .15s;
+    }
+    .qty-btn:hover { background: var(--border); }
+    .qty-btn.minus { color: var(--accent); }
+    .qty-num {
+      width: 32px;
+      text-align: center;
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .btn-add {
+      padding: .5rem 1.1rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-size: .8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .15s, transform .15s;
+    }
+    .btn-add:hover { background: var(--accent-hover); }
+    .btn-add:active { transform: scale(.95); }
+    .btn-add.added {
+      background: var(--green);
+    }
+
+    /* ===== CART MODAL ===== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.5);
+      z-index: 200;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .modal-overlay.open {
+      display: flex;
+    }
+    .modal {
+      background: var(--bg);
+      width: 100%;
+      max-width: 520px;
+      max-height: 85vh;
+      border-radius: 24px 24px 0 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      animation: slideUp .3s ease;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+    .modal-header {
+      padding: 1.2rem 1.2rem .8rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .modal-header h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+    .btn-close {
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: var(--bg-secondary);
+      border-radius: 50%;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      transition: background .15s;
+    }
+    .btn-close:hover { background: var(--border); }
+
+    .modal-body {
+      overflow-y: auto;
+      flex: 1;
+      padding: 1rem 1.2rem;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      padding: .8rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .cart-item:last-child { border-bottom: none; }
+    .cart-item-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .cart-item-info { flex: 1; min-width: 0; }
+    .cart-item-name {
+      font-size: .9rem;
+      font-weight: 600;
+      margin-bottom: .15rem;
+    }
+    .cart-item-price {
+      font-size: .8rem;
+      color: var(--text-secondary);
+    }
+    .cart-item-qty {
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+    }
+    .cart-item-qty button {
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--border);
+      background: var(--bg-secondary);
+      border-radius: 50%;
+      font-size: .9rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .15s;
+    }
+    .cart-item-qty button:hover { background: var(--border); }
+    .cart-item-qty .q {
+      width: 24px;
+      text-align: center;
+      font-size: .85rem;
+      font-weight: 700;
+    }
+    .cart-item-subtotal {
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-left: .3rem;
+      min-width: 60px;
+      text-align: right;
+    }
+
+    .cart-empty {
       text-align: center;
       padding: 3rem 1rem;
       color: var(--text-muted);
     }
+    .cart-empty .empty-icon { font-size: 3rem; margin-bottom: .5rem; }
 
-    .empty-state .empty-icon {
-      font-size: 3rem;
-      margin-bottom: .5rem;
+    /* ===== NOTES ===== */
+    .cart-notes {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+    .cart-notes label {
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      display: block;
+      margin-bottom: .4rem;
+    }
+    .cart-notes textarea {
+      width: 100%;
+      padding: .7rem .8rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      font-size: .85rem;
+      font-family: inherit;
+      resize: none;
+      outline: none;
+      transition: border-color .15s;
+    }
+    .cart-notes textarea:focus { border-color: var(--accent); }
+
+    .cart-linha {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: .6rem 0;
+      font-size: .85rem;
+      color: var(--text-secondary);
+    }
+    .cart-linha.total {
+      border-top: 2px solid var(--border);
+      margin-top: .4rem;
+      padding-top: .8rem;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .cart-linha.total .v { color: var(--accent); }
+
+    /* ===== FOOTER DO MODAL ===== */
+    .modal-footer {
+      padding: 1rem 1.2rem 1.5rem;
+      border-top: 1px solid var(--border);
+      flex-shrink: 0;
     }
 
-    .empty-state p {
+    .form-group {
+      margin-bottom: .8rem;
+    }
+    .form-group label {
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      display: block;
+      margin-bottom: .3rem;
+    }
+    .form-group input {
+      width: 100%;
+      padding: .65rem .85rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text);
       font-size: .9rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color .15s;
+    }
+    .form-group input:focus { border-color: var(--accent); }
+
+    .btn-whatsapp {
+      width: 100%;
+      padding: 1rem;
+      background: #25D366;
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      transition: background .15s, transform .15s;
+    }
+    .btn-whatsapp:hover { background: #1ebe57; }
+    .btn-whatsapp:active { transform: scale(.97); }
+    .btn-whatsapp:disabled {
+      opacity: .4;
+      cursor: not-allowed;
     }
 
     /* ===== FOOTER ===== */
     .footer {
       text-align: center;
-      padding: 2rem 1rem;
+      padding: 1.5rem 1rem;
       color: var(--text-muted);
-      font-size: .75rem;
+      font-size: .72rem;
       border-top: 1px solid var(--border);
-      margin-top: 2rem;
+      margin-top: 1.5rem;
     }
+    .footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
 
-    .footer a {
-      color: var(--accent);
-      text-decoration: none;
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-20px);
+      background: var(--green);
+      color: #fff;
+      padding: .6rem 1.2rem;
+      border-radius: 50px;
+      font-size: .8rem;
       font-weight: 600;
+      z-index: 300;
+      opacity: 0;
+      transition: all .3s ease;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
     }
 
     /* ===== RESPONSIVE ===== */
     @media(max-width:400px) {
-      .prato-card { padding: 1rem; }
-      .prato-img { width: 64px; height: 64px; font-size: 1.5rem; }
-      .prato-nome { font-size: .9rem; }
-      .prato-preco { font-size: .9rem; }
-      .nav-item { min-width: 50px; padding: .3rem .5rem; }
-      .nav-item .nav-label { font-size: .6rem; }
+      .prato-card { padding: .8rem; }
+      .prato-img { width: 60px; height: 60px; font-size: 1.5rem; }
+      .prato-nome { font-size: .85rem; }
+      .prato-preco { font-size: .85rem; }
+      .nav-item { min-width: 48px; padding: .25rem .4rem; }
+      .nav-item .nav-label { font-size: .55rem; }
+      body { padding-bottom: 150px; }
     }
   </style>
 </head>
@@ -368,20 +668,68 @@
   </header>
 
   <!-- CONTENT -->
-  <main class="content" id="content">
-    <!-- Sections rendered by JS -->
-  </main>
+  <main class="content" id="content"></main>
 
   <footer class="footer">
     Cardápio digital por <a href="#">Restaurantes São Lourenço</a> © 2026
   </footer>
 
-  <!-- BOTTOM NAV -->
-  <nav class="bottom-nav" id="bottomNav">
-    <!-- Rendered by JS -->
-  </nav>
+  <!-- BOTTOM NAV categories -->
+  <nav class="bottom-nav" id="bottomNav"></nav>
+
+  <!-- CART BAR (bottom) -->
+  <div class="cart-bar" id="cartBar">
+    <div class="cart-bar-left">
+      <div class="cart-icon-wrap">
+        🛒
+        <span class="cart-count" id="cartCount">0</span>
+      </div>
+      <div class="cart-info">
+        <div class="cart-qty" id="cartBarQty">0 itens</div>
+        <div class="cart-total" id="cartBarTotal">R$ 0,00</div>
+      </div>
+    </div>
+    <div class="cart-bar-right">
+      <button class="btn-view-cart" onclick="openCart()">Ver Pedido</button>
+    </div>
+  </div>
+
+  <!-- CART MODAL -->
+  <div class="modal-overlay" id="cartModal" onclick="if(event.target===this)closeCart()">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>🛒 Seu Pedido</h2>
+        <button class="btn-close" onclick="closeCart()">✕</button>
+      </div>
+      <div class="modal-body" id="cartBody">
+        <div class="cart-empty">
+          <div class="empty-icon">🛒</div>
+          <p>Seu pedido está vazio.<br>Adicione itens do cardápio!</p>
+        </div>
+      </div>
+      <div class="modal-footer" id="cartFooter" style="display:none">
+        <div class="form-group">
+          <label>Seu nome</label>
+          <input type="text" id="clientName" placeholder="Ex: João Silva">
+        </div>
+        <div class="form-group">
+          <label>Observações (opcional)</label>
+          <textarea id="orderNotes" rows="2" placeholder="Ex: sem cebola, mal passada, retirar no balcão..."></textarea>
+        </div>
+        <button class="btn-whatsapp" id="btnWhatsapp" onclick="sendWhatsApp()">
+          📱 Enviar Pedido pelo WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">✅ Item adicionado!</div>
 
   <script>
+    // ===== DATA =====
+    const WHATSAPP = '5535999999999'; // Número do restaurante (DDI+DDD+número)
+
     const cardapio = {
       nome: "Restaurante Demo",
       categorias: [
@@ -406,7 +754,7 @@
             { nome: "X-Tudo", preco: 28.00, descricao: "Hambúrguer, bacon, ovo, presunto, queijo, alface, tomate e maionese", tags: ["Completo"] },
             { nome: "X-Salada", preco: 18.00, descricao: "Hambúrguer artesanal, queijo, alface e tomate", tags: [] },
             { nome: "X-Bacon", preco: 22.00, descricao: "Hambúrguer artesanal com bacon crocante e queijo cheddar", tags: [] },
-            { nome: "Sanduíche Natural", preupo: 15.00, descricao: "Peito de peru, cream cheese, alface e cenoura ralada no pão integral", tags: ["Saudável", "Fit"] }
+            { nome: "Sanduíche Natural", preco: 15.00, descricao: "Peito de peru, cream cheese, alface e cenoura ralada no pão integral", tags: ["Saudável", "Fit"] }
           ]
         },
         {
@@ -436,6 +784,86 @@
       ]
     };
 
+    // ===== CART =====
+    let cart = {}; // key: "catIdx-pratoIdx", value: { qty, itemIcon }
+
+    function getCartCount() {
+      return Object.values(cart).reduce((s, c) => s + c.qty, 0);
+    }
+
+    function getCartTotal() {
+      let total = 0;
+      for (const key in cart) {
+        const [ci, pi] = key.split('-').map(Number);
+        const p = cardapio.categorias[ci]?.pratos?.[pi];
+        if (p && p.preco) total += p.preco * cart[key].qty;
+      }
+      return total;
+    }
+
+    function getCartItems() {
+      const items = [];
+      for (const key in cart) {
+        const [ci, pi] = key.split('-').map(Number);
+        const cat = cardapio.categorias[ci];
+        const p = cat?.pratos?.[pi];
+        if (p) {
+          items.push({
+            key, ci, pi,
+            nome: p.nome,
+            preco: p.preco,
+            qty: cart[key].qty,
+            itemIcon: cart[key].itemIcon,
+            subtotal: (p.preco || 0) * cart[key].qty
+          });
+        }
+      }
+      return items;
+    }
+
+    function addToCart(catIdx, pratoIdx) {
+      const key = `${catIdx}-${pratoIdx}`;
+      const cat = cardapio.categorias[catIdx];
+      if (cart[key]) {
+        cart[key].qty++;
+      } else {
+        cart[key] = { qty: 1, itemIcon: cat.itemIcon };
+      }
+      updateCartUI();
+      showToast('✅ ' + cat.pratos[pratoIdx].nome + ' adicionado!');
+    }
+
+    function removeFromCart(catIdx, pratoIdx) {
+      const key = `${catIdx}-${pratoIdx}`;
+      if (!cart[key]) return;
+      cart[key].qty--;
+      if (cart[key].qty <= 0) delete cart[key];
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const count = getCartCount();
+      const total = getCartTotal();
+      const bar = document.getElementById('cartBar');
+      if (count > 0) {
+        bar.classList.add('visible');
+        document.getElementById('cartCount').textContent = count;
+        document.getElementById('cartBarQty').textContent = count + ' item' + (count > 1 ? 'ns' : '');
+        document.getElementById('cartBarTotal').textContent = 'R$ ' + total.toFixed(2).replace('.', ',');
+      } else {
+        bar.classList.remove('visible');
+      }
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(t._timeout);
+      t._timeout = setTimeout(() => t.classList.remove('show'), 2000);
+    }
+
+    // ===== RENDER =====
     let activeIndex = 0;
 
     function renderNav() {
@@ -453,22 +881,22 @@
     function renderSections() {
       const content = document.getElementById('content');
       content.innerHTML = '';
-      cardapio.categorias.forEach((cat, i) => {
+      cardapio.categorias.forEach((cat, ci) => {
         const section = document.createElement('div');
-        section.className = 'section' + (i === activeIndex ? ' active' : '');
-        section.id = 'section-' + i;
+        section.className = 'section' + (ci === activeIndex ? ' active' : '');
+        section.id = 'section-' + ci;
 
         if (!cat.pratos || cat.pratos.length === 0) {
-          section.innerHTML = `
-            <div class="empty-state">
-              <div class="empty-icon">${cat.icon}</div>
-              <p>Nenhum item nesta categoria ainda.</p>
-            </div>`;
+          section.innerHTML = `<div class="cart-empty"><div class="empty-icon">${cat.icon}</div><p>Nenhum item nesta categoria ainda.</p></div>`;
         } else {
           let pratosHtml = '';
-          cat.pratos.forEach(p => {
+          cat.pratos.forEach((p, pi) => {
             const preco = p.preco ? 'R$ ' + p.preco.toFixed(2).replace('.', ',') : '';
             const tagsHtml = (p.tags || []).map(t => `<span class="tag">${t}</span>`).join('');
+            const key = `${ci}-${pi}`;
+            const qty = cart[key]?.qty || 0;
+            const hasQty = qty > 0;
+
             pratosHtml += `
               <div class="prato-card">
                 <div class="prato-img">${cat.itemIcon}</div>
@@ -479,12 +907,25 @@
                   </div>
                   ${p.descricao ? `<p class="prato-desc">${p.descricao}</p>` : ''}
                   ${tagsHtml ? `<div class="prato-tags">${tagsHtml}</div>` : ''}
+                  <div class="prato-actions">
+                    ${hasQty ? `
+                      <div class="qty-control">
+                        <button class="qty-btn minus" onclick="removeFromCart(${ci},${pi})">−</button>
+                        <span class="qty-num">${qty}</span>
+                        <button class="qty-btn plus" onclick="addToCart(${ci},${pi})">+</button>
+                      </div>
+                    ` : `
+                      <div></div>
+                    `}
+                    <button class="btn-add ${hasQty ? 'added' : ''}" onclick="addToCart(${ci},${pi})">
+                      ${hasQty ? '✓ Adicionado' : '+ Adicionar'}
+                    </button>
+                  </div>
                 </div>
               </div>`;
           });
           section.innerHTML = `<h2 class="section-title">${cat.icon} ${cat.nome}</h2>${pratosHtml}`;
         }
-
         content.appendChild(section);
       });
     }
@@ -500,22 +941,102 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Init
+    // ===== CART MODAL =====
+    function openCart() {
+      renderCartModal();
+      document.getElementById('cartModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCart() {
+      document.getElementById('cartModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function renderCartModal() {
+      const body = document.getElementById('cartBody');
+      const footer = document.getElementById('cartFooter');
+      const items = getCartItems();
+
+      if (items.length === 0) {
+        body.innerHTML = `<div class="cart-empty"><div class="empty-icon">🛒</div><p>Seu pedido está vazio.<br>Adicione itens do cardápio!</p></div>`;
+        footer.style.display = 'none';
+        return;
+      }
+
+      footer.style.display = 'block';
+      let html = '';
+      items.forEach(it => {
+        html += `
+          <div class="cart-item">
+            <div class="cart-item-icon">${it.itemIcon}</div>
+            <div class="cart-item-info">
+              <div class="cart-item-name">${it.nome}</div>
+              <div class="cart-item-price">R$ ${it.preco.toFixed(2).replace('.', ',')}</div>
+            </div>
+            <div class="cart-item-qty">
+              <button onclick="modalRemove(${it.ci},${it.pi})">−</button>
+              <span class="q">${it.qty}</span>
+              <button onclick="modalAdd(${it.ci},${it.pi})">+</button>
+            </div>
+            <div class="cart-item-subtotal">R$ ${it.subtotal.toFixed(2).replace('.', ',')}</div>
+          </div>`;
+      });
+
+      const total = getCartTotal();
+      html += `
+        <div class="cart-notes">
+          <label>Observações do pedido</label>
+          <textarea id="orderNotes" rows="2" placeholder="Ex: sem cebola, mal passada, retirar no balcao..."></textarea>
+        </div>
+        <div class="cart-linha total">
+          <span>Total</span>
+          <span class="v">R$ ${total.toFixed(2).replace('.', ',')}</span>
+        </div>`;
+
+      body.innerHTML = html;
+    }
+
+    function modalAdd(ci, pi) { addToCart(ci, pi); renderCartModal(); }
+    function modalRemove(ci, pi) { removeFromCart(ci, pi); renderCartModal(); }
+
+    // ===== WHATSAPP =====
+    function sendWhatsApp() {
+      const items = getCartItems();
+      if (items.length === 0) return;
+
+      const name = document.getElementById('clientName').value.trim() || 'Cliente';
+      const notes = document.getElementById('orderNotes').value.trim();
+      const total = getCartTotal();
+
+      let msg = `📋 *PEDIDO - ${cardapio.nome.toUpperCase()}*\n`;
+      msg += `👤 Cliente: ${name}\n`;
+      msg += `─────────────────\n\n`;
+
+      items.forEach(it => {
+        msg += `• ${it.qty}x ${it.nome}`;
+        if (it.preco) msg += ` — R$ ${it.subtotal.toFixed(2).replace('.', ',')}`;
+        msg += `\n`;
+      });
+
+      msg += `\n─────────────────\n`;
+      msg += `💰 *TOTAL: R$ ${total.toFixed(2).replace('.', ',')}*\n`;
+
+      if (notes) {
+        msg += `\n📝 Observações:\n${notes}\n`;
+      }
+
+      const url = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+      window.open(url, '_blank');
+    }
+
+    // ===== INIT =====
     renderNav();
     renderSections();
 
     // Header shrink on scroll
-    let lastScroll = 0;
     const header = document.getElementById('header');
     window.addEventListener('scroll', () => {
-      const currentScroll = window.scrollY || window.pageYOffset;
-      if (currentScroll > 60) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-      lastScroll = currentScroll;
+      const y = window.scrollY || window.pageYOffset;
+      header.classList.toggle('scrolled', y > 60);
     }, { passive: true });
-  </script>
-</body>
-</html>
