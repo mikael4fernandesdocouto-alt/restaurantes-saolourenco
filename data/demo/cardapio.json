@@ -1,0 +1,39 @@
+{
+  "nome": "Restaurante Demo",
+  "descricao": "Exemplo de cardápio digital - Restaurantes Sao Lourenco",
+  "cor": "#e94560",
+  "categorias": [
+    {
+      "nome": "Pratos Principais",
+      "pratos": [
+        { "nome": "File a Parmegiana", "preco": "49,90", "descricao": "File mignon empanado com molho tomate e queijo gratinado, acompanha arroz e fritas", "oculto": false },
+        { "nome": "Frango Grelhado", "preco": "32,00", "descricao": "Peito de frango grelhado com legumes, arroz e feijao", "oculto": false },
+        { "nome": "Moqueca Baiana", "preco": "65,00", "descricao": "Peixe fresco com leite de coco, pimentoes e arroz branco", "oculto": false },
+        { "nome": "Picanha na Chapa", "preco": "78,90", "descricao": "Picanha grelhada, com vinagrete, arroz e farofa", "oculto": false }
+      ]
+    },
+    {
+      "nome": "Lanches",
+      "pratos": [
+        { "nome": "X-Tudo", "preco": "28,00", "descricao": "Hamburguer, bacon, ovo, presunto, queijo, alface, tomate e maionese", "oculto": false },
+        { "nome": "X-Salada", "preco": "18,00", "descricao": "Hamburguer artesanal, queijo, alface e tomate", "oculto": false }
+      ]
+    },
+    {
+      "nome": "Bebidas",
+      "pratos": [
+        { "nome": "Refrigerante Lata", "preco": "6,00", "descricao": "", "oculto": false },
+        { "nome": "Suco Natural", "preco": "8,00", "descricao": "Consultar sabores do dia", "oculto": false },
+        { "nome": "Agua Mineral", "preco": "4,00", "descricao": "Com ou sem gas", "oculto": false },
+        { "nome": "Cerveja Longneck", "preco": "9,00", "descricao": "Heineken, Stella Artois ou similar", "oculto": false }
+      ]
+    },
+    {
+      "nome": "Sobremesas",
+      "pratos": [
+        { "nome": "Pudim de Leite", "preco": "12,00", "descricao": "Pudim tradicional com calda de caramelo", "oculto": false },
+        { "nome": "Brownie", "preco": "15,00", "descricao": "Brownie de chocolate com nozes", "oculto": false }
+      ]
+    }
+  ]
+}
