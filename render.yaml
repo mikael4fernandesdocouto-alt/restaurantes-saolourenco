@@ -1,0 +1,18 @@
+{
+  "services": [
+    {
+      "type": "web",
+      "name": "restaurantes-saolourenco",
+      "env": "node",
+      "plan": "free",
+      "repo": "https://github.com/mikael4fernandesdocouto-alt/restaurantes-saolourenco",
+      "branch": "main",
+      "buildCommand": "npm install",
+      "startCommand": "node server.js",
+      "envVars": [
+        { "key": "PORT", "value": "3000" },
+        { "key": "NODE_ENV", "value": "production" }
+      ]
+    }
+  ]
+}
