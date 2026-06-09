@@ -2,1439 +2,529 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>X-Burger — Diner Vintage | São Lourenço, MG</title>
 <meta name="theme-color" content="#C41E3A">
+<meta name="description" content="X-Burger Diner — Hambúrguer artesanal em São Lourenço, MG. Ambiente vintage anos 50, rock & roll e os melhores burgers da cidade.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Righteous&family=Inter:wght@400;500;600;700;800&family=Rock+Salt&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Righteous&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root {
-  --red: #C41E3A;
-  --red-dark: #9B1830;
-  --red-light: #E8354F;
-  --cream: #FFF8E7;
-  --cream-dark: #F5E6C8;
-  --dark: #1A1A1A;
-  --dark-2: #2A2A2A;
-  --gold: #D4A017;
-  --gold-light: #E8B830;
-  --chrome: #C0C0C0;
-  --chrome-light: #E8E8E8;
-  --neon-red: #FF1744;
-  --neon-blue: #00B0FF;
-  --neon-yellow: #FFD600;
-  --radius: 4px;
-  --radius-lg: 8px;
-  --shadow: 0 4px 20px rgba(0,0,0,0.3);
-  --transition: 0.25s ease;
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Inter', -apple-system, sans-serif;
-  background: var(--dark);
-  color: var(--cream);
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:#111;color:#f0e6d3;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden;line-height:1.5}
+img{display:block;max-width:100%;height:auto}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+a{text-decoration:none;color:inherit}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#1a1a1a}
+::-webkit-scrollbar-thumb{background:#C41E3A;border-radius:3px}
+::-moz-scrollbar{width:6px}
+::-moz-scrollbar-track{background:#1a1a1a}
+::-moz-scrollbar-thumb{background:#C41E3A;border-radius:3px}
+
+:root{
+  --r:#C41E3A;--r-d:#9B1830;--r-l:#E8354F;
+  --c:#FFF8E7;--c-d:#F5E6C8;
+  --d:#111;--d2:#1c1c1c;--d3:#252525;
+  --g:#D4A017;--g-l:#E8B830;
+  --ch:#b0a89a;
+  --rad:12px;--rad-sm:8px;--rad-xs:4px;
+  --sh:0 4px 24px rgba(0,0,0,.35);
+  --sh-sm:0 2px 8px rgba(0,0,0,.2);
+  --tr:all .2s cubic-bezier(.4,0,.2,1);
 }
 
-/* ===== SCROLLBAR ===== */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--dark); }
-::-webkit-scrollbar-thumb { background: var(--red); border-radius: 4px; }
+/* ═══════════ TOP BAR ═══════════ */
+.tb{background:linear-gradient(90deg,var(--r),var(--r-d));color:var(--c);text-align:center;padding:8px 16px;font-size:11px;font-weight:700;letter-spacing:1.5px;position:sticky;top:0;z-index:60}
 
-/* ===== TOP BAR ===== */
-.top-bar {
-  background: var(--red);
-  color: var(--cream);
-  text-align: center;
-  padding: 6px 16px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  font-family: 'Inter', sans-serif;
-}
+/* ═══════════ HEADER ═══════════ */
+.hd{background:var(--d);border-bottom:2px solid var(--r);position:sticky;top:32px;z-index:50;transition:var(--tr)}
+.hd-inner{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;max-width:960px;margin:0 auto}
+.hd-logo{font-family:'Righteous',cursive;font-size:24px;color:var(--c);letter-spacing:1px;line-height:1}
+.hd-logo em{color:var(--g);font-style:normal}
+.hd-cart{position:relative;width:40px;height:40px;border-radius:50%;border:2px solid var(--r);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--c);transition:var(--tr)}
+.hd-cart:hover{background:var(--r)}
+.hd-badge{position:absolute;top:-4px;right:-4px;min-width:18px;height:18px;background:var(--g);color:var(--d);border-radius:50%;font-size:9px;font-weight:800;display:none;align-items:center;justify-content:center;border:2px solid var(--d)}
 
-/* ===== HEADER ===== */
-.header {
-  background: linear-gradient(180deg, #1A1A1A 0%, #222 100%);
-  border-bottom: 3px solid var(--red);
-  position: sticky;
-  top: 0;
-  z-index: 50;
-}
-.header-main {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 16px;
-}
-.header-logo {
-  font-family: 'Righteous', cursive;
-  font-size: 26px;
-  color: var(--cream);
-  letter-spacing: 2px;
-  text-shadow: 2px 2px 0 var(--red);
-  line-height: 1;
-}
-.header-logo span { color: var(--gold); }
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.header-btn {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  border: 2px solid var(--chrome);
-  background: transparent;
-  color: var(--cream);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all var(--transition);
-}
-.header-btn:hover { border-color: var(--red); background: rgba(255,255,255,0.05); }
-.cart-btn-wrap { position: relative; }
-.cart-btn-wrap .badge {
-  position: absolute;
-  top: -3px;
-  right: -3px;
-  min-width: 18px;
-  height: 18px;
-  background: var(--red);
-  color: var(--cream);
-  border-radius: 50%;
-  font-size: 9px;
-  font-weight: 700;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid var(--dark);
-}
+/* ═══════════ HERO ═══════════ */
+.hero{position:relative;min-height:320px;display:flex;align-items:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,17,17,.2) 0%,rgba(17,17,17,.5) 40%,rgba(17,17,17,.95) 100%),url('https://images.unsplash.com/photo-1552566626-52f8b828add9?w=1200&q=80') center/cover no-repeat;filter:saturate(1.1)}
+.hero-in{position:relative;z-index:2;padding:28px 20px;width:100%;max-width:960px;margin:0 auto}
+.hero-badge{display:inline-block;background:var(--g);color:var(--d);padding:5px 14px;border-radius:var(--rad-xs);font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+.hero-title{font-family:'Bebas Neue',cursive;font-size:clamp(44px,12vw,72px);color:var(--c);letter-spacing:3px;line-height:.9;text-shadow:3px 3px 0 var(--r),0 0 40px rgba(196,30,58,.3);margin-bottom:6px}
+.hero-sub{font-size:clamp(12px,2.5vw,15px);color:var(--g);font-weight:600;margin-bottom:20px;letter-spacing:.5px}
+.hero-cta{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--r);color:var(--c);border:2px solid var(--c);border-radius:var(--rad-xs);font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:2px;transition:var(--tr);box-shadow:4px 4px 0 var(--g)}
+.hero-cta:hover{background:var(--r-d);transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--g)}
 
-/* ===== HERO ===== */
-.hero {
-  position: relative;
-  height: 380px;
-  overflow: hidden;
-}
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(26,26,26,0.3) 0%, rgba(26,26,26,0.6) 50%, rgba(26,26,26,0.95) 100%),
-              url('https://images.unsplash.com/photo-1552566626-52f8b828add9?w=1200&q=80') center/cover no-repeat;
-}
-.hero-content {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  padding: 20px;
-  text-align: center;
-}
-.hero-badge {
-  display: inline-block;
-  background: var(--gold);
-  color: var(--dark);
-  padding: 4px 14px;
-  border-radius: 20px;
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 16px;
-}
-.hero-title {
-  font-family: 'Bebas Neue', cursive;
-  font-size: clamp(48px, 10vw, 80px);
-  color: var(--cream);
-  letter-spacing: 4px;
-  line-height: 0.95;
-  text-shadow: 3px 3px 0 var(--red), 6px 6px 0 rgba(0,0,0,0.3);
-  margin-bottom: 8px;
-}
-.hero-subtitle {
-  font-family: 'Rock Salt', cursive;
-  font-size: clamp(12px, 2.5vw, 16px);
-  color: var(--gold);
-  margin-bottom: 20px;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-}
-.hero-btn {
-  padding: 14px 32px;
-  background: var(--red);
-  color: var(--cream);
-  border: 2px solid var(--cream);
-  border-radius: var(--radius);
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  cursor: pointer;
-  transition: all var(--transition);
-  box-shadow: 4px 4px 0 var(--gold);
-  font-family: 'Inter', sans-serif;
-}
-.hero-btn:hover { background: var(--red-dark); transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--gold); }
-.hero-btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--gold); }
+/* ═══════════ VINTAGE DIVIDER ═══════════ */
+.vd{display:flex;align-items:center;gap:12px;padding:14px 20px;background:var(--d2);border-top:1px solid rgba(196,30,58,.2);border-bottom:1px solid rgba(196,30,58,.2)}
+.vd-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--r),transparent)}
+.vd-diamond{color:var(--r);font-size:8px}
+.vd-text{font-size:11px;color:var(--ch);font-weight:600;white-space:nowrap;letter-spacing:.5px}
 
-/* ===== VINTAGE DIVIDER ===== */
-.vintage-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  padding: 12px 16px;
-  background: var(--dark-2);
-  border-top: 1px solid rgba(196,30,58,0.3);
-  border-bottom: 1px solid rgba(196,30,58,0.3);
-}
-.vd-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--red), transparent); }
-.vd-diamond { color: var(--red); font-size: 10px; }
-.vd-text {
-  font-family: 'Rock Salt', cursive;
-  font-size: 11px;
-  color: var(--chrome);
-  white-space: nowrap;
-}
+/* ═══════════ REST INFO ═══════════ */
+.ri{background:var(--d);padding:20px 16px;border-bottom:1px solid rgba(196,30,58,.15)}
+.ri-in{max-width:960px;margin:0 auto}
+.ri-top{display:flex;gap:14px;align-items:center;margin-bottom:14px}
+.ri-avatar{width:56px;height:56px;border-radius:50%;object-fit:cover;border:3px solid var(--r);flex-shrink:0}
+.ri-name{font-family:'Righteous',cursive;font-size:18px;color:var(--c);letter-spacing:1px;margin-bottom:2px}
+.ri-type{font-size:12px;color:var(--ch);font-weight:500;margin-bottom:6px}
+.ri-meta{display:flex;flex-wrap:wrap;gap:10px;font-size:11px;color:var(--ch);font-weight:500}
+.ri-meta span{display:flex;align-items:center;gap:3px}
+.ri-star{color:var(--g)}
+.ri-tags{display:flex;gap:8px;flex-wrap:wrap}
+.ri-tag{padding:5px 12px;border-radius:20px;font-size:10px;font-weight:700;background:rgba(196,30,58,.12);color:var(--r-l);border:1px solid rgba(196,30,58,.25)}
+.ri-tag.open{background:rgba(34,197,94,.12);color:#22c55e;border-color:rgba(34,197,94,.25)}
 
-/* ===== REST INFO ===== */
-.rest-info {
-  background: var(--dark);
-  padding: 20px 16px;
-  border-bottom: 1px solid rgba(196,30,58,0.2);
-}
-.rest-top {
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-  margin-bottom: 14px;
-}
-.rest-avatar {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid var(--red);
-  flex-shrink: 0;
-}
-.rest-details h1 {
-  font-family: 'Righteous', cursive;
-  font-size: 20px;
-  color: var(--cream);
-  letter-spacing: 1px;
-  margin-bottom: 3px;
-}
-.rest-details .rest-cuisine {
-  font-size: 12px;
-  color: var(--chrome);
-  font-weight: 500;
-  margin-bottom: 6px;
-}
-.rest-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  font-size: 11px;
-  color: var(--chrome);
-  font-weight: 500;
-}
-.rest-meta span { display: flex; align-items: center; gap: 4px; }
-.rest-meta .star { color: var(--gold); }
-.rest-tags {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-.rest-tag {
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 10px;
-  font-weight: 600;
-  background: rgba(196,30,58,0.15);
-  color: var(--red-light);
-  border: 1px solid rgba(196,30,58,0.3);
-}
-.rest-tag.open { background: rgba(34,197,94,0.15); color: #22C55E; border-color: rgba(34,197,94,0.3); }
+/* ═══════════ FEATURED ═══════════ */
+.feat{margin:16px;max-width:928px;border-radius:var(--rad);overflow:hidden;position:relative;height:170px;border:2px solid var(--r)}
+.feat img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.feat:hover img{transform:scale(1.03)}
+.feat-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:16px}
+.feat-tag{display:inline-block;background:var(--g);color:var(--d);padding:3px 10px;border-radius:var(--rad-xs);font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;width:fit-content}
+.feat-title{font-family:'Bebas Neue',cursive;font-size:22px;color:var(--c);letter-spacing:2px;margin-bottom:2px}
+.feat-desc{font-size:11px;color:var(--ch);margin-bottom:10px}
+.feat-row{display:flex;align-items:center;justify-content:space-between}
+.feat-price{font-family:'Bebas Neue',cursive;font-size:20px;color:var(--g);letter-spacing:1px}
+.feat-price s{font-size:11px;color:var(--ch);font-family:'Inter',sans-serif;margin-left:4px}
+.feat-btn{padding:8px 18px;background:var(--r);color:var(--c);border:2px solid var(--c);border-radius:var(--rad-xs);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;transition:var(--tr);box-shadow:3px 3px 0 var(--g)}
+.feat-btn:hover{background:var(--r-d)}
 
-/* ===== CATEGORIES ===== */
-.cats-section {
-  background: var(--dark);
-  padding: 16px;
-  margin-bottom: 2px;
-}
-.cats-title {
-  font-family: 'Bebas Neue', cursive;
-  font-size: 20px;
-  color: var(--cream);
-  letter-spacing: 2px;
-  margin-bottom: 12px;
-}
-.cats-scroll {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding-bottom: 4px;
-  scrollbar-width: none;
-}
-.cats-scroll::-webkit-scrollbar { display: none; }
-.cat-btn {
-  flex-shrink: 0;
-  padding: 10px 18px;
-  border-radius: 25px;
-  border: 2px solid rgba(196,30,58,0.3);
-  background: transparent;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--chrome);
-  cursor: pointer;
-  transition: all var(--transition);
-  white-space: nowrap;
-  font-family: 'Inter', sans-serif;
-}
-.cat-btn.active {
-  border-color: var(--red);
-  background: var(--red);
-  color: var(--cream);
-}
-.cat-btn:not(.active):hover { border-color: var(--red); color: var(--cream); }
+/* ═══════════ CATEGORIES ═══════════ */
+.cats{background:var(--d);padding:16px 0;margin-bottom:2px}
+.cats-in{max-width:960px;margin:0 auto;padding:0 16px}
+.cats-title{font-family:'Bebas Neue',cursive;font-size:18px;color:var(--c);letter-spacing:2px;margin-bottom:12px}
+.cats-scroll{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.cats-scroll::-webkit-scrollbar{display:none}
+.cat-pill{flex-shrink:0;padding:9px 18px;border-radius:25px;border:2px solid var(--d3);background:var(--d2);font-size:12px;font-weight:600;color:var(--ch);transition:var(--tr);white-space:nowrap}
+.cat-pill.on{border-color:var(--r);background:var(--r);color:var(--c)}
+.cat-pill:not(.on):hover{border-color:var(--r);color:var(--c)}
 
-/* ===== SECTION HEADER ===== */
-.section-header {
-  padding: 20px 16px 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.section-title {
-  font-family: 'Bebas Neue', cursive;
-  font-size: 22px;
-  color: var(--cream);
-  letter-spacing: 2px;
-}
-.section-title .accent { color: var(--red); }
+/* ═══════════ SECTION TITLE ═══════════ */
+.sec-head{padding:18px 16px 10px;display:flex;align-items:center;justify-content:space-between;max-width:960px;margin:0 auto}
+.sec-title{font-family:'Bebas Neue',cursive;font-size:20px;color:var(--c);letter-spacing:2px}
+.sec-title em{color:var(--r);font-style:normal}
 
-/* ===== PRODUCTS ===== */
-.products-section { padding: 0 0 16px; margin-bottom: 2px; }
-.prod-card {
-  background: var(--dark-2);
-  border: 1px solid rgba(196,30,58,0.15);
-  border-radius: var(--radius-lg);
-  padding: 14px;
-  margin: 0 16px 10px;
-  display: flex;
-  gap: 12px;
-  transition: all var(--transition);
-}
-.prod-card:hover { border-color: rgba(196,30,58,0.4); }
-.prod-img {
-  width: 80px;
-  height: 80px;
-  border-radius: var(--radius-sm);
-  object-fit: cover;
-  flex-shrink: 0;
-  background: #333;
-}
-.prod-info { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; }
-.prod-name {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--cream);
-  margin-bottom: 2px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.prod-desc {
-  font-size: 11px;
-  color: var(--chrome);
-  line-height: 1.4;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  margin-bottom: 6px;
-}
-.prod-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.prod-price {
-  font-family: 'Bebas Neue', cursive;
-  font-size: 18px;
-  color: var(--gold);
-  letter-spacing: 1px;
-}
-.prod-add {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  border: 2px solid var(--red);
-  background: transparent;
-  color: var(--red);
-  font-size: 18px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all var(--transition);
-}
-.prod-add:hover { background: var(--red); color: var(--cream); }
-.prod-add:active { transform: scale(0.9); }
-.prod-add-wrap { position: relative; }
-.prod-qty-badge {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  min-width: 18px;
-  height: 18px;
-  background: var(--red);
-  color: var(--cream);
-  border-radius: 50%;
-  font-size: 9px;
-  font-weight: 700;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid var(--dark-2);
-}
+/* ═══════════ PRODUCTS ═══════════ */
+.prods{padding-bottom:16px}
+.prod-card{background:var(--d2);border:1px solid rgba(196,30,58,.12);border-radius:var(--rad);padding:14px;margin:0 auto 10px;max-width:928px;display:flex;gap:14px;transition:var(--tr)}
+.prod-card:hover{border-color:rgba(196,30,58,.35);box-shadow:var(--sh-sm)}
+.prod-img{width:84px;height:84px;border-radius:var(--rad-sm);object-fit:cover;flex-shrink:0;background:var(--d3)}
+.prod-info{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:space-between}
+.prod-name{font-size:14px;font-weight:700;color:var(--c);margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.prod-desc{font-size:11px;color:var(--ch);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:8px}
+.prod-row{display:flex;align-items:center;justify-content:space-between}
+.prod-price{font-family:'Bebas Neue',cursive;font-size:17px;color:var(--g);letter-spacing:1px}
+.prod-add-wrap{position:relative}
+.prod-add{width:34px;height:34px;border-radius:50%;border:2px solid var(--r);background:transparent;color:var(--r);font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:var(--tr)}
+.prod-add:hover{background:var(--r);color:var(--c)}
+.prod-add:active{transform:scale(.9)}
+.prod-qty{position:absolute;top:-5px;right:-5px;min-width:18px;height:18px;background:var(--r);color:var(--c);border-radius:50%;font-size:9px;font-weight:800;display:none;align-items:center;justify-content:center;border:2px solid var(--d2)}
 
-/* ===== FEATURED BANNER ===== */
-.featured-banner {
-  margin: 0 16px 16px;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  position: relative;
-  height: 180px;
-  border: 2px solid var(--red);
-}
-.featured-banner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.featured-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 16px;
-}
-.featured-tag {
-  display: inline-block;
-  background: var(--gold);
-  color: var(--dark);
-  padding: 3px 10px;
-  border-radius: 4px;
-  font-size: 9px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 6px;
-  width: fit-content;
-}
-.featured-title {
-  font-family: 'Bebas Neue', cursive;
-  font-size: 24px;
-  color: var(--cream);
-  letter-spacing: 2px;
-  margin-bottom: 3px;
-}
-.featured-desc {
-  font-size: 11px;
-  color: var(--chrome);
-  margin-bottom: 8px;
-}
-.featured-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.featured-price {
-  font-family: 'Bebas Neue', cursive;
-  font-size: 22px;
-  color: var(--gold);
-  letter-spacing: 1px;
-}
-.featured-price small {
-  font-size: 12px;
-  color: var(--chrome);
-  text-decoration: line-through;
-  margin-left: 6px;
-  font-family: 'Inter', sans-serif;
-}
-.featured-btn {
-  padding: 8px 18px;
-  background: var(--red);
-  color: var(--cream);
-  border: 2px solid var(--cream);
-  border-radius: var(--radius);
-  font-size: 11px;
-  font-weight: 700;
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: all var(--transition);
-  box-shadow: 3px 3px 0 var(--gold);
-  font-family: 'Inter', sans-serif;
-}
-.featured-btn:hover { background: var(--red-dark); transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--gold); }
+/* ═══════════ REVIEWS ═══════════ */
+.revs{background:var(--d);padding:20px 16px;margin-bottom:2px}
+.revs-in{max-width:960px;margin:0 auto}
+.revs-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.revs-title{font-family:'Bebas Neue',cursive;font-size:18px;color:var(--c);letter-spacing:2px}
+.revs-score{display:flex;align-items:center;gap:6px}
+.revs-stars{color:var(--g);font-size:12px;letter-spacing:1px}
+.revs-num{font-size:13px;font-weight:700;color:var(--c)}
+.revs-card{background:var(--d2);border-radius:var(--rad-sm);padding:14px;margin-bottom:8px;border:1px solid rgba(196,30,58,.08)}
+.revs-card:last-child{margin-bottom:0}
+.revs-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.revs-avatar{width:32px;height:32px;border-radius:50%;object-fit:cover;border:2px solid var(--r)}
+.revs-name{font-size:12px;font-weight:700;color:var(--c)}
+.revs-rating{color:var(--g);font-size:10px;letter-spacing:1px}
+.revs-text{font-size:12px;color:var(--ch);line-height:1.6;font-style:italic}
 
-/* ===== REVIEWS ===== */
-.reviews-section {
-  background: var(--dark);
-  padding: 20px 16px;
-  margin-bottom: 2px;
-}
-.reviews-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 14px;
-}
-.reviews-title {
-  font-family: 'Bebas Neue', cursive;
-  font-size: 20px;
-  color: var(--cream);
-  letter-spacing: 2px;
-}
-.reviews-score {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.reviews-score .stars { color: var(--gold); font-size: 12px; }
-.reviews-score .num { font-size: 13px; font-weight: 700; color: var(--cream); }
-.review-card {
-  padding: 14px;
-  background: var(--dark-2);
-  border-radius: var(--radius-sm);
-  margin-bottom: 8px;
-  border: 1px solid rgba(196,30,58,0.1);
-}
-.review-card:last-child { margin-bottom: 0; }
-.review-top {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
-}
-.review-avatar {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--red);
-}
-.review-name { font-size: 12px; font-weight: 600; color: var(--cream); }
-.review-stars { color: var(--gold); font-size: 10px; }
-.review-text { font-size: 12px; color: var(--chrome); line-height: 1.5; font-style: italic; }
+/* ═══════════ INFO ═══════════ */
+.info{background:var(--d);padding:20px 16px;margin-bottom:2px}
+.info-in{max-width:960px;margin:0 auto}
+.info-title{font-family:'Bebas Neue',cursive;font-size:18px;color:var(--c);letter-spacing:2px;margin-bottom:14px}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.info-card{background:var(--d2);border-radius:var(--rad-sm);padding:14px;border:1px solid rgba(196,30,58,.08)}
+.info-icon{width:30px;height:30px;border-radius:50%;background:rgba(196,30,58,.12);display:flex;align-items:center;justify-content:center;font-size:13px;margin-bottom:8px}
+.info-card h4{font-size:10px;font-weight:700;color:var(--c);margin-bottom:3px;text-transform:uppercase;letter-spacing:1px}
+.info-card p{font-size:11px;color:var(--ch);line-height:1.5}
 
-/* ===== INFO ===== */
-.info-section {
-  background: var(--dark);
-  padding: 20px 16px;
-  margin-bottom: 2px;
-}
-.info-title {
-  font-family: 'Bebas Neue', cursive;
-  font-size: 20px;
-  color: var(--cream);
-  letter-spacing: 2px;
-  margin-bottom: 14px;
-}
-.info-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-.info-card {
-  background: var(--dark-2);
-  border-radius: var(--radius-sm);
-  padding: 14px;
-  border: 1px solid rgba(196,30,58,0.1);
-}
-.info-card .info-icon {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: rgba(196,30,58,0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  margin-bottom: 8px;
-}
-.info-card h4 {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--cream);
-  margin-bottom: 3px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.info-card p {
-  font-size: 11px;
-  color: var(--chrome);
-  line-height: 1.4;
-}
+/* ═══════════ FOOTER ═══════════ */
+.ft{background:var(--d2);border-top:2px solid var(--r);padding:24px 16px;text-align:center;margin-bottom:58px}
+.ft-logo{font-family:'Righteous',cursive;font-size:16px;color:var(--c);letter-spacing:1px;margin-bottom:4px}
+.ft-logo em{color:var(--g);font-style:normal}
+.ft-text{font-size:11px;color:var(--ch);margin-bottom:2px}
+.ft-copy{font-size:10px;color:#555;margin-top:10px;padding-top:10px;border-top:1px solid rgba(196,30,58,.1)}
 
-/* ===== BOTTOM NAV ===== */
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(180deg, #222 0%, #1A1A1A 100%);
-  border-top: 2px solid var(--red);
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding: 6px 0;
-  z-index: 100;
-}
-.nav-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  padding: 4px 10px;
-  border: none;
-  background: none;
-  cursor: pointer;
-  text-decoration: none;
-  color: #666;
-  font-size: 9px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: color var(--transition);
-}
-.nav-item.active { color: var(--red); }
-.nav-item .ni { font-size: 20px; }
-.nav-cart-wrap { position: relative; top: -12px; }
-.nav-cart-btn {
-  width: 48px;
-  height: 48px;
-  background: var(--red);
-  color: var(--cream);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  border: 3px solid var(--dark);
-  box-shadow: 0 4px 15px rgba(196,30,58,0.4);
-  cursor: pointer;
-  position: relative;
-}
-.nav-cart-btn .nav-badge {
-  position: absolute;
-  top: -2px;
-  right: -2px;
-  min-width: 16px;
-  height: 16px;
-  background: var(--gold);
-  color: var(--dark);
-  border-radius: 50%;
-  font-size: 8px;
-  font-weight: 700;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid var(--red);
-}
+/* ═══════════ BOTTOM NAV ═══════════ */
+.bn{position:fixed;bottom:0;left:0;right:0;background:var(--d);border-top:2px solid var(--r);display:flex;align-items:center;justify-content:space-around;padding:6px 0;z-index:100}
+.bn-item{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 10px;color:#555;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;transition:color var(--tr)}
+.bn-item.on{color:var(--r)}
+.bn-icon{font-size:20px;margin-bottom:1px}
+.bn-cart-wrap{position:relative;top:-12px}
+.bn-cart{width:48px;height:48px;background:var(--r);color:var(--c);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;border:3px solid var(--d);box-shadow:0 4px 16px rgba(196,30,58,.35);position:relative}
+.bn-badge{position:absolute;top:-2px;right:-2px;min-width:16px;height:16px;background:var(--g);color:var(--d);border-radius:50%;font-size:8px;font-weight:800;display:none;align-items:center;justify-content:center;border:2px solid var(--r)}
 
-/* ===== CART BAR ===== */
-.cart-bar {
-  position: fixed;
-  bottom: 62px;
-  left: 10px;
-  right: 10px;
-  z-index: 90;
-  display: none;
-}
-.cart-bar.show { display: block; }
-.cart-bar-inner {
-  background: var(--dark-2);
-  border: 2px solid var(--red);
-  border-radius: var(--radius-lg);
-  padding: 10px 14px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-}
-.cart-bar-info { display: flex; align-items: center; gap: 10px; }
-.cart-bar-icon {
-  width: 36px;
-  height: 36px;
-  background: rgba(196,30,58,0.2);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  position: relative;
-}
-.cart-bar-num {
-  position: absolute;
-  top: -3px;
-  right: -3px;
-  min-width: 14px;
-  height: 14px;
-  background: var(--red);
-  color: var(--cream);
-  border-radius: 50%;
-  font-size: 8px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.cart-bar-text .cb-qty { font-size: 12px; font-weight: 600; color: var(--cream); }
-.cart-bar-text .cb-total { font-size: 10px; color: var(--chrome); }
-.cart-bar-btn {
-  padding: 8px 16px;
-  background: var(--red);
-  color: var(--cream);
-  border: 2px solid var(--cream);
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: 700;
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: all var(--transition);
-  box-shadow: 2px 2px 0 var(--gold);
-  font-family: 'Inter', sans-serif;
-}
-.cart-bar-btn:hover { background: var(--red-dark); }
+/* ═══════════ CART BAR ═══════════ */
+.cb{position:fixed;bottom:60px;left:10px;right:10px;z-index:90;display:none}
+.cb.show{display:block}
+.cb-in{background:var(--d2);border:2px solid var(--r);border-radius:var(--rad);padding:10px 14px;display:flex;align-items:center;justify-content:space-between;box-shadow:var(--sh)}
+.cb-left{display:flex;align-items:center;gap:10px}
+.cb-icon{width:36px;height:36px;background:rgba(196,30,58,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;position:relative}
+.cb-num{position:absolute;top:-3px;right:-3px;min-width:14px;height:14px;background:var(--r);color:var(--c);border-radius:50%;font-size:8px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.cb-text .cb-qty{font-size:12px;font-weight:700;color:var(--c)}
+.cb-text .cb-total{font-size:10px;color:var(--ch)}
+.cb-btn{padding:8px 16px;background:var(--r);color:var(--c);border:2px solid var(--c);border-radius:20px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;transition:var(--tr);box-shadow:2px 2px 0 var(--g)}
+.cb-btn:hover{background:var(--r-d)}
 
-/* ===== CART MODAL ===== */
-.modal-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  z-index: 200;
-  align-items: flex-end;
-  justify-content: center;
-  backdrop-filter: blur(4px);
-}
-.modal-overlay.open { display: flex; }
-.modal {
-  background: var(--dark-2);
-  width: 100%;
-  max-width: 520px;
-  max-height: 85vh;
-  border-radius: 20px 20px 0 0;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  animation: slideUp 0.3s ease;
-  border: 2px solid var(--red);
-  border-bottom: none;
-}
-@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-.modal-header {
-  padding: 18px 18px 10px;
-  border-bottom: 1px solid rgba(196,30,58,0.2);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-shrink: 0;
-}
-.modal-header h2 {
-  font-family: 'Bebas Neue', cursive;
-  font-size: 20px;
-  color: var(--cream);
-  letter-spacing: 2px;
-}
-.modal-close {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  border: 2px solid rgba(196,30,58,0.3);
-  background: transparent;
-  color: var(--cream);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all var(--transition);
-}
-.modal-close:hover { border-color: var(--red); background: rgba(196,30,58,0.1); }
-.modal-body { overflow-y: auto; flex: 1; padding: 14px 18px; }
-.cart-empty { text-align: center; padding: 40px 20px; }
-.cart-empty .ce-icon { font-size: 40px; margin-bottom: 10px; }
-.cart-empty p { font-size: 13px; color: var(--chrome); }
-.cart-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(196,30,58,0.1);
-}
-.cart-item:last-child { border-bottom: none; }
-.ci-icon {
-  width: 36px;
-  height: 36px;
-  background: rgba(196,30,58,0.15);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  flex-shrink: 0;
-}
-.ci-info { flex: 1; min-width: 0; }
-.ci-name { font-size: 13px; font-weight: 700; color: var(--cream); }
-.ci-price { font-size: 11px; color: var(--chrome); }
-.ci-qty { display: flex; align-items: center; gap: 6px; margin-top: 4px; }
-.ci-qty button {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  border: 2px solid rgba(196,30,58,0.3);
-  background: transparent;
-  color: var(--cream);
-  font-size: 12px;
-  font-weight: 700;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all var(--transition);
-}
-.ci-qty button:hover { border-color: var(--red); color: var(--red); }
-.ci-qty-val { font-size: 12px; font-weight: 700; min-width: 18px; text-align: center; color: var(--cream); }
-.ci-sub { font-size: 13px; font-weight: 700; color: var(--gold); min-width: 60px; text-align: right; }
-.modal-footer {
-  padding: 14px 18px;
-  border-top: 1px solid rgba(196,30,58,0.2);
-  flex-shrink: 0;
-}
-.cart-form-group { margin-bottom: 10px; }
-.cart-form-group label {
-  display: block;
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--chrome);
-  margin-bottom: 4px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.cart-form-group input,
-.cart-form-group textarea {
-  width: 100%;
-  padding: 10px 12px;
-  background: var(--dark);
-  border: 2px solid rgba(196,30,58,0.2);
-  border-radius: var(--radius);
-  font-size: 13px;
-  font-family: 'Inter', sans-serif;
-  outline: none;
-  transition: border-color var(--transition);
-  color: var(--cream);
-}
-.cart-form-group input:focus,
-.cart-form-group textarea:focus { border-color: var(--red); }
-.cart-form-group textarea { resize: none; }
-.cart-total-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-  border-top: 2px solid rgba(196,30,58,0.2);
-  margin-top: 6px;
-  font-size: 15px;
-  font-weight: 800;
-}
-.cart-total-row span:first-child { color: var(--cream); }
-.cart-total-row span:last-child { color: var(--gold); }
-.btn-wa {
-  width: 100%;
-  padding: 12px;
-  background: #25D366;
-  color: var(--white);
-  border: none;
-  border-radius: 25px;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  transition: all var(--transition);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-family: 'Inter', sans-serif;
-}
-.btn-wa:hover { background: #20BD5A; }
+/* ═══════════ CART MODAL ═══════════ */
+.mo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;align-items:flex-end;justify-content:center}
+.mo.open{display:flex}
+.mo-in{background:var(--d2);width:100%;max-width:520px;max-height:85vh;border-radius:20px 20px 0 0;overflow:hidden;display:flex;flex-direction:column;border:2px solid var(--r);border-bottom:none;animation:su .3s ease}
+@keyframes su{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.mo-head{padding:16px 16px 10px;border-bottom:1px solid rgba(196,30,58,.15);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.mo-head h2{font-family:'Bebas Neue',cursive;font-size:18px;color:var(--c);letter-spacing:2px}
+.mo-close{width:32px;height:32px;border-radius:50%;border:2px solid rgba(196,30,58,.2);background:transparent;color:var(--c);display:flex;align-items:center;justify-content:center;font-size:14px;transition:var(--tr)}
+.mo-close:hover{border-color:var(--r)}
+.mo-body{overflow-y:auto;flex:1;padding:12px 16px}
+.ce{text-align:center;padding:40px 20px}
+.ce-icon{font-size:40px;margin-bottom:10px;opacity:.5}
+.ce p{font-size:13px;color:var(--ch)}
+.ci{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(196,30,58,.08)}
+.ci:last-child{border-bottom:none}
+.ci-ic{width:36px;height:36px;background:rgba(196,30,58,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.ci-info{flex:1;min-width:0}
+.ci-name{font-size:13px;font-weight:700;color:var(--c)}
+.ci-price{font-size:11px;color:var(--ch)}
+.ci-qty{display:flex;align-items:center;gap:6px;margin-top:4px}
+.ci-qty button{width:24px;height:24px;border-radius:50%;border:2px solid rgba(196,30,58,.2);background:transparent;color:var(--c);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:var(--tr)}
+.ci-qty button:hover{border-color:var(--r);color:var(--r)}
+.ci-qv{font-size:12px;font-weight:700;min-width:18px;text-align:center;color:var(--c)}
+.ci-sub{font-size:13px;font-weight:700;color:var(--g);min-width:55px;text-align:right}
+.mo-foot{padding:14px 16px;border-top:1px solid rgba(196,30,58,.15);flex-shrink:0}
+.cf{margin-bottom:10px}
+.cf label{display:block;font-size:10px;font-weight:700;color:var(--ch);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px}
+.cf input,.cf textarea{width:100%;padding:10px 12px;background:var(--d);border:2px solid rgba(196,30,58,.15);border-radius:var(--rad-xs);font-size:13px;font-family:'Inter',sans-serif;outline:none;transition:border-color var(--tr);color:var(--c)}
+.cf input:focus,.cf textarea:focus{border-color:var(--r)}
+.cf textarea{resize:none}
+.ct-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:2px solid rgba(196,30,58,.15);margin-top:6px;font-size:15px;font-weight:800}
+.ct-row span:first-child{color:var(--c)}
+.ct-row span:last-child{color:var(--g)}
+.btn-wa{width:100%;padding:12px;background:#25D366;color:#fff;border:none;border-radius:25px;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:8px;transition:var(--tr);text-transform:uppercase;letter-spacing:1px}
+.btn-wa:hover{background:#20BD5A}
 
-/* ===== TOAST ===== */
-.toast {
-  position: fixed;
-  top: 80px;
-  left: 50%;
-  transform: translateX(-50%) translateY(-20px);
-  background: var(--red);
-  color: var(--cream);
-  padding: 8px 18px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-  z-index: 300;
-  opacity: 0;
-  transition: all 0.3s;
-  pointer-events: none;
-  white-space: nowrap;
-  border: 2px solid var(--cream);
-  box-shadow: 3px 3px 0 var(--gold);
-}
-.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+/* ═══════════ TOAST ═══════════ */
+.toast{position:fixed;top:70px;left:50%;transform:translateX(-50%) translateY(-10px);background:var(--r);color:var(--c);padding:8px 18px;border-radius:20px;font-size:12px;font-weight:700;z-index:300;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap;border:2px solid var(--c);box-shadow:3px 3px 0 var(--g)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-/* ===== FAB ===== */
-.fab-wa {
-  position: fixed;
-  bottom: 76px;
-  right: 14px;
-  width: 48px;
-  height: 48px;
-  background: #25D366;
-  color: var(--white);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  text-decoration: none;
-  box-shadow: 0 4px 15px rgba(37,211,102,0.3);
-  z-index: 99;
-  transition: transform var(--transition);
-  border: 2px solid var(--white);
-}
-.fab-wa:hover { transform: scale(1.05); }
+/* ═══════════ FAB ═══════════ */
+.fab{position:fixed;bottom:74px;right:14px;width:48px;height:48px;background:#25D366;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 4px 15px rgba(37,211,102,.3);z-index:99;transition:transform var(--tr);border:2px solid #fff}
+.fab:hover{transform:scale(1.05)}
 
-/* ===== FOOTER ===== */
-.footer {
-  background: var(--dark-2);
-  border-top: 2px solid var(--red);
-  padding: 24px 16px;
-  text-align: center;
-  margin-bottom: 60px;
-}
-.footer-logo {
-  font-family: 'Righteous', cursive;
-  font-size: 18px;
-  color: var(--cream);
-  letter-spacing: 1px;
-  margin-bottom: 6px;
-}
-.footer-logo span { color: var(--gold); }
-.footer-text {
-  font-size: 11px;
-  color: var(--chrome);
-  margin-bottom: 4px;
-}
-.footer-copy {
-  font-size: 10px;
-  color: #555;
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px solid rgba(196,30,58,0.1);
-}
-
-/* ===== RESPONSIVE ===== */
-@media (min-width: 768px) {
-  .prod-card { max-width: 580px; margin-left: auto; margin-right: auto; }
-  .featured-banner { max-width: 580px; margin-left: auto; margin-right: auto; }
-  .cats-scroll { justify-content: center; }
+/* ═══════════ RESPONSIVE ═══════════ */
+@media(min-width:768px){
+  .feat,.prod-card,.cats-in,.ri-in,.revs-in,.info-in,.sec-head,.hero-in{margin-left:auto;margin-right:auto}
+  .cats-scroll{justify-content:center}
 }
 </style>
 </head>
 <body>
 
-<div class="top-bar">🎸 Rock & Roll Burgers — Desde 2018 em São Lourenço</div>
+<div class="tb">🎸 Rock & Roll Burgers — Desde 2018 em São Lourenço</div>
 
-<!-- HEADER -->
-<header class="header" id="hdr">
-  <div class="header-main">
-    <div class="header-logo">X<span>Burger</span></div>
-    <div class="header-actions">
-      <div class="cart-btn-wrap">
-        <button class="header-btn" onclick="openCart()">🛒</button>
-        <span class="badge" id="hdrBadge">0</span>
-      </div>
-    </div>
+<header class="hd" id="hdr">
+  <div class="hd-inner">
+    <div class="hd-logo">X<em>Burger</em></div>
+    <button class="hd-cart" onclick="openCart()">🛒<span class="hd-badge" id="hdBadge">0</span></button>
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
-  <div class="hero-content">
-    <span class="hero-badge">★ 4.9 no Tripadvisor</span>
+  <div class="hero-in">
+    <span class="hero-badge">★ 4.9 Tripadvisor</span>
     <h1 class="hero-title">X-BURGER</h1>
-    <p class="hero-subtitle">♪ Diner Vintage • Rock & Roll ♪</p>
-    <button class="hero-btn" onclick="document.getElementById('catScroll').scrollIntoView({behavior:'smooth'})">Ver Cardápio</button>
+    <p class="hero-sub">♪ Diner Vintage • Rock & Roll ♪</p>
+    <button class="hero-cta" onclick="document.getElementById('catsScroll').scrollIntoView({behavior:'smooth'})">Ver Cardápio</button>
   </div>
 </section>
 
-<div class="vintage-divider">
-  <div class="vd-line"></div>
-  <span class="vd-diamond">◆</span>
-  <span class="vd-text">Est. 2018 — São Lourenço, MG</span>
-  <span class="vd-diamond">◆</span>
-  <div class="vd-line"></div>
-</div>
+<div class="vd"><div class="vd-line"></div><span class="vd-diamond">◆</span><span class="vd-text">Est. 2018 — São Lourenço, MG</span><span class="vd-diamond">◆</span><div class="vd-line"></div></div>
 
-<!-- REST INFO -->
-<div class="rest-info">
-  <div class="rest-top">
-    <img class="rest-avatar" src="https://images.unsplash.com/photo-1552566626-52f8b828add9?w=200&q=80" alt="X-Burger">
-    <div class="rest-details">
-      <h1>X-Burger Diner</h1>
-      <p class="rest-cuisine">Hambúrguer Artesanal • Diner Vintage • Americano</p>
-      <div class="rest-meta">
-        <span class="star">★ 4.9</span>
-        <span>• 300+ avaliações</span>
-        <span>• 30-45 min</span>
-      </div>
+<div class="ri"><div class="ri-in">
+  <div class="ri-top">
+    <img class="ri-avatar" src="https://images.unsplash.com/photo-1552566626-52f8b828add9?w=200&q=80" alt="X-Burger">
+    <div>
+      <h1 class="ri-name">X-Burger Diner</h1>
+      <p class="ri-type">Hambúrguer Artesanal • Diner Vintage • Americano</p>
+      <div class="ri-meta"><span class="ri-star">★ 4.9</span><span>• 300+ avaliações</span><span>• 30-45 min</span></div>
     </div>
   </div>
-  <div class="rest-tags">
-    <span class="rest-tag open">● Aberto agora</span>
-    <span class="rest-tag">🎸 Ambiente retrô</span>
-    <span class="rest-tag">🚚 Delivery</span>
+  <div class="ri-tags"><span class="ri-tag open">● Aberto agora</span><span class="ri-tag">🎸 Ambiente retrô</span><span class="ri-tag">🚚 Delivery</span></div>
+</div></div>
+
+<div class="feat">
+  <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80" alt="X-Uai">
+  <div class="feat-overlay">
+    <span class="feat-tag">Mais Pedido</span>
+    <div class="feat-title">X-UAI</div>
+    <div class="feat-desc">O hambúrguer que conquistou São Lourenço</div>
+    <div class="feat-row"><div class="feat-price">R$ 38,90</div><button class="feat-btn" onclick="scrollToProds()">Peça já</button></div>
   </div>
 </div>
 
-<!-- FEATURED -->
-<div class="featured-banner">
-  <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80" alt="Combo X-Uai">
-  <div class="featured-overlay">
-    <span class="featured-tag">Mais Pedido</span>
-    <div class="featured-title">X-UAI</div>
-    <div class="featured-desc">O hambúrguer que conquistou São Lourenço</div>
-    <div class="featured-bottom">
-      <div class="featured-price">R$ 38,90</div>
-      <button class="featured-btn" onclick="scrollToBurgers()">Peça já</button>
-    </div>
-  </div>
+<div class="cats" id="catsSection"><div class="cats-in">
+  <h3 class="cats-title">◆ Categorias</h3>
+  <div class="cats-scroll" id="catsScroll"></div>
+</div></div>
+
+<div class="prods" id="prodsSection">
+  <div class="sec-head"><h2 class="sec-title" id="secTitle"><em>♥</em> Mais Pedidos</h2></div>
+  <div id="prodsGrid"></div>
 </div>
 
-<!-- CATEGORIES -->
-<div class="cats-section">
-  <div class="cats-title">◆ Categorias</div>
-  <div class="cats-scroll" id="catScroll"></div>
-</div>
+<div class="revs"><div class="revs-in">
+  <div class="revs-head"><h3 class="revs-title">♪ Quem provou, aprovou</h3><div class="revs-score"><span class="revs-stars">★ ★ ★ ★ ★</span><span class="revs-num">4.9</span></div></div>
+  <div class="revs-card"><div class="revs-top"><img class="revs-avatar" src="https://i.pravatar.cc/100?u=pedro" alt=""><div><div class="revs-name">Pedro S.</div><div class="revs-rating">★ ★ ★ ★ ★</div></div></div><p class="revs-text">"Melhor hambúrguer de São Lourenço! A decoração vintage é incrível, música boa e o X-Uai é simplesmente divino."</p></div>
+  <div class="revs-card"><div class="revs-top"><img class="revs-avatar" src="https://i.pravatar.cc/100?u=ana" alt=""><div><div class="revs-name">Ana M.</div><div class="revs-rating">★ ★ ★ ★ ★</div></div></div><p class="revs-text">"O ambiente é muito nostálgico, parece que voltamos no tempo! O milk-shake de Nutella é sensacional."</p></div>
+  <div class="revs-card"><div class="revs-top"><img class="revs-avatar" src="https://i.pravatar.cc/100?u=lucas" alt=""><div><div class="revs-name">Lucas R.</div><div class="revs-rating">★ ★ ★ ★ ★</div></div></div><p class="revs-text">"Smash burger perfeito! Batata frita crocante e o ambiente rock'n'roll é demais. Nota 10!"</p></div>
+</div></div>
 
-<!-- PRODUCTS -->
-<div class="products-section" id="prodSection">
-  <div class="section-header">
-    <h2 class="section-title" id="prodTitle"><span class="accent">♥</span> Mais Pedidos</h2>
-  </div>
-  <div id="prodGrid"></div>
-</div>
-
-<!-- REVIEWS -->
-<div class="reviews-section">
-  <div class="reviews-header">
-    <h3 class="reviews-title">♪ Quem provou, aprovou</h3>
-    <div class="reviews-score">
-      <span class="stars">★ ★ ★ ★ ★</span>
-      <span class="num">4.9</span>
-    </div>
-  </div>
-  <div class="review-card">
-    <div class="review-top">
-      <img class="review-avatar" src="https://i.pravatar.cc/100?u=pedro" alt="">
-      <div>
-        <div class="review-name">Pedro S.</div>
-        <div class="review-stars">★ ★ ★ ★ ★</div>
-      </div>
-    </div>
-    <p class="review-text">"Melhor hambúrguer de São Lourenço! A decoração vintage é incrível, música boa e o X-Uai é simplesmente divino. Experiência completa!"</p>
-  </div>
-  <div class="review-card">
-    <div class="review-top">
-      <img class="review-avatar" src="https://i.pravatar.cc/100?u=ana" alt="">
-      <div>
-        <div class="review-name">Ana M.</div>
-        <div class="review-stars">★ ★ ★ ★ ★</div>
-      </div>
-    </div>
-    <p class="review-text">"O ambiente é muito nostálgico, parece que voltamos no tempo! O milk-shake de Nutella é sensacional. Melhor custo-benefício da cidade."</p>
-  </div>
-  <div class="review-card">
-    <div class="review-top">
-      <img class="review-avatar" src="https://i.pravatar.cc/100?u=lucas" alt="">
-      <div>
-        <div class="review-name">Lucas R.</div>
-        <div class="review-stars">★ ★ ★ ★ ★</div>
-      </div>
-    </div>
-    <p class="review-text">"Smash burger perfeito! Batata frita crocante e o ambiente rock'n'roll é demais. Atendimento excelente. Nota 10!"</p>
-  </div>
-</div>
-
-<!-- INFO -->
-<div class="info-section">
+<div class="info"><div class="info-in">
   <h3 class="info-title">◆ Informações</h3>
   <div class="info-grid">
-    <div class="info-card">
-      <div class="info-icon">📍</div>
-      <h4>Endereço</h4>
-      <p>Av. Comendador Costa, Centro<br>São Lourenço - MG</p>
-    </div>
-    <div class="info-card">
-      <div class="info-icon">🕐</div>
-      <h4>Horário</h4>
-      <p>Almoço e Jantar<br>Seg a Dom: 11h às 23h</p>
-    </div>
-    <div class="info-card">
-      <div class="info-icon">💳</div>
-      <h4>Pagamento</h4>
-      <p>PIX, Cartão<br>Dinheiro</p>
-    </div>
-    <div class="info-card">
-      <div class="info-icon">🚚</div>
-      <h4>Entrega</h4>
-      <p>30-45 min<br>Delivery próprio</p>
-    </div>
+    <div class="info-card"><div class="info-icon">📍</div><h4>Endereço</h4><p>Av. Comendador Costa, Centro<br>São Lourenço - MG</p></div>
+    <div class="info-card"><div class="info-icon">🕐</div><h4>Horário</h4><p>Almoço e Jantar<br>Seg a Dom: 11h às 23h</p></div>
+    <div class="info-card"><div class="info-icon">💳</div><h4>Pagamento</h4><p>PIX, Cartão<br>Dinheiro</p></div>
+    <div class="info-card"><div class="info-icon">🚚</div><h4>Entrega</h4><p>30-45 min<br>Delivery próprio</p></div>
   </div>
-</div>
+</div></div>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-logo">X<span>Burger</span></div>
-  <div class="footer-text">Diner Vintage • Rock & Roll Burgers</div>
-  <div class="footer-text">São Lourenço, MG — Est. 2018</div>
-  <div class="footer-copy">© 2026 X-Burger. Todos os direitos reservados.</div>
+<footer class="ft">
+  <div class="ft-logo">X<em>Burger</em></div>
+  <div class="ft-text">Diner Vintage • Rock & Roll Burgers</div>
+  <div class="ft-text">São Lourenço, MG — Est. 2018</div>
+  <div class="ft-copy">© 2026 X-Burger. Todos os direitos reservados.</div>
 </footer>
 
-<!-- BOTTOM NAV -->
-<nav class="bottom-nav">
-  <button class="nav-item active" id="bnHome" onclick="setNav(0)">
-    <span class="ni">🏠</span>
-    Início
-  </button>
-  <button class="nav-item" id="bnMenu" onclick="setNav(1)">
-    <span class="ni">📋</span>
-    Cardápio
-  </button>
-  <div class="nav-cart-wrap">
-    <button class="nav-cart-btn" onclick="openCart()">
-      🛒
-      <span class="nav-badge" id="bnCartNum">0</span>
-    </button>
-  </div>
-  <button class="nav-item" id="bnFav" onclick="setNav(3)">
-    <span class="ni">❤️</span>
-    Favoritos
-  </button>
-  <button class="nav-item" id="bnMe" onclick="setNav(4)">
-    <span class="ni">👤</span>
-    Conta
-  </button>
+<nav class="bn">
+  <button class="bn-item on" id="bnHome" onclick="setNav(0)"><span class="bn-icon">🏠</span>Início</button>
+  <button class="bn-item" id="bnMenu" onclick="setNav(1)"><span class="bn-icon">📋</span>Cardápio</button>
+  <div class="bn-cart-wrap"><button class="bn-cart" onclick="openCart()">🛒<span class="bn-badge" id="bnCartNum">0</span></button></div>
+  <button class="bn-item" id="bnFav" onclick="setNav(3)"><span class="bn-icon">❤️</span>Favoritos</button>
+  <button class="bn-item" id="bnMe" onclick="setNav(4)"><span class="bn-icon">👤</span>Conta</button>
 </nav>
 
-<!-- CART BAR -->
-<div class="cart-bar" id="cartBar">
-  <div class="cart-bar-inner">
-    <div class="cart-bar-info">
-      <div class="cart-bar-icon">🛒<span class="cart-bar-num" id="cbNum">0</span></div>
-      <div class="cart-bar-text">
-        <div class="cb-qty" id="cbQty">0 itens</div>
-        <div class="cb-total" id="cbTotal">R$ 0,00</div>
-      </div>
-    </div>
-    <button class="cart-bar-btn" onclick="openCart()">Ver Pedido</button>
-  </div>
-</div>
+<div class="cb" id="cartBar"><div class="cb-in">
+  <div class="cb-left"><div class="cb-icon">🛒<span class="cb-num" id="cbNum">0</span></div><div class="cb-text"><div class="cb-qty" id="cbQty">0 itens</div><div class="cb-total" id="cbTotal">R$ 0,00</div></div></div>
+  <button class="cb-btn" onclick="openCart()">Ver Pedido</button>
+</div></div>
 
-<!-- CART MODAL -->
-<div class="modal-overlay" id="cartModal" onclick="if(event.target===this)closeCart()">
-  <div class="modal">
-    <div class="modal-header">
-      <h2>Seu Pedido</h2>
-      <button class="modal-close" onclick="closeCart()">✕</button>
-    </div>
-    <div class="modal-body" id="cartBody">
-      <div class="cart-empty">
-        <div class="ce-icon">🛒</div>
-        <p>Seu pedido está vazio.<br>Adicione itens!</p>
-      </div>
-    </div>
-    <div class="modal-footer" id="cartFoot" style="display:none">
-      <div class="cart-form-group">
-        <label>Seu nome</label>
-        <input type="text" id="cName" placeholder="Ex: João Silva">
-      </div>
-      <div class="cart-form-group">
-        <label>Observações</label>
-        <textarea id="cNotes" rows="2" placeholder="Ex: sem cebola, mal passado..."></textarea>
-      </div>
-      <div class="cart-total-row">
-        <span>Total</span>
-        <span id="cartTotalVal">R$ 0,00</span>
-      </div>
-      <button class="btn-wa" onclick="sendWA()">📱 Enviar pelo WhatsApp</button>
-    </div>
+<div class="mo" id="cartModal" onclick="if(event.target===this)closeCart()"><div class="mo-in">
+  <div class="mo-head"><h2>Seu Pedido</h2><button class="mo-close" onclick="closeCart()">✕</button></div>
+  <div class="mo-body" id="cartBody"><div class="ce"><div class="ce-icon">🛒</div><p>Seu pedido está vazio.<br>Adicione itens!</p></div></div>
+  <div class="mo-foot" id="cartFoot" style="display:none">
+    <div class="cf"><label>Seu nome</label><input type="text" id="cName" placeholder="Ex: João Silva"></div>
+    <div class="cf"><label>Observações</label><textarea id="cNotes" rows="2" placeholder="Ex: sem cebola, mal passado..."></textarea></div>
+    <div class="ct-row"><span>Total</span><span id="cartTotalVal">R$ 0,00</span></div>
+    <button class="btn-wa" onclick="sendWA()">📱 Enviar pelo WhatsApp</button>
   </div>
-</div>
+</div></div>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
-
-<!-- FAB -->
-<a href="https://wa.me/5535999999999" id="waFab" target="_blank" class="fab-wa">💬</a>
+<a href="https://wa.me/5535999999999" id="waFab" target="_blank" class="fab">💬</a>
 
 <script>
-// ===== DATA =====
 (function(){
-  var s = localStorage.getItem('xburger_cardapio');
-  if(s){ try{ window.DATA = JSON.parse(s); }catch(e){ window.DATA = null; } }
-  if(!window.DATA || !window.DATA.categorias){
-    window.DATA = {
-      nome: 'X-Burger', whatsapp: '5535999999999',
-      categorias: [
-        { nome: 'Burgers Artesanais', icon: '🍔', pratos: [
-          { nome: 'X-Uai', preco: 38.90, descricao: 'O mais famoso! Burger 180g, cheddar, bacon, cebola caramelizada, molho especial da casa.', img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80' },
-          { nome: 'Smash Clássico', preco: 29.90, descricao: 'Smash burger 120g, cheddar, pão brioche, picles, molho especial.', img: 'https://images.unsplash.com/photo-1530554764233-e79e16c91d08?w=400&q=80' },
-          { nome: 'Bacon Supreme', preco: 36.90, descricao: 'Burger 160g, bacon crocante, cheddar, cebola crispy, molho barbecue.', img: 'https://images.unsplash.com/photo-1633424234673-c8cd0f4df77b?w=400&q=80' },
-          { nome: 'Monster Burger', preco: 48.90, descricao: '3x carne smash, 3x cheddar, bacon, onion rings, molho da casa.', img: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=400&q=80' },
-          { nome: 'X-Veggie', preco: 32.90, descricao: 'Burger vegetariano de grão-de-bico, queijo, rúcula, tomate, maionese verde.', img: 'https://images.unsplash.com/photo-1520072959219-c595e6cdc07e?w=400&q=80' }
-        ]},
-        { nome: 'Smash Burgers', icon: '🔥', pratos: [
-          { nome: 'Smash Simples', preco: 24.90, descricao: 'Smash 100g, cheddar, pão brioche, picles.', img: 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=400&q=80' },
-          { nome: 'Smash Duplo', preco: 32.90, descricao: '2x smash 100g, 2x cheddar, cebola caramelizada, molho especial.', img: 'https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=400&q=80' },
-          { nome: 'Smash Bacon', preco: 35.90, descricao: 'Smash duplo, bacon crocante, cheddar, molho barbecue.', img: 'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=400&q=80' }
-        ]},
-        { nome: 'Acompanhamentos', icon: '🍟', pratos: [
-          { nome: 'Batata Frita Especial', preco: 18.90, descricao: 'Batata crocante com sal defumado e páprica.', img: 'https://images.unsplash.com/photo-1585109649139-366815a0d713?w=400&q=80' },
-          { nome: 'Onion Rings', preco: 22.90, descricao: 'Anéis de cebola empanados e crocantes, molho ranch.', img: 'https://images.unsplash.com/photo-1639024471283-03518883512d?w=400&q=80' },
-          { nome: 'Nuggets 10un', preco: 19.90, descricao: '10x nuggets crocantes com molho à escolha.', img: 'https://images.unsplash.com/photo-1562967914-608f82629710?w=400&q=80' }
-        ]},
-        { nome: 'Milk-Shakes', icon: '🥤', pratos: [
-          { nome: 'Milk-Shake Nutella', preco: 24.90, descricao: 'O mais pedido! Nutella, sorvete de creme, chantilly. 500ml.', img: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&q=80' },
-          { nome: 'Milk-Shake Ovomaltine', preco: 22.90, descricao: 'Ovomaltine, sorvete de creme, chantilly. 500ml.', img: 'https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=400&q=80' },
-          { nome: 'Milk-Shake Morango', preco: 22.90, descricao: 'Morangos frescos, sorvete de creme, chantilly. 500ml.', img: 'https://images.unsplash.com/photo-1553177595-4de2bb0842b9?w=400&q=80' }
-        ]},
-        { nome: 'Bebidas', icon: '🍺', pratos: [
-          { nome: 'Refri Lata', preco: 7.00, descricao: 'Coca-Cola, Guaraná ou Fanta 350ml.', img: 'https://images.unsplash.com/photo-1553787434-6e1d49c42e5d?w=400&q=80' },
-          { nome: 'Suco Natural', preco: 10.00, descricao: 'Laranja, limão, maracujá ou morango.', img: 'https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&q=80' },
-          { nome: 'Água', preco: 5.00, descricao: 'Com ou sem gás. 500ml.', img: 'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=400&q=80' }
-        ]},
-        { nome: 'Combos', icon: '🎁', pratos: [
-          { nome: 'Combo Solo', preco: 49.90, descricao: '1 Burger + Batata + Refri.', img: 'https://images.unsplash.com/photo-1662047317263-03ff37e76db2?w=400&q=80' },
-          { nome: 'Combo Casal', preco: 89.90, descricao: '2 Burgers + Batata Grande + 2 Refris.', img: 'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=400&q=80' },
-          { nome: 'Combo Família', preco: 139.90, descricao: '4 Burgers + 2 Batatas + 2 Refris + Nuggets.', img: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&q=80' }
-        ]},
-        { nome: 'Infantil', icon: '👶', pratos: [
-          { nome: 'Mini Burger', preco: 22.90, descricao: 'Burger 100g, cheddar, pão brioche. Acompanha batata pequena.', img: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&q=80' },
-          { nome: 'X-Kids', preco: 29.90, descricao: 'Mini burger + batata + suco. Com brinde surpresa!', img: 'https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=400&q=80' }
-        ]}
-      ]
-    };
-    try{ localStorage.setItem('xburger_cardapio', JSON.stringify(window.DATA)); }catch(e){}
+  var s=localStorage.getItem('xburger_cardapio');
+  if(s){try{window.DATA=JSON.parse(s)}catch(e){window.DATA=null}}
+  if(!window.DATA||!window.DATA.categorias){
+    window.DATA={nome:'X-Burger',whatsapp:'5535999999999',categorias:[
+      {nome:'Burgers Artesanais',icon:'🍔',pratos:[
+        {nome:'X-Uai',preco:38.90,desc:'O mais famoso! Burger 180g, cheddar, bacon, cebola caramelizada, molho especial.',img:'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80'},
+        {nome:'Smash Clássico',preco:29.90,desc:'Smash burger 120g, cheddar, pão brioche, picles, molho especial.',img:'https://images.unsplash.com/photo-1530554764233-e79e16c91d08?w=400&q=80'},
+        {nome:'Bacon Supreme',preco:36.90,desc:'Burger 160g, bacon crocante, cheddar, cebola crispy, molho barbecue.',img:'https://images.unsplash.com/photo-1633424234673-c8cd0f4df77b?w=400&q=80'},
+        {nome:'Monster Burger',preco:48.90,desc:'3x carne smash, 3x cheddar, bacon, onion rings, molho da casa.',img:'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=400&q=80'},
+        {nome:'X-Veggie',preco:32.90,desc:'Burger vegetariano de grão-de-bico, queijo, rúcula, tomate, maionese verde.',img:'https://images.unsplash.com/photo-1520072959219-c595e6cdc07e?w=400&q=80'}
+      ]},
+      {nome:'Smash Burgers',icon:'🔥',pratos:[
+        {nome:'Smash Simples',preco:24.90,desc:'Smash 100g, cheddar, pão brioche, picles.',img:'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=400&q=80'},
+        {nome:'Smash Duplo',preco:32.90,desc:'2x smash 100g, 2x cheddar, cebola caramelizada, molho especial.',img:'https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=400&q=80'},
+        {nome:'Smash Bacon',preco:35.90,desc:'Smash duplo, bacon crocante, cheddar, molho barbecue.',img:'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=400&q=80'}
+      ]},
+      {nome:'Acompanhamentos',icon:'🍟',pratos:[
+        {nome:'Batata Frita Especial',preco:18.90,desc:'Batata crocante com sal defumado e páprica.',img:'https://images.unsplash.com/photo-1585109649139-366815a0d713?w=400&q=80'},
+        {nome:'Onion Rings',preco:22.90,desc:'Anéis de cebola empanados e crocantes, molho ranch.',img:'https://images.unsplash.com/photo-1639024471283-03518883512d?w=400&q=80'},
+        {nome:'Nuggets 10un',preco:19.90,desc:'10x nuggets crocantes com molho à escolha.',img:'https://images.unsplash.com/photo-1562967914-608f82629710?w=400&q=80'}
+      ]},
+      {nome:'Milk-Shakes',icon:'🥤',pratos:[
+        {nome:'Milk-Shake Nutella',preco:24.90,desc:'O mais pedido! Nutella, sorvete de creme, chantilly. 500ml.',img:'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&q=80'},
+        {nome:'Milk-Shake Ovomaltine',preco:22.90,desc:'Ovomaltine, sorvete de creme, chantilly. 500ml.',img:'https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=400&q=80'},
+        {nome:'Milk-Shake Morango',preco:22.90,desc:'Morangos frescos, sorvete de creme, chantilly. 500ml.',img:'https://images.unsplash.com/photo-1553177595-4de2bb0842b9?w=400&q=80'}
+      ]},
+      {nome:'Bebidas',icon:'🍺',pratos:[
+        {nome:'Refri Lata',preco:7.00,desc:'Coca-Cola, Guaraná ou Fanta 350ml.',img:'https://images.unsplash.com/photo-1553787434-6e1d49c42e5d?w=400&q=80'},
+        {nome:'Suco Natural',preco:10.00,desc:'Laranja, limão, maracujá ou morango.',img:'https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&q=80'},
+        {nome:'Água',preco:5.00,desc:'Com ou sem gás. 500ml.',img:'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=400&q=80'}
+      ]},
+      {nome:'Combos',icon:'🎁',pratos:[
+        {nome:'Combo Solo',preco:49.90,desc:'1 Burger + Batata + Refri.',img:'https://images.unsplash.com/photo-1662047317263-03ff37e76db2?w=400&q=80'},
+        {nome:'Combo Casal',preco:89.90,desc:'2 Burgers + Batata Grande + 2 Refris.',img:'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=400&q=80'},
+        {nome:'Combo Família',preco:139.90,desc:'4 Burgers + 2 Batatas + 2 Refris + Nuggets.',img:'https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&q=80'}
+      ]},
+      {nome:'Infantil',icon:'👶',pratos:[
+        {nome:'Mini Burger',preco:22.90,desc:'Burger 100g, cheddar, pão brioche. Acompanha batata pequena.',img:'https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&q=80'},
+        {nome:'X-Kids',preco:29.90,desc:'Mini burger + batata + suco. Com brinde surpresa!',img:'https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=400&q=80'}
+      ]}
+    ]};
+    try{localStorage.setItem('xburger_cardapio',JSON.stringify(window.DATA))}catch(e){}
   }
 })();
 
-var CART = {};
-var ACTIVE_CAT = 0;
+var CART={};
+var ACTIVE_CAT=0;
 
-function setNav(idx){
-  document.querySelectorAll('.nav-item').forEach(function(el){ el.classList.remove('active'); });
-  var ids = ['bnHome','bnMenu','bnFav','bnMe'];
-  if(ids[idx]) document.getElementById(ids[idx]).classList.add('active');
-  if(idx===1) document.getElementById('catScroll').scrollIntoView({behavior:'smooth'});
-  if(idx===0) window.scrollTo({top:0,behavior:'smooth'});
+function setNav(i){
+  document.querySelectorAll('.bn-item').forEach(function(el){el.classList.remove('on')});
+  var ids=['bnHome','bnMenu','bnFav','bnMe'];if(ids[i])document.getElementById(ids[i]).classList.add('on');
+  if(i===1)document.getElementById('catsScroll').scrollIntoView({behavior:'smooth'});
+  if(i===0)window.scrollTo({top:0,behavior:'smooth'});
 }
-
-function scrollToBurgers(){
-  var firstCat = document.querySelector('.cat-btn');
-  if(firstCat) firstCat.click();
-}
+function scrollToProds(){document.getElementById('catsSection').scrollIntoView({behavior:'smooth'})}
 
 function renderCats(){
-  var el = document.getElementById('catScroll');
-  el.innerHTML = '';
+  var el=document.getElementById('catsScroll');el.innerHTML='';
   window.DATA.categorias.forEach(function(cat,i){
-    var b = document.createElement('button');
-    b.className = 'cat-btn' + (i===ACTIVE_CAT?' active':'');
-    b.textContent = cat.icon + ' ' + cat.nome;
-    b.onclick = function(){ ACTIVE_CAT=i; renderCats(); renderProds(); };
+    var b=document.createElement('button');
+    b.className='cat-pill'+(i===ACTIVE_CAT?' on':'');
+    b.textContent=cat.icon+' '+cat.nome;
+    b.onclick=function(){ACTIVE_CAT=i;renderCats();renderProds()};
     el.appendChild(b);
   });
 }
 
 function renderProds(){
-  var grid = document.getElementById('prodGrid');
-  var title = document.getElementById('prodTitle');
-  if(title) title.innerHTML = '<span class="accent">♥</span> ' + window.DATA.categorias[ACTIVE_CAT].nome;
-  grid.innerHTML = '';
-  var cat = window.DATA.categorias[ACTIVE_CAT];
-  if(!cat || !cat.pratos || !cat.pratos.length){
-    grid.innerHTML = '<p style="text-align:center;color:#666;font-size:13px;padding:30px">Nenhum produto nesta categoria</p>';
+  var grid=document.getElementById('prodsGrid');
+  var title=document.getElementById('secTitle');
+  if(title)title.innerHTML='<em>♥</em> '+window.DATA.categorias[ACTIVE_CAT].nome;
+  grid.innerHTML='';
+  var cat=window.DATA.categorias[ACTIVE_CAT];
+  if(!cat||!cat.pratos||!cat.pratos.length){
+    grid.innerHTML='<p style="text-align:center;color:#666;font-size:13px;padding:30px;grid-column:1/-1">Nenhum produto nesta categoria</p>';
     return;
   }
-  cat.pratos.forEach(function(p, pi){
-    var key = ACTIVE_CAT + '-' + pi;
-    var qty = CART[key] ? CART[key].qty : 0;
-    var card = document.createElement('div');
-    card.className = 'prod-card';
-    card.innerHTML = '<img class="prod-img" src="'+p.img+'" alt="'+p.nome+'" loading="lazy" onerror="this.src=\'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22><rect fill=%22%23333%22 width=%2280%22 height=%2280%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22 font-size=%2228%22>🍔</text></svg>\'">' +
-      '<div class="prod-info">' +
-        '<div class="prod-name">'+p.nome+'</div>' +
-        '<div class="prod-desc">'+p.descricao+'</div>' +
-        '<div class="prod-bottom">' +
-          '<div class="prod-price">R$ '+p.preco.toFixed(2).replace('.',',')+'</div>' +
-          '<div class="prod-add-wrap">' +
-            '<button class="prod-add" onclick="addItem('+ACTIVE_CAT+','+pi+',\''+p.nome.replace(/'/g,"\\'")+'\','+p.preco+',\''+cat.icon+'\')">+</button>' +
-            '<span class="prod-qty-badge" id="pqb-'+key+'">'+(qty>0?qty:'')+'</span>' +
-          '</div>' +
-        '</div>' +
+  cat.pratos.forEach(function(p,pi){
+    var key=ACTIVE_CAT+'-'+pi;
+    var qty=CART[key]?CART[key].qty:0;
+    var card=document.createElement('div');
+    card.className='prod-card';
+    card.innerHTML='<img class="prod-img" src="'+p.img+'" alt="'+p.nome+'" loading="lazy" onerror="this.src=\'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 84 84%22><rect fill=%22%23333%22 width=%2284%22 height=%2284%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23555%22 font-size=%2232%22>🍔</text></svg>\'">'+
+      '<div class="prod-info">'+
+        '<div class="prod-name">'+p.nome+'</div>'+
+        '<div class="prod-desc">'+p.desc+'</div>'+
+        '<div class="prod-row">'+
+          '<div class="prod-price">R$ '+p.preco.toFixed(2).replace('.',',')+'</div>'+
+          '<div class="prod-add-wrap">'+
+            '<button class="prod-add" onclick="addItem('+ACTIVE_CAT+','+pi+')">+</button>'+
+            '<span class="prod-qty" id="pqb-'+key+'">'+(qty>0?qty:'')+'</span>'+
+          '</div>'+
+        '</div>'+
       '</div>';
     grid.appendChild(card);
-    if(qty > 0){
-      card.querySelector('.prod-qty-badge').style.display = 'flex';
-    }
+    if(qty>0)card.querySelector('.prod-qty').style.display='flex';
   });
 }
 
-function addItem(catIdx, idx, name, price, icon){
-  var key = catIdx + '-' + idx;
-  if(CART[key]){ CART[key].qty++; } else { CART[key] = { qty:1, name:name, price:price, icon:icon }; }
-  updateCart();
-  renderProds();
-  toast(name + ' adicionado!');
+function addItem(catIdx,idx){
+  var p=window.DATA.categorias[catIdx].pratos[idx];
+  var key=catIdx+'-'+idx;
+  if(CART[key]){CART[key].qty++}else{CART[key]={qty:1,name:p.name,price:p.preco,icon:window.DATA.categorias[catIdx].icon}}
+  updateCart();renderProds();
+  toast(p.nome+' adicionado!');
 }
 
 function removeItem(key){
-  if(!CART[key]) return;
-  CART[key].qty--;
-  if(CART[key].qty <= 0) delete CART[key];
-  updateCart();
-  renderProds();
+  if(!CART[key])return;CART[key].qty--;if(CART[key].qty<=0)delete CART[key];
+  updateCart();renderProds();
 }
 
-function cartCount(){ var n=0; for(var k in CART){ n+=CART[k].qty; } return n; }
-function cartTotal(){ var t=0; for(var k in CART){ t+=CART[k].price*CART[k].qty; } return t; }
+function cartCount(){var n=0;for(var k in CART){n+=CART[k].qty}return n}
+function cartTotal(){var t=0;for(var k in CART){t+=CART[k].price*CART[k].qty}return t}
 
 function updateCart(){
-  var count = cartCount(), total = cartTotal();
-  var bar = document.getElementById('cartBar');
-  var bnNum = document.getElementById('bnCartNum');
-  var hdrB = document.getElementById('hdrBadge');
-  if(count > 0){
+  var count=cartCount(),total=cartTotal();
+  var bar=document.getElementById('cartBar');
+  var bnNum=document.getElementById('bnCartNum');
+  var hdrB=document.getElementById('hdBadge');
+  if(count>0){
     bar.classList.add('show');
-    document.getElementById('cbNum').textContent = count;
-    document.getElementById('cbQty').textContent = count + ' item' + (count>1?'ns':'');
-    document.getElementById('cbTotal').textContent = 'R$ ' + total.toFixed(2).replace('.',',');
-    bnNum.style.display = 'flex';
-    bnNum.textContent = count;
-    hdrB.style.display = 'flex';
-    hdrB.textContent = count;
-  } else {
+    document.getElementById('cbNum').textContent=count;
+    document.getElementById('cbQty').textContent=count+' item'+(count>1?'ns':'');
+    document.getElementById('cbTotal').textContent='R$ '+total.toFixed(2).replace('.',',');
+    bnNum.style.display='flex';bnNum.textContent=count;
+    hdrB.style.display='flex';hdrB.textContent=count;
+  }else{
     bar.classList.remove('show');
-    bnNum.style.display = 'none';
-    hdrB.style.display = 'none';
+    bnNum.style.display='none';hdrB.style.display='none';
   }
 }
 
 function getCartItems(){
-  var items = [];
-  for(var k in CART){
-    items.push({ key:k, name:CART[k].name, price:CART[k].price, qty:CART[k].qty, icon:CART[k].icon, subtotal:CART[k].price*CART[k].qty });
-  }
+  var items=[];
+  for(var k in CART){items.push({key:k,name:CART[k].name,price:CART[k].price,qty:CART[k].qty,icon:CART[k].icon,subtotal:CART[k].price*CART[k].qty})}
   return items;
 }
 
 function openCart(){
-  var items = getCartItems();
-  var body = document.getElementById('cartBody');
-  var foot = document.getElementById('cartFoot');
+  var items=getCartItems();
+  var body=document.getElementById('cartBody');
+  var foot=document.getElementById('cartFoot');
   if(!items.length){
-    body.innerHTML = '<div class="cart-empty"><div class="ce-icon">🛒</div><p>Seu pedido está vazio.<br>Adicione itens!</p></div>';
-    foot.style.display = 'none';
-  } else {
-    foot.style.display = 'block';
-    var h = '';
+    body.innerHTML='<div class="ce"><div class="ce-icon">🛒</div><p>Seu pedido está vazio.<br>Adicione itens!</p></div>';
+    foot.style.display='none';
+  }else{
+    foot.style.display='block';
+    var h='';
     items.forEach(function(it){
-      h += '<div class="cart-item">' +
-        '<div class="ci-icon">'+it.icon+'</div>' +
-        '<div class="ci-info"><div class="ci-name">'+it.name+'</div><div class="ci-price">R$ '+it.price.toFixed(2).replace('.',',')+'</div>' +
-        '<div class="ci-qty"><button onclick="modalRemove(\''+it.key+'\')">−</button><span class="ci-qty-val">'+it.qty+'</span><button onclick="modalAdd(\''+it.key+'\')">+</button></div></div>' +
-        '<div class="ci-sub">R$ '+it.subtotal.toFixed(2).replace('.',',')+'</div></div>';
+      h+='<div class="ci"><div class="ci-ic">'+it.icon+'</div><div class="ci-info"><div class="ci-name">'+it.name+'</div><div class="ci-price">R$ '+it.price.toFixed(2).replace('.',',')+'</div><div class="ci-qty"><button onclick="modalRemove(\''+it.key+'\')">−</button><span class="ci-qv">'+it.qty+'</span><button onclick="modalAdd(\''+it.key+'\')">+</button></div></div><div class="ci-sub">R$ '+it.subtotal.toFixed(2).replace('.',',')+'</div></div>';
     });
-    h += '<div class="cart-total-row"><span>Total</span><span>R$ '+cartTotal().toFixed(2).replace('.',',')+'</span></div>';
-    body.innerHTML = h;
-    document.getElementById('cartTotalVal').textContent = 'R$ ' + cartTotal().toFixed(2).replace('.',',');
+    h+='<div class="ct-row"><span>Total</span><span>R$ '+cartTotal().toFixed(2).replace('.',',')+'</span></div>';
+    body.innerHTML=h;
+    document.getElementById('cartTotalVal').textContent='R$ '+cartTotal().toFixed(2).replace('.',',');
   }
   document.getElementById('cartModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow='hidden';
 }
 
-function closeCart(){
-  document.getElementById('cartModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function modalAdd(key){ if(CART[key]) CART[key].qty++; else return; updateCart(); openCart(); renderProds(); }
-function modalRemove(key){ removeItem(key); openCart(); }
+function closeCart(){document.getElementById('cartModal').classList.remove('open');document.body.style.overflow=''}
+function modalAdd(key){if(CART[key])CART[key].qty++;else return;updateCart();openCart();renderProds()}
+function modalRemove(key){removeItem(key);openCart()}
 
 function sendWA(){
-  var items = getCartItems();
-  if(!items.length) return;
-  var name = document.getElementById('cName').value.trim() || 'Cliente';
-  var notes = document.getElementById('cNotes').value.trim();
-  var total = cartTotal();
-  var msg = '📋 *PEDIDO - X-BURGER DINER*\n👤 Cliente: '+name+'\n─────────────────\n\n';
-  items.forEach(function(it){ msg += '• '+it.qty+'x '+it.name+' — R$ '+it.subtotal.toFixed(2).replace('.',',')+'\n'; });
-  msg += '\n─────────────────\n💰 *TOTAL: R$ '+total.toFixed(2).replace('.',',')+'*\n';
-  if(notes) msg += '\n📝 Observações:\n'+notes+'\n';
-  var wa = window.DATA.whatsapp || '5535999999999';
-  window.open('https://wa.me/'+wa+'?text='+encodeURIComponent(msg), '_blank');
+  var items=getCartItems();if(!items.length)return;
+  var name=document.getElementById('cName').value.trim()||'Cliente';
+  var notes=document.getElementById('cNotes').value.trim();
+  var total=cartTotal();
+  var msg='📋 *PEDIDO - X-BURGER DINER*\n👤 Cliente: '+name+'\n─────────────────\n\n';
+  items.forEach(function(it){msg+='• '+it.qty+'x '+it.name+' — R$ '+it.subtotal.toFixed(2).replace('.',',')+'\n'});
+  msg+='\n─────────────────\n💰 *TOTAL: R$ '+total.toFixed(2).replace('.',',')+'*\n';
+  if(notes)msg+='\n📝 Observações:\n'+notes+'\n';
+  var wa=window.DATA.whatsapp||'5535999999999';
+  window.open('https://wa.me/'+wa+'?text='+encodeURIComponent(msg),'_blank');
 }
 
 function toast(msg){
-  var t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  clearTimeout(t._t);
-  t._t = setTimeout(function(){ t.classList.remove('show'); }, 2000);
+  var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+  clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove('show')},2000);
 }
 
-// INIT
 (function(){
-  var wa = window.DATA.whatsapp || '';
-  if(wa) document.getElementById('waFab').href = 'https://wa.me/'+wa;
-  renderCats();
-  renderProds();
-  window.addEventListener('scroll', function(){
-    document.getElementById('hdr').classList.toggle('scrolled', (window.scrollY||0) > 60);
-  }, { passive: true });
-  window.addEventListener('visibilitychange', function(){
-    if(document.visibilityState === 'visible'){
-      var s = localStorage.getItem('xburger_cardapio');
-      if(s){ try{ var d = JSON.parse(s); if(d && d.categorias){ window.DATA = d; renderCats(); renderProds(); } }catch(e){} }
+  var wa=window.DATA.whatsapp||'';if(wa)document.getElementById('waFab').href='https://wa.me/'+wa;
+  renderCats();renderProds();
+  window.addEventListener('scroll',function(){document.getElementById('hdr').classList.toggle('scrolled',(window.scrollY||0)>60)},{passive:true});
+  window.addEventListener('visibilitychange',function(){
+    if(document.visibilityState==='visible'){
+      var s=localStorage.getItem('xburger_cardapio');
+      if(s){try{var d=JSON.parse(s);if(d&&d.categorias){window.DATA=d;renderCats();renderProds()}}catch(e){}}
     }
   });
 })();
